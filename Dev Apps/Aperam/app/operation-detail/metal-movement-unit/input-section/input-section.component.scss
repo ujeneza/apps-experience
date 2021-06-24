@@ -1,0 +1,27 @@
+.formField{
+    width: 100%;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+  }
+
+  .inputContainer{
+      margin-top: 0.3em;
+      width: 100%;
+      height: 100%;
+
+  }
+
+  .inputHeader{
+    background-color: #B86EC9!important;
+    color:white;
+    height: 4em;
+  }
+  .inputHeader:hover{
+    background-color:#B86EC9;
+    color:white;
+    height: 4em;
+  }
+
+/*   .mat-expansion-header:not("expanded") {
+   height: 4em;
+} */

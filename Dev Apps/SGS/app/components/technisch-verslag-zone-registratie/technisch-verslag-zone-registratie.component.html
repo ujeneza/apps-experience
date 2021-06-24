@@ -1,0 +1,60 @@
+﻿<h4>Onderscheiden Deelvolume/Zone in Technisch Verslag (zie opmetingstabel)</h4>
+<form [formGroup]="ZForm" class="container-fluid paddingTop30px">
+    <div class="row">
+        <div class="col-sm-5"><label for="txtBeschrijving" class="pull-right" [class.validationHint]="ZForm.controls['Beschrijving']?.errors">* Omschrijving (deel)partij in TV</label></div>
+        <div class="col-sm-6"><input type="text" id="txtBeschrijving" formControlName="Beschrijving" maxlength="500" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5"><label for="txtHoeveelheid" class="pull-right" [class.validationHint]="ZForm.controls['Hoeveelheid']?.errors">* Hoeveelheid (m³)</label></div>
+        <div class="col-sm-6"><input type="text" id="txtHoeveelheid" formControlName="Hoeveelheid" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5"><label for="ddlKwaliteitBuiten" class="pull-right" [class.validationHint]="ZForm.get('KwaliteitGebruikBuiten').errors">* Code X (Gebruik bodem buiten kwz)</label></div>
+        <div class="col-sm-6">
+            <select id="ddlKwaliteitBuiten" formControlName="KwaliteitGebruikBuiten" DottedBorderBelow class="width100percent">
+                <option *ngFor="let o of lstBU" [value]="o.id">{{o.omschrijving}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5"><label for="ddlKwaliteitBinnen" class="pull-right" [class.validationHint]="ZForm.get('KwaliteitGebruikBinnen').errors">* Code Y (Gebruik bodem, bouwkundig bodemgebruik / vormvast product binnen kwz)</label></div>
+        <div class="col-sm-6">
+            <select id="ddlKwaliteitBinnen" formControlName="KwaliteitGebruikBinnen" DottedBorderBelow class="width100percent">
+                <option *ngFor="let o of lstBI" [value]="o.id">{{o.omschrijving}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5"><label for="ddlKwaliteitBouwstof" class="pull-right" [class.validationHint]="ZForm.get('KwaliteitGebruikBouwstof').errors">* Code Z (Gebruik bouwkundig bodemgebruik / vormvast product)</label></div>
+        <div class="col-sm-6">
+            <select id="ddlKwaliteitBouwstof" formControlName="KwaliteitGebruikBouwstof" DottedBorderBelow class="width100percent">
+                <option *ngFor="let o of lstBO" [value]="o.id">{{o.omschrijving}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-11"><h5>{{ formIsValid() ? "Opslaan" : "Validatie Resultaten"}}</h5></div>
+    </div>
+    <div [hidden]="formIsValid()">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-6">
+                <div *ngIf="(ZForm.get('Beschrijving').touched || ZForm.get('Beschrijving').dirty) && !ZForm.get('Beschrijving').valid" [hidden]="!ZForm.controls['Beschrijving'].errors.required" class="col-sm-7"><label class="validation">- Beschrijving is vereist.</label></div>
+                <div *ngIf="(ZForm.get('Hoeveelheid').touched || ZForm.get('Hoeveelheid').dirty) && !ZForm.get('Hoeveelheid').valid" [hidden]="!ZForm.controls['Hoeveelheid'].errors.required" class="col-sm-7"><label class="validation">- Hoeveelheid is vereist.</label></div>
+                <div *ngIf="(ZForm.get('KwaliteitGebruikBuiten').touched || ZForm.get('KwaliteitGebruikBuiten').dirty) && !ZForm.get('KwaliteitGebruikBuiten').valid" [hidden]="!ZForm.controls['KwaliteitGebruikBuiten'].errors.required" class="col-sm-7"><label class="validation">- Kwaliteit Buiten is vereist.</label></div>
+                <div *ngIf="(ZForm.get('KwaliteitGebruikBinnen').touched || ZForm.get('KwaliteitGebruikBinnen').dirty) && !ZForm.get('KwaliteitGebruikBinnen').valid" [hidden]="!ZForm.controls['KwaliteitGebruikBinnen'].errors.required" class="col-sm-7"><label class="validation">- Kwaliteit Binnen is vereist.</label></div>
+                <div *ngIf="(ZForm.get('KwaliteitGebruikBouwstof').touched || ZForm.get('KwaliteitGebruikBouwstof').dirty) && !ZForm.get('KwaliteitGebruikBouwstof').valid" [hidden]="!ZForm.controls['KwaliteitGebruikBouwstof'].errors.required" class="col-sm-7"><label class="validation">- Kwaliteit Bouwstof is vereist.</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-6">
+                <button type="button" (click)="save()" [disabled]="!formIsValid()" class="btn btn-default">{{appLabels.Save}}</button>
+                <button type="button" class="btn btn-default marginLeft20px" (click)="goBack()">Terug</button>
+            </div>
+        </div>
+    </div>
+</form>

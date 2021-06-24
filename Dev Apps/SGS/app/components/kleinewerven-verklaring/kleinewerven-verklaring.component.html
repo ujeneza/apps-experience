@@ -1,0 +1,298 @@
+﻿<h4>Kleine Werken Verklaring</h4>
+<form [formGroup]="kwForm" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <label>De verklaring dat het grondverzet van onderstaande plaats van herkomst naar onderstaande plaats van bestemming werd beëindigd, kan U onderaan deze pagina vervolledigen.</label>
+            <br /><br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Kleine Werken Nummer</label></div>
+        <div class="col-sm-8"><label>{{kw?.kleineWervenMeldingID}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Uw Referentie</label></div>
+        <div class="col-sm-8"><label>{{kw?.klantReferentie}}</label></div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Grondwerker</h5>
+    </div>
+    <div class="row" *ngIf="kw?.isEigenGrondwerker">
+        <div class="col-sm-3"><label class="pull-right">(Eigen Grondwerker)</label></div>
+        <div class="col-sm-8"><label>&nbsp;</label></div>
+    </div>
+    <div *ngIf="!kw?.isEigenGrondwerker">
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Firmanaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwFirmaNaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Achternaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwAchternaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Voornaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwVoornaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwTelefoon}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Email</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwEmail}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwStraat1}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">&nbsp;</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwStraat2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwPostcode}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Plaats</label></div>
+            <div class="col-sm-8"><label>{{kw?.gwPlaats}}</label></div>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Transporteur</h5>
+    </div>
+    <div class="row" *ngIf="kw?.isEigenTransporteur">
+        <div class="col-sm-3"><label class="pull-right">(Eigen Transport)</label></div>
+        <div class="col-sm-8"><label>&nbsp;</label></div>
+    </div>
+    <div *ngIf="!kw?.isEigenTransporteur">
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Firmanaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptFirmaNaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Achternaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptAchternaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Voornaam</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptVoornaam}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptTelefoon}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Email</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptEmail}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptStraat1}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">&nbsp;</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptStraat2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptPostcode}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Plaats</label></div>
+            <div class="col-sm-8"><label>{{kw?.tptPlaats}}</label></div>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Herkomst</h5>
+    </div>
+    <div class="row" *ngIf="kw?.herkIsContainerBedrijf">
+        <div class="col-sm-3"><label class="pull-right">Container Bedrijf</label></div>
+        <div class="col-sm-8"><label>{{kw?.herkContainerBedrijfNaam}} {{kw?.herkIsContainerPark == true ? '(gezamenlijk container-/recyclagepark)' : ''}}</label></div>
+    </div>
+    <div *ngIf="kw?.herkAdresCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="locationBorderBottom">Via Lokatie gegevens</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat en Nummer</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkAdres1}}</label></div>
+        </div>
+        <div class="row" *ngIf="kw?.herkAdres2 != ''">
+            <div class="col-sm-3"><label class="pull-right">Straat en Nummer (vervolg)</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkAdres2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkPostcode}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkPlaats}}</label></div>
+        </div>
+    </div>
+    <div *ngIf="kw?.herkKadCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="paddingTop20px locationBorderBottom">Via kadastrale gegevens</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkKadAfdeling}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Afdelingsnummer</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkKadAfdelingsNr}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Sectie</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkKadSectie}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Nummer(s)</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkKadNummers}}</label></div>
+        </div>
+    </div>
+    <div *ngIf="kw?.herkLambCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="paddingTop20px locationBorderBottom">Via coördinaten (centrale punt aanvulling)</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">X</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkLX1}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Y</label></div>
+            <div class="col-sm-8"><label>{{kw?.herkLY1}}</label></div>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Bestemming {{kw?.isTop == true ? '(TOP)' : ''}}</h5>
+    </div>
+    <div class="row" *ngIf="kw?.bestIsContainerBedrijf">
+        <div class="col-sm-3"><label class="pull-right">Container Bedrijf</label></div>
+        <div class="col-sm-8"><label>{{kw?.bestContainerBedrijfNaam}} {{kw?.bestIsContainerPark == true ? '(gezamenlijk container-/recyclagepark)' : ''}}</label></div>
+    </div>
+    <div *ngIf="kw?.bestAdresCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="locationBorderBottom">Via Lokatie gegevens</h6>
+            </div>
+        </div>
+        <div class="row" *ngIf="kw?.bestOrganisatie != ''">
+            <div class="col-sm-3"><label class="pull-right">Organisatie</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestOrganisatie}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat en Nummer</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestAdres1}}</label></div>
+        </div>
+        <div class="row" *ngIf="kw?.bestAdres2 != ''">
+            <div class="col-sm-3"><label class="pull-right">Straat en Nummer (vervolg)</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestAdres2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestPostcode}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestPlaats}}</label></div>
+        </div>
+    </div>
+    <div *ngIf="kw?.bestKadCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="paddingTop20px locationBorderBottom">Via kadastrale gegevens</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestKadAfdeling}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Afdelingsnummer</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestKadAfdelingsNr}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Sectie</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestKadSectie}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Nummer(s)</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestKadNummers}}</label></div>
+        </div>
+    </div>
+    <div *ngIf="kw?.bestLambCode != ''">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <h6 class="paddingTop20px locationBorderBottom">Via coördinaten (centrale punt aanvulling)</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">X</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestLX1}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Y</label></div>
+            <div class="col-sm-8"><label>{{kw?.bestLY1}}</label></div>
+        </div>
+    </div>
+</form>
+<form [formGroup]="volForm" class="container-fluid">
+    <div class="row">
+        <h5 class="col-sm-11">Afgevoerd Volume</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Vooropgestelde Transport Datum</label></div>
+        <div class="col-sm-8"><label>{{kw?.geplandeStartDatum | date:"dd/MM/yyyy"}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Vooropgestelde Volume</label></div>
+        <div class="col-sm-8"><label>{{kw?.geplandVolume}}</label></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtStartDatum" class="pull-right" [class.validationHint]="volForm.controls['WerkelijkeStartDatum']?.errors">* Werkelijke Startdatum transport</label></div>
+        <div class="col-sm-8"><input type="text" id="txtStartDatum" formControlName="WerkelijkeStartDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }" (bsValueChange)="EindDatumValidation()"></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtEindDatum" class="pull-right" [class.validationHint]="volForm.controls['WerkelijkeEindDatum']?.errors">* Werkelijke Einddatum transport</label></div>
+        <div class="col-sm-8"><input type="text" id="txtEindDatum" formControlName="WerkelijkeEindDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }" (bsValueChange)="StartDatumValidation()"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtVolume" class="pull-right" [class.validationHint]="volForm.controls['WerkelijkVolume']?.errors">* Werkelijk Volume</label></div>
+        <div class="col-sm-8"><input type="text" id="txtVolume" formControlName="WerkelijkVolume" DottedBorderBelow AllowOnlyNumbers class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8">
+            <label>
+                <input type="checkbox" formControlName="sendOK" [class.validationHint]="volForm.controls['sendOK'].errors">
+                Ondergetekende verklaart hierbij de aangegeven partij grond in de aangegeven periode naar de opgegeven bestemming gevoerd te hebben.
+            </label>
+        </div>
+    </div>
+    <div [hidden]="volForm.valid">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(volForm.get('WerkelijkeStartDatum').touched || volForm.get('WerkelijkeStartDatum').dirty) && !volForm.get('WerkelijkeStartDatum').valid" [hidden]="!volForm.controls['WerkelijkeStartDatum'].errors.required" class="col-sm-8"><label class="validation">- Werkelijke StartDatum is vereist.</label></div>
+                <div *ngIf="(volForm.get('WerkelijkeStartDatum').touched || volForm.get('WerkelijkeStartDatum').dirty) && !volForm.get('WerkelijkeStartDatum').valid" [hidden]="!volForm.controls['WerkelijkeStartDatum'].errors || volForm.controls['WerkelijkeStartDatum'].value < volForm.controls['WerkelijkeEindDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Start datum kan niet voorbij de Werkelijke Eind datum liggen.</label></div>
+                <div *ngIf="(volForm.get('WerkelijkeEindDatum').touched || volForm.get('WerkelijkeEindDatum').dirty) && !volForm.get('WerkelijkeEindDatum').valid" [hidden]="!volForm.controls['WerkelijkeEindDatum'].errors || volForm.controls['WerkelijkeStartDatum'].value < volForm.controls['WerkelijkeEindDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Eind datum kan niet eerder ingesteld worden dan de Werkelijke Start Datum.</label></div>
+                <div *ngIf="(volForm.get('WerkelijkeEindDatum').touched || volForm.get('WerkelijkeEindDatum').dirty) && !volForm.get('WerkelijkeEindDatum').valid" [hidden]="!volForm.controls['WerkelijkeEindDatum'].errors || volForm.controls['WerkelijkeEindDatum'].value <= volForm.controls['WerkelijkeAfsluitDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Eind datum kan niet voorbij de afsluit datum (vandaag) worden ingesteld.</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="row paddingTop20px">
+        <div class="col-sm-10 col-sm-offset-1">
+            <button type="button" (click)="send()" [disabled]="!volForm.valid" class="btn btn-default marginRight20px">{{appLabels.Send}}</button>
+            <button type="button" (click)="goBack()" *ngIf="terugVisible" class="btn btn-default">{{appLabels.Back}}</button>
+            <label *ngIf="waitingMessageVisible">Bezig met het genereren van de documenten, even geduld aub</label>
+        </div>
+    </div>
+</form>

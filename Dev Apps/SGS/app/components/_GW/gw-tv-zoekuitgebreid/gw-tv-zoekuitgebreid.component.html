@@ -1,0 +1,81 @@
+﻿<form [formGroup]="zkForm" class="container-fluid paddingTop30px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2"><label for="txtCode" class="pull-right">Code</label></div>
+            <div class="col-sm-4"><input type="text" id="txtCode" formControlName="Code" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="chkOvername" class="pull-right">Overname:</label></div>
+            <div class="checkbox col-sm-4"><div class="marginTopMin10px marginLeft20px"><input type="checkbox" id="chkOvername" class="marginBottom0" formControlName="Overname" value="" /></div></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="ddlIndiener" class="pull-right">Klant/Indiener</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlIndiener" formControlName="Indiener" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let klant of IndienerListItems" [value]="klant.klantID" [innerHTML]="klant.naam"></option>
+                </select>
+            </div>
+            <div class="col-sm-2"><label for="chkSamengevoegd" class="pull-right">Samengevoegd:</label></div>
+            <div class="checkbox col-sm-4"><div class="marginTopMin10px marginLeft20px"><input type="checkbox" id="chkSamengevoegd" class="marginBottom0" formControlName="Samengevoegd" value="" /></div></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtFactuurRef" class="pull-right">Factuur Referentie Klant:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtFactuurRef" formControlName="FactuurRef" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="txtEBSD" class="pull-right">Naam EBSD:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtEBSD" formControlName="EBSD" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtAdres" class="pull-right">Straat en nr:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtAdres" formControlName="Adres" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlIndieningsWijze" class="pull-right">Indieningswijze</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlIndieningsWijze" formControlName="IndieningsWijze" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let iw of IndieningsWijzeListItems" [value]="iw.indieningswijzeID" [innerHTML]="iw.indieningswijze"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtGemeente" class="pull-right">Gemeente:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtGemeente" formControlName="Gemeente" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="dteDatum" class="pull-right">Datum:</label></div>
+            <div class="col-sm-4"><input type="text" id="dteDatum" formControlName="Datum" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" DottedBorderBelow [bsConfig]="{ showWeekNumbers: false }"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtTitel" class="pull-right">Titel:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtTitel" formControlName="Titel" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlStatus" class="pull-right">Status</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlStatus" formControlName="Status" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let sts of StatusListItems" [value]="sts.tvStatusID" [innerHTML]="sts.status"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtBeschrijving" class="pull-right">Beschrijving:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtBeschrijving" formControlName="Beschrijving" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlGefactureerd" class="pull-right">Gefactureerd</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlGefactureerd" formControlName="Gefactureerd" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option value="1">Ja</option>
+                    <option value="0">Nee</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtReferentie" class="pull-right">Referentie:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtReferentie" formControlName="Referentie" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlDossierBeheerder" class="pull-right">DossierBeheerder</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlDossierBeheerder" formControlName="DossierBeheerder" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let dossbeh of DossierBeheerderListItems" [value]="dossbeh.dossierBeheerderID" [innerHTML]="dossbeh.naam"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8"><button type="button" (click)="raiseSearch()" class="btn btn-default">{{appLabels.Send}}</button></div>
+        </div>
+    </div>
+</form>

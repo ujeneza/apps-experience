@@ -1,0 +1,241 @@
+﻿<h4>Detail Technisch Verslag</h4>
+<div class="row">
+    <div class="col-sm-11"><h5>Technisch Verslag Gegevens</h5></div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nummer :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.technischVerslagID}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Uw Referentie :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.factuurReferentieKlant}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Titel :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.titel}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat Onderzoekslokatie :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.titel2}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente Onderzoekslokatie :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.titel3}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Beschrijving :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.beschrijving}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">EBSD :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.ebsd}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Referentie :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.kenmerk}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Indieningswijze :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.indieningswijze}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Publiek beschikbaar :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.publiek ? 'Ja' : 'Nee'}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Status :</label></div>
+        <div class="col-sm-8"><label class="pull-left">{{Detail?.status}}</label></div>
+    </div>
+    <div class="row" *ngIf="z_rows!=null && z_rows.length > 0">
+        <div class="col-sm-11">
+            <div class="NgxTable">
+                <p class="pull-left NgxTitle">Deelvolumes :</p>
+                <ngx-datatable #z_table
+                               class="bootstrap"
+                               [rows]="z_rows"
+                               [columnMode]="'flex'"
+                               [headerHeight]="22"
+                               [footerHeight]="0"
+                               [cssClasses]="commonLabels.iconsCss"
+                               [rowHeight]="'auto'">
+                    <ngx-datatable-column [flexGrow]="1" prop="id" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">{{column.name}}</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label>{{row['id']}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="4" name="Beschrijving" headerClass="NgxHeader">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label>{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="kgbuCode" headerClass="NgxHeaderCentered">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">(X)</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label style="text-align: center; width: 100%;">{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="kgbiCode" headerClass="NgxHeaderCentered">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">(Y)</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label style="text-align: center; width: 100%;">{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="kgboCode" headerClass="NgxHeaderCentered">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">(Z)</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label style="text-align: center; width: 100%;">{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" name="Hoeveelheid (m³)" headerClass="NgxHeader">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label>{{row['hoeveelheid']}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" name="Beschikbaar (m³)" headerClass="NgxHeader">
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label>{{row['beschikbaar']}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11">
+            <kwaliteiten-legende *ngIf="!isVlarebo2008"></kwaliteiten-legende>
+            <kwaliteiten-legende2008 *ngIf="isVlarebo2008"></kwaliteiten-legende2008>
+        </div>
+    </div>
+    <div class="row" *ngIf="g_rows!=null && g_rows.length > 0">
+        <div class="col-sm-11">
+            <div class="NgxTable">
+                <p class="pull-left NgxTitle">Grond transport melding:</p>
+                <ngx-datatable #g_table
+                               class="bootstrap"
+                               [rows]="g_rows"
+                               [columnMode]="'flex'"
+                               [headerHeight]="22"
+                               [footerHeight]="0"
+                               [cssClasses]="commonLabels.iconsCss"
+                               [rowHeight]="'auto'">
+                    <ngx-datatable-column [flexGrow]="1" prop="grondtransportmeldingId" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Nummer</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <a [routerLink]="" (click)="linkToGTM(row['grondtransportmeldingId'])"><span>{{row['grondtransportmeldingId']}}</span></a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="5" name="KlantKenmerk" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Referentie</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <label>{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" name="TransportAanvangDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Transport Aanvangdatum</span>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label>{{value | date:"dd/MM/yyyy"}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" name="TransportEindeDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Transport Eindedatum</span>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label>{{value | date:"dd/MM/yyyy"}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" name="IndieningsDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Indieningsdatum </span>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label>{{value | date:"dd/MM/yyyy"}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Status" prop="werkelijkeHoeveelheid" [flexGrow]="2" headerClass="NgxHeader">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label *ngIf="value === 0">Nog niet afgeronde GTM</label>
+                            <label *ngIf="value > 0">Afgeronde GTM</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="b_rows!=null && b_rows.length > 0">
+        <div class="col-sm-11">
+            <div class="NgxTable">
+                <p class="pull-left NgxTitle">Grondverzettoelating / Bodem beheer rapport :</p>
+                <ngx-datatable #b_table
+                               class="bootstrap"
+                               [rows]="b_rows"
+                               [columnMode]="'flex'"
+                               [headerHeight]="22"
+                               [footerHeight]="0"
+                               [cssClasses]="commonLabels.iconsCss"
+                               [rowHeight]="'auto'">
+                    
+                    <ngx-datatable-column [flexGrow]="1" prop="bodemBeheerRapportID" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Nummer</span>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <a [routerLink]="" (click)="linkToBBR(row['bodemBeheerRapportID'])"><span>{{row['bodemBeheerRapportID']}}</span></a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="7" name="AanvraagDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Aanvraagdatum </span>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label>{{value | date:"dd/MM/yyyy"}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="4" prop="klantKenmerk" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Referentie</span>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <label>{{value}}</label>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="4" name="statusDescription" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()">Status</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+    <div class="row, NgxTable" *ngIf="tf_rows!=null && tf_rows.length > 0">
+        <p class="pull-left NgxTitle">Technisch Verslag Bestanden:</p>
+        <br />
+        <div class="col-sm-11" *ngFor="let r of tf_rows;">
+            <a [routerLink]="" (click)="showFileId(r.id)" class="pdfLink"><label><u>{{r.fileName}}</u></label></a>
+        </div>
+    </div>
+    <div class="row, NgxTable" *ngIf="mf_rows!=null && mf_rows.length > 0">
+        <p class="pull-left NgxTitle">PDF Documenten:</p>
+        <br />
+        <div class="col-sm-11" *ngFor="let r of mf_rows;">
+            <a [routerLink]="" (click)="showFileId(r.id)" class="pdfLink"><label><u>{{r.fileName}}</u></label></a>
+        </div>
+    </div>
+</div>

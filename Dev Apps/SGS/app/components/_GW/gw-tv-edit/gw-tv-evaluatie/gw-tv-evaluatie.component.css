@@ -1,0 +1,69 @@
+﻿.setTop {
+    align-items: flex-start;
+}
+
+.setArea {
+    border: 1px solid #DADADA;
+}
+
+
+.locationBorderBottom {
+    border-bottom: 1px solid #7faa2a;
+}
+
+
+.controlWidth {
+    width: 100%;
+}
+
+.paneldefault {
+    border-color: #017342 !important;
+}
+.form-check{
+margin-left:0.5rem;
+}
+
+.panelHeaderSize {
+    position:relative;
+    padding-bottom: 2px;
+    padding-top: 2px;
+
+}
+
+    .expandablePanel:hover {
+        position: relative;
+        padding-bottom: 2px;
+        padding-top: 2px;
+        color: white;
+        background-color: rgba(127, 170, 42,0.2);
+    }
+
+
+
+.positiefBesluit{
+    color:royalblue;
+    font-weight:bold;
+}
+
+comformiteitLabel {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    color: royalblue !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.pointer {
+    cursor: pointer;
+}

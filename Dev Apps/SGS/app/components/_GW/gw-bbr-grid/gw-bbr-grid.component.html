@@ -1,0 +1,149 @@
+﻿<form [formGroup]="StsForm" class="container-fluid paddingTop10px">
+    <div class="row" *ngIf="useSearch">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-default" (click)="ToggleExtendedSearch()">{{ isExtendedSearch ? 'Enkelvoudig zoeken' : 'Geavanceerd zoeken' }}</button>
+        </div>
+        <div *ngIf="useSearch && !isExtendedSearch" class="col-sm-9">
+            <label class="paddingRight10px">Filter status</label>
+            <select formControlName="sts" DottedBorderBelow (change)="statusChanged()">
+                <option value="-1">Selecteer</option>
+                <option *ngFor="let sts of StatusDropdownList" [value]="sts.bbrStatusID" [innerHTML]="sts.status"></option>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="useSearch && isExtendedSearch">
+        <div class="col-sm-12"><gw-bbr-zoekuitgebreid (searching)="onExtendedSearch($event)"></gw-bbr-zoekuitgebreid></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="NgxTable">
+                <p *ngIf="forNieuweAanvragen == false" class="pull-left NgxTitle">{{title}}</p>
+                <ngx-datatable #table
+                               class="bootstrap"
+                               (activate)="onActivate($event)"
+                               [rows]="rows"
+                               [columnMode]="'flex'"
+                               [headerHeight]="50"
+                               [footerHeight]="40"
+                               [limit]="appLabels.tableViewRows"
+                               [rowClass]="getRowClass"
+                               [cssClasses]="appLabels.iconsCss"
+                               [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                               [sorts]="[{prop:'bbrNummer', dir:'desc' }]"
+                               [rowHeight]="'auto'">
+
+                    <ngx-datatable-column [flexGrow]="1" name="nietGoedGekeurd" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template></ng-template>
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <span style="color: red"><b>{{row['nietGoedGekeurd']}}</b></span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" prop="bbrNummer" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()" class="NgxFilterLabel">Nummer</span>
+                            <div><input type="text" formControlName="bbrNummer" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <a class="pdfLink" [routerLink]="['/bodembeheerrapport-detail']" [queryParams]="{bbr:'Final',bbrId:row['bbrNummer']}"><label class="text">{{row['bbrNummer']}}</label></a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="3" prop="naam" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()" class="NgxFilterLabel">Klant</span>
+                            <div><input type="text" formControlName="naam" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            <span>{{value}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" prop="beroepsorganisatiecode" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()" class="NgxFilterLabel">Code</span>
+                            <input type="text" formControlName="code" class="NgxFilterField" (keyup)="filter()" />
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <span>{{value}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="2" prop="plaats" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()" class="NgxFilterLabel">Gemeente</span>
+                            <input type="text" formControlName="gem" class="NgxFilterField" (keyup)="filter()" />
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <span>{{value}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="aanvraagDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">Datum in</span></div>
+                            <div><input type="text" formControlName="aanvraagDatum" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:"dd/MM/yyyy"}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="statusDatum" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">Datum uit</span></div>
+                            <div><input type="text" formControlName="statusDatum" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:"dd/MM/yyyy"}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" prop="indieningswijze" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">Aanvulplan</span></div>
+                            <div><input type="text" formControlName="indieningswijze" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" prop="hoeveelheid" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <span (click)="sort()" class="NgxFilterLabel">Hoeveelheid</span>
+                            <div><input type="text" formControlName="hoev" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <span>{{row['hoeveelheid']}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" prop="gefactureerd" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">Gefact.</span></div>
+                            <div><input type="text" formControlName="gefactureerd" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="3" prop="status" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">BBR Status</span></div>
+                            <div><input type="text" formControlName="bbrSts" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="startDatumGrondwerken" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                            <div><span (click)="sort()" class=" NgxFilterLabel">Start Datum</span></div>
+                            <div><input type="text" formControlName="startDatum" class="NgxFilterField" (keyup)="filter()" /></div>
+                        </ng-template>
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:"dd/MM/yyyy"}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [flexGrow]="1" name="Detail" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        </ng-template>
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <img src="../../../../images/ico_editrecord.gif" class="ibtn" (click)="linkToBBR(row['bbrNummer'])" />
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column *ngIf="canDelete" [flexGrow]="1" name="Detail" headerClass="NgxHeader">
+                        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        </ng-template>
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <img src="../../../../images/ico_delete.png" class="ibtn" (click)="deleteBBR(row['bbrNummer'])" />
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</form>

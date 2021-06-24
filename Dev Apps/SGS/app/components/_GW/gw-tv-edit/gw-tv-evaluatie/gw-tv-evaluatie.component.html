@@ -1,0 +1,1251 @@
+﻿
+<form [formGroup]="evaluatieForm" class="container-fluid paddingTop10px">
+
+    <div class="row">
+        <h6 class="col-sm-8">Evaluatie (volgens Vlarebo 2008)</h6>
+        <h6 class="col-sm-1">Ok</h6>
+        <h6 class="col-sm-1">Nok</h6>
+        <h6 class="col-sm-1">Nvt</h6>
+
+    </div>
+    <!-- A.Het technisch verslag is opgesteld door een EBSD-->
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label>  A. Het technisch verslag is opgesteld door een EBSD</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkA_01" type="radio" [value]="1" formControlName="checkA_01" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkA_01" type="radio" [value]="2" formControlName="checkA_01" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkA_01" type="radio" [value]="3" formControlName="checkA_01" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="accordion">
+        <!-- B.Voorstudie-->
+        <div class="panel panel-default">
+            <div class="panel-heading panelHeaderSize expandablePanel" id="headingVoorstudie">
+                <div class="row">
+                    <div class="col-sm-8 collapsed pointer" tooltip="klik om te openen" data-toggle="collapse" data-target="#collapseVoorstudie" aria-controls="collapseVoorstudie">
+                        <label> <i class="fa fa-ellipsis-v"></i> B. Voorstudie</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_01" type="radio" [value]="1" formControlName="checkB_01" [attr.disabled]="true" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_01" type="radio" [value]="2" formControlName="checkB_01" [attr.disabled]="true" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_01" type="radio" [value]="3" formControlName="checkB_01" [attr.disabled]="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body collapse multi-collapse" id="collapseVoorstudie" aria-labelledby="headingVoorstudie" data-parent="#accordion">
+
+                <!-- Administratief onderzoek -->
+
+                <h6>Administratief onderzoek</h6>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label>Identificatie grond: Adres</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_01_Adres" type="radio" [value]="1" formControlName="checkB_Adm_01_Adres" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_01_Adres" type="radio" [value]="2" formControlName="checkB_Adm_01_Adres" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_01_Adres" type="radio" [value]="3" formControlName="checkB_Adm_01_Adres" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Identificatie grond: Lambert-coördinaten</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_02_LCoord" type="radio" [value]="1" formControlName="checkB_Adm_02_LCoord" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_02_LCoord" type="radio" [value]="2" formControlName="checkB_Adm_02_LCoord" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_02_LCoord" type="radio" [value]="3" formControlName="checkB_Adm_02_LCoord" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Identificatie grond:Kadastrale gegevens</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_03_Kad" type="radio" [value]="1" formControlName="checkB_Adm_03_Kad" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_03_Kad" type="radio" [value]="2" formControlName="checkB_Adm_03_Kad" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_03_Kad" type="radio" [value]="3" formControlName="checkB_Adm_03_Kad" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bestemmingstype</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_05_BestemTyp" type="radio" [value]="1" formControlName="checkB_Adm_05_BestemTyp" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_05_BestemTyp" type="radio" [value]="2" formControlName="checkB_Adm_05_BestemTyp" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_05_BestemTyp" type="radio" [value]="3" formControlName="checkB_Adm_05_BestemTyp" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Vermelding ligging waterwingebied of beschermingszone</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_06_VermeldLigging" type="radio" [value]="1" formControlName="checkB_Adm_06_VermeldLigging" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_06_VermeldLigging" type="radio" [value]="2" formControlName="checkB_Adm_06_VermeldLigging" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Adm_06_VermeldLigging" type="radio" [value]="3" formControlName="checkB_Adm_06_VermeldLigging" />
+                    </div>
+
+                </div>
+
+                <!-- Historisch onderzoek -->
+
+                <h6>Historisch onderzoek</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Historiek terrein</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_01_terrein" type="radio" [value]="1" formControlName="checkB_His_01_terrein" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_01_terrein" type="radio" [value]="2" formControlName="checkB_His_01_terrein" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_01_terrein" type="radio" [value]="3" formControlName="checkB_His_01_terrein" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Vlarebo-activiteiten (huidig en voormalig)</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_02_Vlarebo" type="radio" [value]="1" formControlName="checkB_His_02_Vlarebo" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_02_Vlarebo" type="radio" [value]="2" formControlName="checkB_His_02_Vlarebo" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_02_Vlarebo" type="radio" [value]="3" formControlName="checkB_His_02_Vlarebo" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Vlarem-activiteiten (huidig en voormalig)</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03_Vlarem" type="radio" [value]="1" formControlName="checkB_His_03_Vlarem" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03_Vlarem" type="radio" [value]="2" formControlName="checkB_His_03_Vlarem" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03_Vlarem" type="radio" [value]="3" formControlName="checkB_His_03_Vlarem" />
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Omschrijving lozingspunten</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03B_Lozing" type="radio" [value]="1" formControlName="checkB_His_03B_Lozing" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03B_Lozing" type="radio" [value]="2" formControlName="checkB_His_03B_Lozing" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_03B_Lozing" type="radio" [value]="3" formControlName="checkB_His_03B_Lozing" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Organoleptische waarnemingen</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_04_Organolep" type="radio" [value]="1" formControlName="checkB_His_04_Organolep" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_04_Organolep" type="radio" [value]="2" formControlName="checkB_His_04_Organolep" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_04_Organolep" type="radio" [value]="3" formControlName="checkB_His_04_Organolep" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Omschrijving voormalige bodemonderzoeken</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_05_Voormalig" type="radio" [value]="1" formControlName="checkB_His_05_Voormalig" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_05_Voormalig" type="radio" [value]="2" formControlName="checkB_His_05_Voormalig" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_05_Voormalig" type="radio" [value]="3" formControlName="checkB_His_05_Voormalig" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Vermelding aanleiding tot aanvullende parameters</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_06_Aanvullend" type="radio" [value]="1" formControlName="checkB_His_06_Aanvullend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_06_Aanvullend" type="radio" [value]="2" formControlName="checkB_His_06_Aanvullend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_His_06_Aanvullend" type="radio" [value]="3" formControlName="checkB_His_06_Aanvullend" />
+                    </div>
+                </div>
+
+                <!-- Reden / type grondverzet -->
+                <h6>Reden / type grondverzetk</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Algemene beschrijving</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Typ_01_Algemeen" type="radio" [value]="1" formControlName="checkB_Typ_01_Algemeen" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Typ_01_Algemeen" type="radio" [value]="2" formControlName="checkB_Typ_01_Algemeen" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_Typ_01_Algemeen" type="radio" [value]="3" formControlName="checkB_Typ_01_Algemeen" />
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label class="positiefBesluit">Positief besluit m.b.t. voorstudie</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_PosBesluit_01_Voorstudie" type="radio" [value]="1" formControlName="checkB_PosBesluit_01_Voorstudie" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_PosBesluit_01_Voorstudie" type="radio" [value]="2" formControlName="checkB_PosBesluit_01_Voorstudie" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkB_PosBesluit_01_Voorstudie" type="radio" [value]="3" formControlName="checkB_PosBesluit_01_Voorstudie" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <!-- C.Onderzoeksstrategie-->
+        <div class="panel panel-default">
+            <div class="panel-heading panelHeaderSize expandablePanel" id="headingOnderzoeksstrategie">
+
+                <div class="row">
+                    <div class="col-sm-8 pointer" tooltip="klik om te openen" data-toggle="collapse" data-target="#collapseOnderzoeksstrategie" aria-controls="collapseOnderzoeksstrategie">
+                        <label> C.Onderzoeksstrategie</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_01" type="radio" [value]="1" [attr.disabled]="true" formControlName="checkC_01" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_01" type="radio" [value]="2" [attr.disabled]="true" formControlName="checkC_01" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_01" type="radio" [value]="3" [attr.disabled]="true" formControlName="checkC_01" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body collapse multi-collapse" id="collapseOnderzoeksstrategie" aria-labelledby="headingOnderzoeksstrategie" data-parent="#accordion">
+
+                <!-- Type Strategie-->
+
+                <h6>Type Strategie</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bouwprojecten</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_01_BouwPrj" type="radio" [value]="1" formControlName="checkC_Typ_01_BouwPrj" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_01_BouwPrj" type="radio" [value]="2" formControlName="checkC_Typ_01_BouwPrj" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_01_BouwPrj" type="radio" [value]="3" formControlName="checkC_Typ_01_BouwPrj" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Lijntrajecten</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_02_LijnTrj" type="radio" [value]="1" formControlName="checkC_Typ_02_LijnTrj" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_02_LijnTrj" type="radio" [value]="2" formControlName="checkC_Typ_02_LijnTrj" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_02_LijnTrj" type="radio" [value]="3" formControlName="checkC_Typ_02_LijnTrj" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Hopen uitgegraven bodem gekende herkomste</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_03_Hopen" type="radio" [value]="1" formControlName="checkC_Typ_03_Hopen" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_03_Hopen" type="radio" [value]="2" formControlName="checkC_Typ_03_Hopen" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_03_Hopen" type="radio" [value]="3" formControlName="checkC_Typ_03_Hopen" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Andere hopen uitgegraven bodem</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_04_HopenAnder" type="radio" [value]="1" formControlName="checkC_Typ_04_HopenAnder" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_04_HopenAnder" type="radio" [value]="2" formControlName="checkC_Typ_04_HopenAnder" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_04_HopenAnder" type="radio" [value]="3" formControlName="checkC_Typ_04_HopenAnder" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Gedeeltelijk binnen zone voor gebruik ter plaatsee</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_05_Deels" type="radio" [value]="1" formControlName="checkC_Typ_05_Deels" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_05_Deels" type="radio" [value]="2" formControlName="checkC_Typ_05_Deels" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_05_Deels" type="radio" [value]="3" formControlName="checkC_Typ_05_Deels" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label>ONBEVAARBARE WATERLOPEN:</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Lineaire waterlopen</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_06_OnbevLineair" type="radio" [value]="1" formControlName="checkC_Typ_06_OnbevLineair" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_06_OnbevLineair" type="radio" [value]="2" formControlName="checkC_Typ_06_OnbevLineair" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_06_OnbevLineair" type="radio" [value]="3" formControlName="checkC_Typ_06_OnbevLineair" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bredere (niet-lineaire) </label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_07_OnbevBreder" type="radio" [value]="1" formControlName="checkC_Typ_07_OnbevBreder" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_07_OnbevBreder" type="radio" [value]="2" formControlName="checkC_Typ_07_OnbevBreder" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_07_OnbevBreder" type="radio" [value]="3" formControlName="checkC_Typ_07_OnbevBreder" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Grachten en niet geklasseerde waterlopen </label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_08_OnbevGracht" type="radio" [value]="1" formControlName="checkC_Typ_08_OnbevGracht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_08_OnbevGracht" type="radio" [value]="2" formControlName="checkC_Typ_08_OnbevGracht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_08_OnbevGracht" type="radio" [value]="3" formControlName="checkC_Typ_08_OnbevGracht" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label>BEVAARBARE WATERLOPEN:</label>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Monstername ikv lagunering (verder te bekijken) </label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_09_BevaarMonster" type="radio" [value]="1" formControlName="checkC_Typ_09_BevaarMonster" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_09_BevaarMonster" type="radio" [value]="2" formControlName="checkC_Typ_09_BevaarMonster" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Typ_09_BevaarMonster" type="radio" [value]="3" formControlName="checkC_Typ_09_BevaarMonster" />
+                    </div>
+
+                </div>
+
+
+
+                <!-- Bemonstering-->
+                <h6>Bemonstering</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Voldaan aan minimale strategie</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_01B_MinStrategie" type="radio" [value]="1" formControlName="checkC_Mon_01B_MinStrategie" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_01B_MinStrategie" type="radio" [value]="2" formControlName="checkC_Mon_01B_MinStrategie" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_01B_MinStrategie" type="radio" [value]="3" formControlName="checkC_Mon_01B_MinStrategie" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Verdachte punten bijkomend afzonderlijk bemonsterd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_02_Verdacht" type="radio" [value]="1" formControlName="checkC_Mon_02_Verdacht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_02_Verdacht" type="radio" [value]="2" formControlName="checkC_Mon_02_Verdacht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_02_Verdacht" type="radio" [value]="3" formControlName="checkC_Mon_02_Verdacht" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Monsternameverslag aanwezig</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_04_Verslag" type="radio" [value]="1" formControlName="checkC_Mon_04_Verslag" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_04_Verslag" type="radio" [value]="2" formControlName="checkC_Mon_04_Verslag" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Mon_04_Verslag" type="radio" [value]="3" formControlName="checkC_Mon_04_Verslag" />
+                    </div>
+                </div>
+
+
+                <!-- Analyses-->
+
+                <h6>Analyses</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bodemlagen correct weerhouden</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_01_Correct" type="radio" [value]="1" formControlName="checkC_Ana_01_Correct" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_01_Correct" type="radio" [value]="2" formControlName="checkC_Ana_01_Correct" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_01_Correct" type="radio" [value]="3" formControlName="checkC_Ana_01_Correct" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Aantal analyses voldoende per bodemlaag</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_02_Voldoende" type="radio" [value]="1" formControlName="checkC_Ana_02_Voldoende" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_02_Voldoende" type="radio" [value]="2" formControlName="checkC_Ana_02_Voldoende" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_02_Voldoende" type="radio" [value]="3" formControlName="checkC_Ana_02_Voldoende" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Verdachte punten afzonderlijk geanalyseerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_03_Verdacht" type="radio" [value]="1" formControlName="checkC_Ana_03_Verdacht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_03_Verdacht" type="radio" [value]="2" formControlName="checkC_Ana_03_Verdacht" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_03_Verdacht" type="radio" [value]="3" formControlName="checkC_Ana_03_Verdacht" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>SAP-pakket bodem uitgevoerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04_SAP" type="radio" [value]="1" formControlName="checkC_Ana_04_SAP" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04_SAP" type="radio" [value]="2" formControlName="checkC_Ana_04_SAP" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04_SAP" type="radio" [value]="3" formControlName="checkC_Ana_04_SAP" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>PCB bij wegenis</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04B_PCB" type="radio" [value]="1" formControlName="checkC_Ana_04B_PCB" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04B_PCB" type="radio" [value]="2" formControlName="checkC_Ana_04B_PCB" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_04B_PCB" type="radio" [value]="3" formControlName="checkC_Ana_04B_PCB" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Analysepakket niet-gekende herkomst uitgevoerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05_ntGekend" type="radio" [value]="1" formControlName="checkC_Ana_05_ntGekend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05_ntGekend" type="radio" [value]="2" formControlName="checkC_Ana_05_ntGekend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05_ntGekend" type="radio" [value]="3" formControlName="checkC_Ana_05_ntGekend" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>SAP-pakket waterbodem uitgevoerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05B_SAPWater" type="radio" [value]="1" formControlName="checkC_Ana_05B_SAPWater" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05B_SAPWater" type="radio" [value]="2" formControlName="checkC_Ana_05B_SAPWater" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_05B_SAPWater" type="radio" [value]="3" formControlName="checkC_Ana_05B_SAPWater" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bijkomende verdachte stoffen geanalyseerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_06_Bijkomend" type="radio" [value]="1" formControlName="checkC_Ana_06_Bijkomend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_06_Bijkomend" type="radio" [value]="2" formControlName="checkC_Ana_06_Bijkomend" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_06_Bijkomend" type="radio" [value]="3" formControlName="checkC_Ana_06_Bijkomend" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Schud/kolomproef uitgevoerd</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_07_Schud" type="radio" [value]="1" formControlName="checkC_Ana_07_Schud" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_07_Schud" type="radio" [value]="2" formControlName="checkC_Ana_07_Schud" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_07_Schud" type="radio" [value]="3" formControlName="checkC_Ana_07_Schud" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Analyses uitgevoerd door erkend laboratorium</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_08_ErkendLab" type="radio" [value]="1" formControlName="checkC_Ana_08_ErkendLab" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_08_ErkendLab" type="radio" [value]="2" formControlName="checkC_Ana_08_ErkendLab" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_08_ErkendLab" type="radio" [value]="3" formControlName="checkC_Ana_08_ErkendLab" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Analyses uitgevoerd volgens CMA</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_09_CMA" type="radio" [value]="1" formControlName="checkC_Ana_09_CMA" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_09_CMA" type="radio" [value]="2" formControlName="checkC_Ana_09_CMA" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_09_CMA" type="radio" [value]="3" formControlName="checkC_Ana_09_CMA" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Analysecertificaten aanwezig</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_10_Cert" type="radio" [value]="1" formControlName="checkC_Ana_10_Cert" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_10_Cert" type="radio" [value]="2" formControlName="checkC_Ana_10_Cert" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_Ana_10_Cert" type="radio" [value]="3" formControlName="checkC_Ana_10_Cert" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label class="positiefBesluit">Positief besluit m.b.t. strategie en monsterneming</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_PosBesluit_01_Strat" type="radio" [value]="1" formControlName="checkC_PosBesluit_01_Strat" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_PosBesluit_01_Strat" type="radio" [value]="2" formControlName="checkC_PosBesluit_01_Strat" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkC_PosBesluit_01_Strat" type="radio" [value]="3" formControlName="checkC_PosBesluit_01_Strat" />
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <!-- D.Interpretatie en evaluatie-->
+        <div class="panel panel-default">
+            <div class="panel-heading panelHeaderSize expandablePanel" id="headingInterpEval">
+
+                <div class="row">
+                    <div class="col-sm-8 pointer" tooltip="klik om te openen" data-toggle="collapse" data-target="#collapseInterpEval" aria-controls="collapseInterpEval">
+                        <label> D.Interpretatie en evaluatie</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_01" type="radio" [value]="1" [attr.disabled]="true" formControlName="checkD_01" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_01" type="radio" [value]="2" [attr.disabled]="true" formControlName="checkD_01" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_01" type="radio" [value]="3" [attr.disabled]="true" formControlName="checkD_01" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body collapse multi-collapse" id="collapseInterpEval" aria-labelledby="headingInterpEval" data-parent="#accordion">
+                <!-- Evaluatie-->
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Enkel genormeerde parameters</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_01_NormPrm" type="radio" [value]="1" formControlName="checkD_Eval_01_NormPrm" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_01_NormPrm" type="radio" [value]="2" formControlName="checkD_Eval_01_NormPrm" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_01_NormPrm" type="radio" [value]="3" formControlName="checkD_Eval_01_NormPrm" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Toetsingskader niet-genormeerde parameters</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_02_NtNormPrm" type="radio" [value]="1" formControlName="checkD_Eval_02_NtNormPrm" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_02_NtNormPrm" type="radio" [value]="2" formControlName="checkD_Eval_02_NtNormPrm" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_02_NtNormPrm" type="radio" [value]="3" formControlName="checkD_Eval_02_NtNormPrm" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Evaluatie pH</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_03_pH" type="radio" [value]="1" formControlName="checkD_Eval_03_pH" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_03_pH" type="radio" [value]="2" formControlName="checkD_Eval_03_pH" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_03_pH" type="radio" [value]="3" formControlName="checkD_Eval_03_pH" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Toetsingstabellen aanwezig</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_04_toetsTbl" type="radio" [value]="1" formControlName="checkD_Eval_04_toetsTbl" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_04_toetsTbl" type="radio" [value]="2" formControlName="checkD_Eval_04_toetsTbl" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_04_toetsTbl" type="radio" [value]="3" formControlName="checkD_Eval_04_toetsTbl" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Correcte toetsingen</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_05_toetsing" type="radio" [value]="1" formControlName="checkD_Eval_05_toetsing" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_05_toetsing" type="radio" [value]="2" formControlName="checkD_Eval_05_toetsing" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_05_toetsing" type="radio" [value]="3" formControlName="checkD_Eval_05_toetsing" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Correcte relatieve toetsing</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_06_ToetsMeth" type="radio" [value]="1" formControlName="checkD_Eval_06_ToetsMeth" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_06_ToetsMeth" type="radio" [value]="2" formControlName="checkD_Eval_06_ToetsMeth" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_06_ToetsMeth" type="radio" [value]="3" formControlName="checkD_Eval_06_ToetsMeth" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Correcte DAEB</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_07_Herbruik" type="radio" [value]="1" formControlName="checkD_Eval_07_Herbruik" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_07_Herbruik" type="radio" [value]="2" formControlName="checkD_Eval_07_Herbruik" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_07_Herbruik" type="radio" [value]="3" formControlName="checkD_Eval_07_Herbruik" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Uitspraak over gehalte stenen en bodemvreemde materialen</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_08_BodemVrmdMat" type="radio" [value]="1" formControlName="checkD_Eval_08_BodemVrmdMat" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_08_BodemVrmdMat" type="radio" [value]="2" formControlName="checkD_Eval_08_BodemVrmdMat" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_08_BodemVrmdMat" type="radio" [value]="3" formControlName="checkD_Eval_08_BodemVrmdMat" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Uitspraak over asbest</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_09_Asbest" type="radio" [value]="1" formControlName="checkD_Eval_09_Asbest" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_09_Asbest" type="radio" [value]="2" formControlName="checkD_Eval_09_Asbest" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_09_Asbest" type="radio" [value]="3" formControlName="checkD_Eval_09_Asbest" />
+                    </div>
+                </div>
+
+
+
+                <!-- Correcte afbakening kadastrale werkzone(s)-->
+
+                <h6>Correcte afbakening kadastrale werkzone(s)</h6>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Hypothese heterogene verontreiniging</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_02_heterog" type="radio" [value]="1" formControlName="checkD_Eval_Kad_02_heterog" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_02_heterog" type="radio" [value]="2" formControlName="checkD_Eval_Kad_02_heterog" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_02_heterog" type="radio" [value]="3" formControlName="checkD_Eval_Kad_02_heterog" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Hypothese homogene verontreiniging</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_03_Homog" type="radio" [value]="1" formControlName="checkD_Eval_Kad_03_Homog" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_03_Homog" type="radio" [value]="2" formControlName="checkD_Eval_Kad_03_Homog" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_03_Homog" type="radio" [value]="3" formControlName="checkD_Eval_Kad_03_Homog" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Evaluatie waterloop en 5-meterstrook</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_04_Waterloop" type="radio" [value]="1" formControlName="checkD_Eval_Kad_04_Waterloop" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_04_Waterloop" type="radio" [value]="2" formControlName="checkD_Eval_Kad_04_Waterloop" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Kad_04_Waterloop" type="radio" [value]="3" formControlName="checkD_Eval_Kad_04_Waterloop" />
+                    </div>
+                </div>
+
+                <h6>Bijkomende richtlijnen opgesteld</h6>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Bemaling</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_02_Bemaling" type="radio" [value]="1" formControlName="checkD_Eval_Rich_02_Bemaling" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_02_Bemaling" type="radio" [value]="2" formControlName="checkD_Eval_Rich_02_Bemaling" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_02_Bemaling" type="radio" [value]="3" formControlName="checkD_Eval_Rich_02_Bemaling" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Tussentijdse opslag</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_04_TssTijds" type="radio" [value]="1" formControlName="checkD_Eval_Rich_04_TssTijds" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_04_TssTijds" type="radio" [value]="2" formControlName="checkD_Eval_Rich_04_TssTijds" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_04_TssTijds" type="radio" [value]="3" formControlName="checkD_Eval_Rich_04_TssTijds" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Milieukundige begeleiding</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_05_Milieu" type="radio" [value]="1" formControlName="checkD_Eval_Rich_05_Milieu" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_05_Milieu" type="radio" [value]="2" formControlName="checkD_Eval_Rich_05_Milieu" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_05_Milieu" type="radio" [value]="3" formControlName="checkD_Eval_Rich_05_Milieu" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label>Voorwaarden gebruik mits CvGP</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_06_Voorw" type="radio" [value]="1" formControlName="checkD_Eval_Rich_06_Voorw" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_06_Voorw" type="radio" [value]="2" formControlName="checkD_Eval_Rich_06_Voorw" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_Rich_06_Voorw" type="radio" [value]="3" formControlName="checkD_Eval_Rich_06_Voorw" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 ">
+                        <label class="positiefBesluit">Positief besluit m.b.t. analyses en toetsing</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_11_PosBesluit" type="radio" [value]="1" formControlName="checkD_Eval_11_PosBesluit" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_11_PosBesluit" type="radio" [value]="2" formControlName="checkD_Eval_11_PosBesluit" />
+                    </div>
+                    <div class="form-check form-check-inline col-sm-1">
+                        <input class="form-check-input" name="checkD_Eval_11_PosBesluit" type="radio" [value]="3" formControlName="checkD_Eval_11_PosBesluit" />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- E. Correct zoneringsplan - selectieve uitgraving uitvoerbaar-->
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label> E. Correct zoneringsplan - selectieve uitgraving uitvoerbaar</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkE_ZoneringsPlan" type="radio" [value]="1" formControlName="checkE_ZoneringsPlan" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkE_ZoneringsPlan" type="radio" [value]="2" formControlName="checkE_ZoneringsPlan" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkE_ZoneringsPlan" type="radio" [value]="3" formControlName="checkE_ZoneringsPlan" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- F. Correcte opmetingstabel-->
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label>  F. Correcte opmetingstabel</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkF_OpmetingsTabel" type="radio" [value]="1" formControlName="checkF_OpmetingsTabel" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkF_OpmetingsTabel" type="radio" [value]="2" formControlName="checkF_OpmetingsTabel" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkF_OpmetingsTabel" type="radio" [value]="3" formControlName="checkF_OpmetingsTabel" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- G  H I J K L -->
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label>  G. Volumebalans</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkG_VolTabel" type="radio" [value]="1" formControlName="checkG_VolTabel" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkG_VolTabel" type="radio" [value]="2" formControlName="checkG_VolTabel" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkG_VolTabel" type="radio" [value]="3" formControlName="checkG_VolTabel" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label>  H. Fotoreportage</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkH_FotoRep" type="radio" [value]="1" formControlName="checkH_FotoRep" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkH_FotoRep" type="radio" [value]="2" formControlName="checkH_FotoRep" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkH_FotoRep" type="radio" [value]="3" formControlName="checkH_FotoRep" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label> I. Bouwplannen</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkI_Bouwplan" type="radio" [value]="1" formControlName="checkI_Bouwplan" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkI_Bouwplan" type="radio" [value]="2" formControlName="checkI_Bouwplan" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkI_Bouwplan" type="radio" [value]="3" formControlName="checkI_Bouwplan" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label> J. Volumeberekeningen</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkJ_VolBerek" type="radio" [value]="1" formControlName="checkJ_VolBerek" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkJ_VolBerek" type="radio" [value]="2" formControlName="checkJ_VolBerek" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkJ_VolBerek" type="radio" [value]="3" formControlName="checkJ_VolBerek" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label> K. Info vorige onderzoeken</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkK_InfoVorige" type="radio" [value]="1" formControlName="checkK_InfoVorige" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkK_InfoVorige" type="radio" [value]="2" formControlName="checkK_InfoVorige" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkK_InfoVorige" type="radio" [value]="3" formControlName="checkK_InfoVorige" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize expandablePanel" id="headingDelfStof">
+
+            <div class="row">
+                <div class="col-sm-8 pointer" tooltip="klik om te openen" data-toggle="collapse" data-target="#collapseDelfStof" aria-controls="collapseDelfStof">
+                    <label>L. Delfstoffentoets</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof_view" type="radio" [value]="1" formControlName="checkL_Delfstof_view" [attr.disabled]="true" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof_view" type="radio" [value]="2" formControlName="checkL_Delfstof_view" [attr.disabled]="true" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof_view" type="radio" [value]="3" formControlName="checkL_Delfstof_view" [attr.disabled]="true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body collapse" id="collapseDelfStof" aria-labelledby="headingHeadingDelfStof">
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-left">Geologische beschrijving</label></div>
+                <div class="col-sm-8">
+                    <select class="controlWidth" DottedBorderBelow formControlName="checkL_GeologischeBeschrijvingID">
+                        <option value="">Selecteer</option>
+                        <option *ngFor="let o of geoBeschrevingListItems" [value]="o.id">{{o.omschrijving}}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-left">overeenkomstige primaire oppervlaktedelfstof</label></div>
+                <div class="col-sm-8">
+                    <select class="controlWidth" DottedBorderBelow formControlName="checkL_PrimaireOppDelfstofID">
+                        <option value="">Selecteer</option>
+                        <option *ngFor="let o of primaireOppervlakteListItems" [value]="o.id">{{o.omschrijving}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8"><label class="pull-left">Volume</label></div>
+                <div class="col-sm-3"><input type="text" formControlName="checkL_Volume" maxlength="50" DottedBorderBelow AllowOnlyNumbers class="form-control"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8 ">
+                    <label class="positiefBesluit">Positief besluit m.b.t. delfstoffentoets</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof" type="radio" [value]="1" formControlName="checkL_Delfstof" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof" type="radio" [value]="2" formControlName="checkL_Delfstof" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkL_Delfstof" type="radio" [value]="3" formControlName="checkL_Delfstof" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Besluit-->
+
+    <div class="panel panel-default">
+        <div class="panel-heading panelHeaderSize expandablePanel" id="headingBesluit">
+            <div class="row">
+                <div class="col-sm-8 pointer" tooltip="klik om te openen" data-toggle="collapse" aria-expanded="true" data-target="#collapseBesluit" aria-controls="collapseBesluit">
+                    <label>Besluit</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkConclusionView" type="radio" [value]="1" formControlName="checkConclusionView" [attr.disabled]="true" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkConclusionView" type="radio" [value]="2" formControlName="checkConclusionView" [attr.disabled]="true" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="checkConclusionView" type="radio" [value]="3" formControlName="checkConclusionView" [attr.disabled]="true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body collapse show" id="collapseBesluit" aria-labelledby="headingheadingBesluit">
+            <div class="row">
+                <div class="col-sm-8 ">
+                    <label>Globale beoordeling technisch verslag rechtvaardigt het afgeven van een conformiteitsverklaring</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" id="checkConclusionOK" name="checkConclusion" type="radio" [value]="1" formControlName="checkConclusion" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" id="checkConclusionNOK" name="checkConclusion" type="radio" [value]="2" formControlName="checkConclusion" />
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" id="checkConclusionNVT" name="checkConclusion" type="radio" [value]="3" formControlName="checkConclusion" />
+                </div>
+            </div>
+
+            <div *ngIf="!canSelectBesluit()">
+                <div class="row">
+                    <div *ngIf="!evaluatieForm.get('checkB_Typ_02_Volume').valid" [hidden]="!evaluatieForm.controls['checkB_Typ_02_Volume'].errors.required" class="col-sm-8"><label class="validation">- Volume VLAREBO (m3) is vereist.</label></div>
+                </div>
+
+                <div class="row">
+                    <div *ngIf="totalHoeveelheidErrorMessage != ''" class="col-sm-8"><label class="validation">{{totalHoeveelheidErrorMessage}}</label></div>
+                </div>
+                <div class="row">
+                    <div *ngIf="vlareboVolumeErrorMessage != ''" class="col-sm-8"><label class="validation">{{vlareboVolumeErrorMessage}}</label></div>
+                </div>
+                <div class="row">
+                    <div *ngIf="positivebesluitMessage != ''" class="col-sm-8"><label class="validation">{{positivebesluitMessage}}</label></div>
+                </div>
+                <div class="row">
+                    <div *ngIf="dossierBeheerderIDErrorMessage != ''" class="col-sm-8"><label class="validation">{{dossierBeheerderIDErrorMessage}}</label></div>
+                </div>
+            </div>
+
+            <div *ngIf="isConformiteit()">
+                <div class="row">
+                    <div *ngIf="isComformiteitMailSend == 0" class="col-sm-8"><label> <a (click)="sendConformiteitEmail()"> Send Conformiteit email </a> </label></div>
+                    <div *ngIf="isComformiteitMailSend == 1" class="col-sm-8"><label>Comformiteit email werd reeds verzonden</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-left" [class.validationHint]="evaluatieForm.get('checkB_Typ_02_Volume').errors">* Volume VLAREBO (m3)</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="checkB_Typ_02_Volume" maxlength="50" DottedBorderBelow AllowOnlyNumbers class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-left">Volume VLAREMA (m3)</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="checkB_Typ_02B_VlaremaVolume" maxlength="50" DottedBorderBelow AllowOnlyNumbers class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-left">Diepte (m-mv))</label></div>
+        <div class="col-sm-8"><input type="number" step="0.01" DottedBorderBelow formControlName="checkB_Typ_03_Diepte" maxlength="50" class="form-control"></div>
+    </div>
+
+
+
+
+
+
+    <!--<div class="row">
+        <div class="col-sm-3"><label class="pull-left">Lengte traject (m)</label></div>
+        <div class="col-sm-8"><input type="number" step="0.01" DottedBorderBelow formControlName="checkB_Typ_04_Lenge" maxlength="50" class="form-control"></div>
+    </div>-->
+    <div class="row">
+        <div class="col-sm-3 "><label [class.validationHint]="evaluatieForm.get('checkC_Mon_03_Datum').errors">* Datum bemonstering</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="checkC_Mon_03_Datum" class="form-control ng-trim-ignore" tooltip="(bv. 31/1/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+
+
+
+
+</form>
+

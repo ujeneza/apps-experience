@@ -1,0 +1,66 @@
+﻿<h4>Dossierbeheerders detail</h4>
+<form [formGroup]="dossierbeheerderForm" class="container-fluid paddingTop10px">
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">* Aanspreektitel</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="aanspreektitel" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtVoornaam" class="pull-right">* Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtVoornaam" formControlName="voornaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtAchternaam" class="pull-right">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtAchternaam" formControlName="achternaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="telefoon" class="form-control" maxlength="100"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">E-mail</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="email" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Login</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="login" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Paswoord</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="paswoord" class="form-control" maxlength="100"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">*Handtekening</label></div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="administrator" value="">Administrator</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="diensthoofd" value="">Diensthoofd</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="contributor" value="">Contributor</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="active" value="">Active</label>
+        </div>
+    </div>
+
+
+</form>
+<div class="paddingBottom40px">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button type="button" [disabled]="!dossierbeheerderForm.valid" class="btn btn-default" >Send Data</button>
+        </div>
+    </div>
+</div>

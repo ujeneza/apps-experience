@@ -1,0 +1,90 @@
+﻿<div [formGroup]="dataForm">
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTvNr" class="pull-right" [class.validationHint]="dataForm.get('tvId')?.errors">* Nr. van Grondwijzer</label></div>
+        <div class="col-sm-2">
+            <input type="text" id="txtTvNr" formControlName="tvId" AllowOnlyNumbers DottedBorderBelow class="form-control">
+        </div>
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-default marginTop10px" data-toggle="modal" data-target="#TVzoek" (click)="tvSearchClicked()">Opzoeken Nummer</button>
+            <button type="button" class="btn btn-default marginTop10px marginLeft40px" *ngIf="showAddRemoveOptions" (click)="removeTv()">Technisch verslag blok verwijderen</button>
+        </div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="ddlHerkomst" class="pull-right" [class.validationHint]="dataForm.get('klantHerkomstTop')?.value === '-1'">* Herkomst</label></div>
+        <div class="col-sm-8"><label class="pull-left">Werd eerder grondtransportmelding voor afvoer naar een tussentijdse opslagplaats/grondreinigingscentrum gedaan:</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-3">
+            <select id="ddlHerkomst" class="controlWidth" DottedBorderBelow formControlName="klantHerkomstTop" (change)="herkomstChanged()">
+                <option value="-1">Selecteer</option>
+                <option value="1">Ja</option>
+                <option value="0">Nee</option>
+            </select>
+        </div>
+    </div>
+    <div class="row setTop paddingTop10px" *ngIf="this.dataForm.get('klantHerkomstTop').value==='1' && (herkomstList==null||herkomstList.length===0)">
+        <div class="col-sm-6 col-sm-offset-3"><label class="pull-left validationHint">Er zijn helaas geen eerdere grondtransportmeldingen gekend. Gelieve 'Nee' aan te duiden.</label></div>
+    </div>
+    <div class="row setTop paddingTop10px" *ngIf="herkomstList!=null && herkomstList.length>0">
+        <div class="col-sm-3"><label for="ddlGTMId" class="pull-right" [class.validationHint]="dataForm.controls['grondtransportmeldingID']?.value === '0'">* Kies Grondtransportmelding Nummer</label></div>
+        <div class="col-sm-8">
+            <select id="ddlGTMId" formControlName="grondtransportmeldingID" DottedBorderBelow class="controlWidth" (change)="gtmChanged()">
+                <option [value]="0" selected>Selecteer</option>
+                <option *ngFor="let o of herkomstList" [value]="o.grondtransportmeldingId">{{o.beschrijving}}</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="tvVolumes!=null && tvVolumes.length>0">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-3"><label class="pull-right {{ !isTvVolumesValid() ? 'validationHint' : ''}}">Onderzochte deelvolumes</label></div>
+            <div class="col-sm-8">
+                <table class="GWTable">
+                    <thead>
+                        <tr>
+                            <th style="width:20px">Nr.</th>
+                            <th>Beschrijving</th>
+                            <th style="text-align: center">(X)</th>
+                            <th style="text-align: center">(Y)</th>
+                            <th style="text-align: center">(Z)</th>
+                            <th>Geschatte af te voeren hoeveelheid (in ton)</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="tvVolumes">
+                        <tr *ngFor="let z of dataForm.get('tvVolumes').controls; let i = index;" [formGroupName]="i">
+                            <td><input type="hidden" value="{{z.controls['tvZoneId'].value}}" />{{z.controls["tvZoneNr"].value}}</td>
+                            <td><label class="pull-left">{{z.controls["beschrijving"].value}}</label></td>
+                            <td style="text-align: center">{{z.controls["kgbuOmschrijving"].value}}</td>
+                            <td style="text-align: center">{{z.controls["kgbiOmschrijving"].value}}</td>
+                            <td style="text-align: center">{{z.controls["kgboOmschrijving"].value}}</td>
+                            <td>
+                                <input type="text" class="form-control" formControlName="geplandGebruik" DottedBorderBelow AllowOnlyNumbers (change)="isTvVolumesValid()" Minimum="0">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <label class="pull-left">Vul in bovenstaande tabel de verwachtte af te voeren hoeveelheid afgezeefd puin</label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isGtmApproved">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3 marginTop10px"><label class="pull-left validation">De geselecteerde grondtransportmelding is nog niet goedgekeurd of nog niet afgerond.</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3 marginTop10px"><button (click)="linkToVerklaringAfnemer()" class="btn btn-default">Grondtransportmelding afronden</button></div>
+        </div>
+    </div>
+    <div [hidden]="isValid()">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(dataForm.get('tvId').touched || dataForm.get('tvId').dirty) && !dataForm.get('tvId').valid" [hidden]="!dataForm.get('tvId').required" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag is vereist.</label></div>
+                <div *ngIf="(dataForm.get('tvId').touched || dataForm.get('tvId').dirty) && !dataForm.get('tvId').valid" [hidden]="!dataForm.get('tvId').min" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag dient min. 100000 te zijn.</label></div>
+                <div *ngIf="(dataForm.get('tvId').touched || dataForm.get('tvId').dirty) && !dataForm.get('tvId').valid" [hidden]="!dataForm.get('tvId').max" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag mag max. 999999 zijn.</label></div>
+                <div *ngIf="(dataForm.get('tvId').touched || dataForm.get('tvId').dirty) && !dataForm.get('tvId').valid" [hidden]="!dataForm.get('tvId').NotOwnTv" class="col-sm-8 validation"><label class="validation">- {{dataForm.get('tvId').message}}.</label></div>
+                
+                <div *ngIf="(dataForm.get('grondtransportmeldingID').touched || dataForm.get('grondtransportmeldingID').dirty) && dataForm.get('klantHerkomstTop').value === '1' && (dataForm.get('grondtransportmeldingID').value === '' || dataForm.get('grondtransportmeldingID').value === '0')" [hidden]="dataForm.controls['grondtransportmeldingID'].value !== '' && dataForm.controls['grondtransportmeldingID'].value !== '0'" class="col-sm-8 validation"><label class="validation">- Grondtransportmelding Nummer is vereist</label></div>
+                <div *ngIf="!isTvVolumesValid()" [hidden]="isTvVolumesValid()" class="col-sm-8 validation"><label class="validation">- Er zijn nog bepaalde waarden m.b.t. de Onderzochte deelvolumes vereist (minstens 1 waarde invullen aub)</label></div>
+            </div>
+        </div>
+    </div>
+</div>

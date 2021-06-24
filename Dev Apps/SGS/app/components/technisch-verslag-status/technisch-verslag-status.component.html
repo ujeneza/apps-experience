@@ -1,0 +1,83 @@
+﻿<h4>Overzicht van Technische Verslagen</h4>
+<form [formGroup]="StsForm" class="container-fluid">
+    <div><label>Nummer: unieke code toegekend door Grondwijzer</label></div>
+    <div><label>Uw Referentie: de referentie die door u werd opgegeven bij het indienen van het Technisch Verslag.</label></div>
+    <div><label>U kunt de detailgegevens bekijken door op het icoontje <img src="../../../images/ico_editrecord.gif" /> te klikken, of door te dubbelklikken op een rij van de grid</label></div>
+    <br />
+    <div class="row">
+        <div class="col-sm-11">
+            <label class="paddingRight10px">Filter status</label>
+            <select formControlName="stsDDL" DottedBorderBelow (change)="statusChanged()">
+                <option value="-1">Selecteer</option>
+                <option *ngFor="let sts of StatusDropdownList" [value]="sts.status" [innerHTML]="sts.status"></option>
+            </select>
+        </div>
+    </div>
+    <div class="NgxTable">
+        <ngx-datatable #table
+                       class="bootstrap"
+                       (activate)="onActivate($event)"
+                       [rows]="rows"
+                       [columnMode]="'flex'"
+                       [headerHeight]="50"
+                       [footerHeight]="40"
+                       [limit]="appLabels.tableViewRows"
+                       [rowClass]="getRowClass"
+                       [cssClasses]="appLabels.iconsCss"
+                       [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                       [sorts]="[{prop:'technischVerslagID', dir:'desc' }]"
+                       [rowHeight]="'auto'">
+            >
+            <ngx-datatable-column [flexGrow]="1" prop="technischVerslagID" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" class=" NgxFilterLabel">Nummer</span></div>
+                    <div><input type="text" formControlName="Nr" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{row['technischVerslagID']}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="3" name="FactuurReferentieKlant" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" class=" NgxFilterLabel">Uw Referentie</span></div>
+                    <div><input type="text" formControlName="Ref" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="5" name="Kenmerk" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" style="float: left; padding-right: 5px;">Referentie TV</span></div>
+                    <div><input type="text" formControlName="Kenmerk" style="float: left;" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="3" name="Ligging" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" class=" NgxFilterLabel">{{column.name}}</span></div>
+                    <div><input type="text" formControlName="Lig" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="2" name="IndieningsDatum" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" class=" NgxFilterLabel">{{column.name}}</span></div>
+                    <div><input type="text" formControlName="Dtm" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value | date:"dd/MM/yyyy"}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="2" name="Status" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <div><span (click)="sort()" style="float: left; padding-right: 5px;">{{column.name}}</span></div>
+                    <div><input type="text" formControlName="Sts" style="float: left;" class="NgxFilterField" (keyup)="Filter()" /></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="1" name="Detail" headerClass="NgxHeader">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <span (click)="sort()"></span>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <img src="../../../images/ico_editrecord.gif" class="ibtn" (click)="linkTo(row['technischVerslagID'])" />
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</form>

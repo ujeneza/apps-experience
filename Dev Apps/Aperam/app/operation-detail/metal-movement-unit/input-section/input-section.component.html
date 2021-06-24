@@ -1,0 +1,44 @@
+<div *ngIf="isInputLoading || inputSectionService.inputMetalUnits.length > 0">
+  <!-- spinner when data is loading -->
+  <div *ngIf="isInputLoading">
+    <div>
+      Loading
+    </div>
+    <div>
+      <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+    </div>
+  </div>
+
+  <!-- input data -->
+  <mat-expansion-panel class="inputContainer" *ngFor="let inputMetalUnit of inputSectionService.inputMetalUnits">
+    <mat-expansion-panel-header class="inputHeader">
+      <mat-panel-title style="color: white">
+       Input: &nbsp;&nbsp; {{ inputMetalUnit.metalUnit }} &nbsp;<i class="fa fa-exclamation-triangle" style="color:orange" matTooltip="Validation errors identified" *ngIf="inputMetalUnit.hasValidationErrors"></i>
+      </mat-panel-title>
+      <mat-panel-description style="color: white">
+        {{ inputMetalUnit.weight }} Ton
+      </mat-panel-description>
+      <button appStopPropagation mat-icon-button *ngIf="inputMetalUnit.previousMetalMovementId || inputMetalUnit.metalUnitId" [routerLink]="['/operationdetail',inputMetalUnit.previousMetalMovementId?'metalmovement':'metalunit', inputMetalUnit.previousMetalMovementId?inputMetalUnit.previousMetalMovementId:inputMetalUnit.metalUnitId]"
+        matTooltip="Go to consumed metal unit" matTooltipShowDelay="1000"><i class="fa fa-lg fa-sign-out fa-rotate-180"></i></button>
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="formField">
+      <input matInput autocomplete="off" placeholder="Length" [value]="inputMetalUnit.length" />
+      <span matSuffix>m</span>
+    </mat-form-field>
+
+    <mat-form-field class="formField">
+      <input matInput autocomplete="off" placeholder="Width" [value]="inputMetalUnit.width"/>
+      <span matSuffix>mm</span>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput autocomplete="off" placeholder="Thickness" [value]="inputMetalUnit.thickness" readonly="true" />
+      <span matSuffix>mm</span>
+    </mat-form-field>
+
+    <mat-form-field class="formField">
+      <input matInput autocomplete="off" placeholder="Weight" [value]="inputMetalUnit.weight" />
+      <span matSuffix>Ton</span>
+    </mat-form-field>
+  </mat-expansion-panel>
+</div>

@@ -1,0 +1,132 @@
+<mat-card class="filtersCardTabView">
+  <div class="filtersTabView">
+
+    <!-- header -->
+    <mat-card-header class="matCardHeaderTabView">
+      <mat-card-title class="matCardTitleTabView">
+        <i class="material-icons">filter_list</i>
+        <div> &nbsp; &nbsp;{{financialHeaderFilterLabel.get(selectedValue)}}</div>
+      </mat-card-title>
+    </mat-card-header>
+
+    <!-- Content Filters -->
+    <mat-card-content class="matContentFilters">
+
+      <!-- Navigation Buttoms -->
+      <div class="navigationFilterButton">
+        <mat-button-toggle-group [(value)]="selectedValue" class="navigationFilterButtonGroup" #group="matButtonToggleGroup">
+          <mat-button-toggle value="metalMouvementsView" (change)="onButtonToggleChange($event.value)" class="buttonNavigation metalMouvementsView"
+            matTooltip="Metal Movements View">
+            <i class="material-icons">
+              hdr_weak
+            </i>
+          </mat-button-toggle>
+          <mat-button-toggle value="productionView" (change)="onButtonToggleChange($event.value)" class="buttonNavigation productionView"
+            matTooltip="Production View">
+            <i class="material-icons">
+              assessment
+            </i>
+          </mat-button-toggle>
+          <mat-button-toggle value="consumptionView" (change)="onButtonToggleChange($event.value)" class="buttonNavigation consumptionView"
+            matTooltip="Consumption View">
+            <i class="material-icons">
+              donut_small
+            </i>
+          </mat-button-toggle>
+          <mat-button-toggle value="activityView" (change)="onButtonToggleChange($event.value)" class="buttonNavigation activityView"
+            matTooltip="Activity View">
+            <i class="material-icons">
+              trip_origin
+            </i>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <!-- Input area for filters -->
+      <div class="navivationFilterContent">
+        <form [formGroup]="financialFiltersForm" class="filterFormsConfig">
+          <mat-form-field>
+            <input matInput type="text" required formControlName="metalUnit" name="metalUnit" minlength="3" placeholder="Metal Unit Number">
+            <mat-error *ngIf="financialFiltersForm.controls['metalUnit'].hasError('required')">Please enter a metal
+              unit</mat-error>
+            <mat-error *ngIf="financialFiltersForm.controls['metalUnit'].hasError('minlength')"> 3 characters minimum</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="siteName" placeholder="Site" disableOptionCentering="true"(selectionChange)="getProductionLineFromSite($event.value); ">
+              <mat-option>All</mat-option>
+              <mat-option *ngFor="let siteList of sitesList" [value]="siteList?.siteId">{{siteList?.site}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field *ngIf="group.value!=='metalMouvementsView'">
+            <mat-select formControlName="productionLine" placeholder="Production Line" disableOptionCentering="true" (selectionChange)="getCostCenterFromSelectedProductionLine($event.value); ">
+              <mat-option>All</mat-option>
+
+              <mat-option *ngFor="let  productionLineList of productionLinesList" [value]="productionLineList?.productionLineId">{{productionLineList?.productionLine}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field *ngIf="group.value==='consumptionView'">
+            <input matInput formControlName="consumedArticle" type="text" name="financialConsumptionArticle" minlength="3" placeholder="Consumption Article">
+          </mat-form-field>
+          <mat-form-field *ngIf="group.value==='consumptionView'">
+            <input matInput formControlName="producedArticle" type="text" name="financialProductionArticle" minlength="3" placeholder="Produced Article">
+          </mat-form-field>
+
+          
+          <mat-form-field *ngIf="group.value==='activityView'">
+              <mat-select formControlName="costCenter" placeholder="Cost Center" disableOptionCentering="true" (selectionChange)="getCostDriverFromSelectedCostCenter($event.value); ">
+                  <mat-option>All</mat-option>
+                  <mat-option *ngFor="let  costCenterList of costCentersList" [value]="costCenterList?.costCenterId">{{costCenterList?.costCenter}}</mat-option> 
+                </mat-select>
+
+          </mat-form-field>
+          <mat-form-field *ngIf="group.value==='activityView'">
+                <mat-select formControlName="costDriverName" placeholder="Cost Driver" disableOptionCentering="true">
+                  <mat-option>All</mat-option>
+                  <mat-option *ngFor="let  costDriverList of costDriversList" [value]="costDriverList?.costDriverId">{{costDriverList?.costDriverName}}</mat-option>
+                </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select [(value)]="financialOpenPeriodDefaultValue" formControlName="openPeriod" placeholder="Financial Open Period"
+              required disableOptionCentering="true">
+              <mat-option value="all">All Period</mat-option>
+              <mat-option value="current">Current Period</mat-option>
+            </mat-select>
+            <mat-error *ngIf="financialFiltersForm.controls['metalUnit'].hasError('required')">Please enter a financial
+              period</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <!-- Action buttons -->
+      <mat-action-row class="matActionRow">
+        <button mat-raised-button [disabled]="(financialFiltersForm.invalid) || (metalMvtDataLoad===true)" class="searchMatAction" *ngIf="group.value==='metalMouvementsView'" (click)="postMetalMvtFilters()"
+        ><i class="material-icons">
+            search
+            </i>Search</button>
+        <button mat-raised-button  class="searchMatAction" *ngIf="group.value==='productionView'" (click)="postProductionFilters()"
+          [disabled]="(financialFiltersForm.invalid) || (productionViewDataLoad===true)"><i class="material-icons">
+              search
+              </i>Search</button>
+        <button mat-raised-button  class="searchMatAction" *ngIf="group.value==='consumptionView'" (click)="postConsumptionViewFilters()"
+        [disabled]="(financialFiltersForm.invalid)  || (consumptionViewDataLoad===true)"><i class="material-icons">
+            search
+            </i>Search</button>
+        <button mat-raised-button  class="searchMatAction" *ngIf="group.value==='activityView'" (click)="postActivityViewFilters()"
+        [disabled]="(financialFiltersForm.invalid) || (activityViewDataLoad===true)"><i class="material-icons">
+            search
+            </i>Search</button>
+        <span class="spacer"></span>
+        <button mat-raised-button  [disabled]="(metalMvtDataLoad===true) || (productionViewDataLoad===true) || (consumptionViewDataLoad===true) || (activityViewDataLoad===true) " class="resetFilterInput" color="#dc3545" (click)="resetFiltersInput()">Reset</button>
+      </mat-action-row>
+    </mat-card-content>
+
+
+  </div>
+
+</mat-card>

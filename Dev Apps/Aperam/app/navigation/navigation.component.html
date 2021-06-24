@@ -1,0 +1,60 @@
+<div class="headedContainer">
+
+  <!-- Header up -->
+  <div class="headerUp">
+    <div class="buttonHeaderUp"> 
+        <button mat-button 
+                class="buttonHeaderUp"
+                *ngIf="isAuthenticated()"
+               matTooltip="Connected as {{name}}"
+               TooltipPosition="right"  ><i class="material-icons">
+            person
+            </i></button>
+      <button mat-button routerLink="/" routerLinkActive="active" *ngIf="!isAuthenticated()" href="javascript:void(0);" (click)="signin();" class="buttonHeaderUp"> <i class="material-icons">
+          lock
+          </i>Login</button>
+      <button mat-button (click)="signout();" *ngIf="isAuthenticated()"  routerLink="/" href="javascript:void(0);" class="buttonHeaderUp"><i class="material-icons">
+          lock_open
+          </i>Logout</button>
+      <button mat-button class="buttonHeaderUp" routerLink="financial/financialViews"> <i class="material-icons">
+          group
+          </i>Admin</button>
+      <button mat-button *ngIf="isAuthenticated()" 
+      class="buttonHeaderUp" onclick="window.open('https://sites.google.com/s/1UYS8KGfADHD5jnhS3-Pn6wgPUD5qzLwm/p/1-Jr2Gd_iHaQm1oPWc7RC5kpE0YLLhvL-/edit','_blank' )"  target="_new" >   <i class="material-icons">
+          help_outline
+          </i>
+    </button>
+    </div>
+  </div>
+
+  <!-- Aside -->
+  <div class="headerAsideLeft"></div>
+  <div class="headerAsideRight"></div>
+
+  <!-- Logo -->
+  <div routerLink="/" class="logoMenu">
+    <div class="logoContainer">
+      <img src="../../assets/logo/Aperam_Logo.svg" alt="AperamLogo">
+      <div class="logoTitle">made for life</div>
+    </div>
+  </div>
+
+
+  <!-- Menu : Header Down -->
+  <div class="headerDown">
+    <div class="buttonMenuGroup">
+      <button mat-button routerLink="/financial/financialViews" routerLinkActive="active" value="metalMouvement" class="buttonMenu metalMouvement">
+        Metal Movements
+      </button>
+      <button mat-button routerLink="/validationErrors/validationErrorsView" routerLinkActive="active" value="validationErrors" class="buttonMenu validationErrors">
+        Validation Errors
+      </button>
+      <button mat-button routerLink="/closing" routerLinkActive="active" value="closing" class="buttonMenu closing">
+        Closing
+      </button>
+      <button mat-button routerLink="/admin" routerLinkActive="active" value="admin" disabled class="buttonMenu admin">
+        Admin
+      </button>
+    </div>
+  </div>
+</div>

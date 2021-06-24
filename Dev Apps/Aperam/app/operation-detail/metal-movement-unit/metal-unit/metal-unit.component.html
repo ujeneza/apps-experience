@@ -1,0 +1,150 @@
+<div  class="metalUnitContainer">
+        <div class="example-loading-shade " *ngIf="isDataLoading ">
+                <mat-spinner *ngIf="isDataLoading"></mat-spinner>
+            </div>
+
+
+    <mat-toolbar class="toolBarContainer">
+        <div> Metal unit: {{metalUnitSection?.metalUnit}} </div>
+        <span class="spacer">
+            <div *ngIf="isInCopyMode" class="copiedFrom">Copied from metal unit:
+                {{metalUnitSection?.metalUnit}}</div>
+        </span>
+
+        <div class="navigationButton">
+            <button mat-icon-button [routerLink]="['/operationdetail/metalmovement', metalUnitSection.nextMetalMovementId]"
+                *ngIf="!isInCopyMode && metalUnitSection?.nextMetalMovementId && !isDataLoading" class="action float-sm-right" matTooltip="Go to consuming metal movement"
+                matTooltipShowDelay="1000"><i class="fa fa-lg fa-sign-in"></i></button>
+
+            <button *ngIf="canDelete()" mat-icon-button class="action float-sm-right" (click)="deleteMetalUnit(metalUnitSection.metalUnitId)"
+                matTooltip="Delete" matTooltipShowDelay="1000"><i class="fa fa-lg fa-trash"></i></button>
+
+            <button mat-icon-button *ngIf="canCopy()" (click)="setCopyMode()" class="action float-sm-right"
+                matTooltip="Copy" matTooltipShowDelay="1000"><i class="fa fa-lg fa-copy"></i></button>
+
+            <button *ngIf="canSaveCopyMode()" mat-icon-button (click)="copyMetalUnit(metalUnitSection.metalUnitId)"
+                class="action float-sm-right" matTooltip="Save" matTooltipShowDelay="1000"><i class="fa fa-lg fa-save"></i></button>
+
+            <button *ngIf="canCancelCopyMode()" mat-icon-button (click)="cancelCopy()" class="action float-sm-right"
+                matTooltip="Cancel" matTooltipShowDelay="1000"><i class="material-icons">
+                    cancel
+                </i></button>
+
+            <button *ngIf="!isInCopyMode && !isDataLoading" mat-icon-button (click)="saveMetalUnit()" class="action float-sm-right"
+                matTooltip="Save" matTooltipShowDelay="1000"><i class="fa fa-lg fa-save"></i></button>
+        </div>
+    </mat-toolbar>
+
+    <div class="errorsMessages">
+        <mat-toolbar class="errorMessage" *ngIf="miniValidationErrors?.length>0">
+
+            <div class="errors"> <span *ngFor="let validationError of miniValidationErrors | filterMyValidationErrors:metalUnitSection?metalUnitSection.metalUnitId:0">
+                    {{validationError.violationMessage}} </span></div>
+            <span class="spacer"></span>
+
+            <div class="navigationButton">
+                <button mat-icon-button (click)="snackBarSuccessActionInfo('Succcessfully delegated', 'info')"
+                    matTooltip="Delegate" matTooltipShowDelay="1000"><i class="material-icons">
+                        group_work
+                    </i></button>
+            </div>
+
+
+        </mat-toolbar>
+    </div>
+
+    <!-- input area -->
+
+    <form [formGroup]="metalUnitSectionForm" class="formContainer">
+
+        <div class="generalData">
+            <div class="leftGeneralData">
+
+                <mat-form-field class="coilNo">
+                    <input matInput formControlName="coilNumber" placeholder="Coil nr.">
+                </mat-form-field>
+                <mat-form-field class="coildIndex">
+                    <input matInput formControlName="partNumber" placeholder="Part nr">
+                </mat-form-field>
+
+
+
+                <mat-form-field class="formField operationField">
+                    <input matInput formControlName="operation" placeholder="Operation">
+                </mat-form-field>
+
+
+            </div>
+            <div class="centerGeneralData">
+                <mat-form-field class="formField">
+                    <input matInput formControlName="batchName" placeholder="Batch nr.">
+                </mat-form-field>
+
+
+                <mat-form-field class="formField">
+                    <input matInput formControlName="macroArticle" placeholder="Macro article">
+                </mat-form-field>
+            </div>
+            <div class="rightGeneralData">
+
+                <mat-form-field class="formField">
+                    <input matInput formControlName="weight" placeholder="Weight">
+                    <span matSuffix>Ton</span>
+                </mat-form-field>
+
+                <mat-form-field class="formField">
+                    <input matInput formControlName="hotWeight" placeholder="Weight hot">
+                    <span matSuffix>Ton</span>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-card class="characteristics">
+            <mat-toolbar class="titleMatCard"> Characteristics</mat-toolbar>
+
+            <mat-form-field class="formField">
+                <input matInput formControlName="steelgrade" placeholder="Steel grade">
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="finishing" placeholder="Finishing">
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="shape" placeholder="Shape">
+            </mat-form-field>
+        </mat-card>
+
+
+        <mat-card class="dimensions">
+            <mat-toolbar class="titleMatCard"> Dimensions</mat-toolbar>
+
+            <mat-form-field class="formField">
+                <input matInput formControlName="length" placeholder="Length">
+                <span matSuffix>m</span>
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="width" placeholder="Width">
+                <span matSuffix>mm</span>
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="thickness" placeholder="Thickness">
+                <span matSuffix>mm</span>
+            </mat-form-field>
+        </mat-card>
+
+        <!-- <div class="spacerData"></div>  -->
+
+        <mat-card class="package">
+            <mat-toolbar class="titleMatCard"> Package</mat-toolbar>
+            <mat-form-field class="formField">
+                <input matInput formControlName="no" placeholder="Nr.">
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="type" placeholder="Type">
+            </mat-form-field>
+            <mat-form-field class="formField">
+                <input matInput formControlName="class" placeholder="Class">
+            </mat-form-field>
+        </mat-card>
+    </form>
+
+</div>

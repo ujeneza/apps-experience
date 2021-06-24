@@ -1,0 +1,63 @@
+<div class="financialViewHomePage">
+
+  <!-- Filter Area -->
+  <div class="financialViewFilters">
+    <app-financial-filter-view [selectedTabIndexEvent]="selectedTabIndexEvent" (selectedButtonToggleChange)="onSelectedButtonToggleChange($event)"></app-financial-filter-view>
+  </div>
+  <!-- Financial views -->
+
+  <div class="financialViewTabs">
+    <mat-tab-group  (selectedTabChange)="onTabChandeClick($event)" [(selectedIndex)]="selectedTabIndex"
+    mat-align-tabs="center" class="tabGroupConfig">
+
+      <!-- Metal mvt -->
+      <mat-tab class="matTabConfig">
+        <ng-template mat-tab-label>
+          <i class="material-icons">
+            hdr_weak
+          </i>
+          <span class="spacer"></span>
+          &nbsp; &nbsp; Metal Movement View
+        </ng-template>
+        <app-metal-mouvemnt-tab></app-metal-mouvemnt-tab>
+      </mat-tab>
+
+      <!-- Production View -->
+      <mat-tab class="matTabConfig">
+        <ng-template mat-tab-label>
+          <i class="material-icons">
+            assessment
+          </i>
+          &nbsp; &nbsp; Production View
+        </ng-template>
+
+        <app-production-view-tab></app-production-view-tab>
+      </mat-tab>
+
+      <!-- Consumption View -->
+      <mat-tab class="matTabConfig" label="Consumption View">
+        <ng-template mat-tab-label>
+          <i class="material-icons">
+            donut_small
+          </i>
+          &nbsp; &nbsp;Consumption View
+        </ng-template>
+        <app-consumption-view-tab></app-consumption-view-tab>
+      </mat-tab>
+
+      <!-- Activity view  -->
+      <mat-tab class="matTabConfig">
+        <ng-template mat-tab-label>
+          <i class="material-icons">
+            trip_origin
+          </i>
+          &nbsp; &nbsp;Activity View
+        </ng-template>
+        <app-activity-view-tab></app-activity-view-tab>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+
+
+</div>

@@ -1,0 +1,340 @@
+﻿<h4>Technisch verslag details</h4>
+<form [formGroup]="tvForm" class="container-fluid paddingTop10px">
+    <div class="row">
+        <h5 class="col-sm-11">Technisch verslag detail in behandeling </h5>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isAfgesloten" value="">Is Afgesloten</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Reden Afsluiting</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="technischVerslagAfsluitRedenID">
+                <option value="">Selecteer</option>
+                <option *ngFor="let o of afsluitRedenListItems" [value]="o.id">{{o.description}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="isAfsluitRedenDetails">
+        <div class="col-sm-8 col-sm-offset-3">
+            <gw-tv-afsluit-reden [data]="tvJoinedData"
+                                 (afluitenFormValues)="getAsluitenFormValues($event)"
+                                 [tvId]="tvId"></gw-tv-afsluit-reden>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isAfsluitRedenVolume">
+        <div class="col-sm-3"><label class="pull-right">Volume (m³)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow AllowOnlyNumbers  formControlName="afsluitRedenVolume" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nummer</label></div>
+        <div class="col-sm-8"><label>{{tvJoinedData?.technischVerslagID}}</label></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Klant</label></div>
+        <div class="col-sm-8"> <label *ngIf="tvJoinedData?.organisatie">{{tvJoinedData?.organisatie}} <a *ngIf="tvJoinedData?.klantId" [routerLink]="['/gw/klant-edit',tvJoinedData?.klantId]" routerLinkActive="active-link">({{tvJoinedData?.klantId}})</a></label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8"> <label>Tel:{{tvJoinedData?.telefoon}}</label> </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8"> <label>Fax:{{tvJoinedData?.fax}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Referentie klant</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="referentieKlant" class="form-control" maxlength="100"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Titel</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="titel" class="form-control" maxlength="40"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="tvForm.get('onderzoekslocatie_straat').errors">* Straat onderzoekslocatie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="onderzoekslocatie_straat" class="form-control" maxlength="40"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="tvForm.get('onderzoekslocatie_gemeente').errors">* Gemeente onderzoekslocatie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="onderzoekslocatie_gemeente" class="form-control" maxlength="40"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Beschrijving</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="beschrijving" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Grondverzettype</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="grondverzetTypeID">
+                <option value="">Selecteer</option>
+                <option *ngFor="let o of grondVerzetTypesListItems" [value]="o.id">{{o.type}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Referentie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="referentie" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="tvForm.get('tvDatum').errors">* Datum Technisch Verslag</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tvDatum" class="form-control ng-trim-ignore" tooltip="(bv. 31/01/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Opdrachtgever coördinaten (werfopvolging zonder GVT)</label></div>
+        <div class="col-sm-8"><textarea formControlName="werfOpvolgingZonderGvt" rows="4" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label [class.validationHint]="tvForm.get('onderzoekslocatieBetreftTopCgr').errors">
+                <input type="checkbox" formControlName="isTopCgr" value="">
+                <label [class.validationHint]="tvForm.get('onderzoekslocatieBetreftTopCgr').errors" *ngIf="isTopCgrSelected">*</label> Locatie is een TOP/CGR
+            </label>
+        </div>
+    </div>
+    <div class="row" *ngIf="isTopCgrSelected">
+        <div class="col-sm-8 col-sm-offset-3">
+            <select class="controlWidth" DottedBorderBelow formControlName="onderzoekslocatieBetreftTopCgr" [ngClass]="{'dotted-border-below-hint':tvForm.get('onderzoekslocatieBetreftTopCgr').errors}">
+                <option value="">Selecteer</option>
+                <option *ngFor="let o of topCgrLocatieListItems" [value]="o.klantID">{{o.organisatie}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isBewerktGemengd" value="">Grond is bewerkt of gemengd</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lambert-coördinaten centraal punt</label></div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LX" class="col-sm-2" [class.validationHint]="tvForm.get('centraalPuntLX').errors">X </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="centraalPuntLX" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LY" class="col-sm-2" [class.validationHint]="tvForm.get('centraalPuntLY').errors">Y </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="centraalPuntLY" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label>Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken:<a href="#" (click)="$event.preventDefault();toGeopunt()">www.geopunt.be</a></label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">BestemmingsType onderzoekslocatie</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="bestemmingsTypeID">
+                <option value="">Selecteer</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Erkend Bodem- saneringsdeskundige</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bodemsaneringsdeskundige" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Dossierbeheerder</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="dossierBeheerderID" [ngClass]="{'dotted-border-below-hint':tvForm.get('dossierBeheerderID').errors}">
+                <option value="">Selecteer</option>
+                <option *ngFor="let o of dossierbeheerderListItems" [value]="o.dossierBeheerderID">{{o.naam}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isPubliekBeschikbaar" value="">Publiek beschikbaar</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label>
+                <input type="checkbox" formControlName="isExternTV" value="">TV beoordeeld door andere bodem-<br>
+                beheersorganisatie: (conformiteitsattest<br>
+                wordt opgestuurd)
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Extern TV geldig tot</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="externTvGeldigTot" class="form-control ng-trim-ignore" tooltip="(bv. 31/01/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Interne opmerking</label></div>
+        <div class="col-sm-8"><textarea formControlName="interneOpmerking" rows="4" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+    </div>
+
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <gw-tv-evaluatie [data]="tvJoinedData"
+                             [selectedStatus]="selectedStatus"
+                             [totalHoeveelheid] ="totalHoeveelheid"
+                             [dossierBeheerderID]="dossierBeheerderID"
+                             [isComformiteitMailSend] ="isConformiteitMailSend"
+                             [isSaving] ="isSaving"
+                             (besluitConclusion)="triggerBesluitChange($event)"
+                             (evaluatieFormErrors)="evaluationFormErrorMessages($event)"
+                             (evaluatieFormValues)="getEvaluatieFormValues($event)"
+                             (canSendComformietMail)="sendConformiteitEmail($event)"
+                             [tvId]="tvId">
+            </gw-tv-evaluatie>
+        </div>
+
+    </div>
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Opmerkingen</label></div>
+        <div class="col-sm-8"><textarea formControlName="opmerkingen" rows="4" cols="50"  maxlength="8000" class="form-control setArea"></textarea></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Status</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="statusID">
+                <option *ngFor="let o of tvStatusListItemsCurrent" [value]="o.tvStatusID">{{o.status}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isGefactureerd" value="">Gefactureerd</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Data aanvullingen</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="dataAanvullingen" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label *ngIf="evaluatieFormValues?.checkConclusion == 1"><input type="checkbox" formControlName="updateStatusDatum" value="">Update status datum</label>
+        </div>
+
+    </div>
+    <div [hidden]="isTvFormValid()">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(tvForm.get('onderzoekslocatie_straat').touched || tvForm.get('onderzoekslocatie_straat').dirty) &&!tvForm.get('onderzoekslocatie_straat').valid" [hidden]="!tvForm.controls['onderzoekslocatie_straat'].errors.required" class="col-sm-8"><label class="validation">- Straat onderzoekslocatie is vereist.</label></div>
+                <div *ngIf="(tvForm.get('onderzoekslocatie_gemeente').touched || tvForm.get('onderzoekslocatie_gemeente').dirty) &&!tvForm.get('onderzoekslocatie_gemeente').valid" [hidden]="!tvForm.controls['onderzoekslocatie_gemeente'].errors.required" class="col-sm-8"><label class="validation">- Gemeente onderzoekslocatie is vereist.</label></div>
+                <div *ngIf="(tvForm.get('tvDatum').touched || tvForm.get('tvDatum').dirty) &&!tvForm.get('tvDatum').valid" [hidden]="!tvForm.controls['tvDatum'].errors.required" class="col-sm-8"><label class="validation">- Datum Technisch Verslag is vereist.</label></div>
+                <div *ngIf="!tvForm.get('onderzoekslocatieBetreftTopCgr').valid" [hidden]="!tvForm.controls['onderzoekslocatieBetreftTopCgr'].errors.required" class="col-sm-8"><label class="validation">- Selecteer een TOP/CGR locatie.</label></div>
+                <div *ngIf="(tvForm.get('centraalPuntLX').touched || tvForm.get('centraalPuntLX').dirty) && !tvForm.get('centraalPuntLX').valid" [hidden]="!tvForm.controls['centraalPuntLX'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                <div *ngIf="(tvForm.get('centraalPuntLX').touched || tvForm.get('centraalPuntLX').dirty) && !tvForm.get('centraalPuntLX').valid" [hidden]="!tvForm.controls['centraalPuntLX'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                <div *ngIf="(tvForm.get('centraalPuntLY').touched || tvForm.get('centraalPuntLY').dirty) && !tvForm.get('centraalPuntLY').valid" [hidden]="!tvForm.controls['centraalPuntLY'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                <div *ngIf="(tvForm.get('centraalPuntLY').touched || tvForm.get('centraalPuntLY').dirty) && !tvForm.get('centraalPuntLY').valid" [hidden]="!tvForm.controls['centraalPuntLY'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                <div *ngIf="datumDemonsteringErrorMessage != ''" class="col-sm-8"><label class="validation">{{datumDemonsteringErrorMessage}}</label></div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button type="button" [disabled]="!isTvFormValid() || isSaving===1" (click)="save()" class="btn btn-default">OPSLAAN TV + BEOORDELING</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <h5 class="col-sm-11">Onderzochte deelvolume(s)</h5>
+    </div>
+
+    <div>
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-3"><label class="pull-right">Onderzochte deelvolumes</label></div>
+
+            <div class="col-sm-8">
+                <table class="GWTable">
+                    <thead>
+                        <tr>
+                            <th style="width:20px">Nr.</th>
+                            <th>Beschrijving</th>
+                            <th style="text-align: center">(X)</th>
+                            <th style="text-align: center">(Y)</th>
+                            <th style="text-align: center">(Z)</th>
+                            <th>Hoeveelheid(m³)</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let z of tvVolumes">
+                            <td>{{z.id}}</td>
+                            <td><label class="pull-left">{{z.beschrijving}}</label></td>
+                            <td style="text-align: center">{{z.kgbuOmschrijving}}</td>
+                            <td style="text-align: center">{{z.kgbiOmschrijving}}</td>
+                            <td style="text-align: center">{{z.kgboOmschrijving}}</td>
+                            <td align='right'>{{z.hoeveelheid}}</td>
+                            <td align='right' (click)="editTvVolume(z.tvZoneID)"> <img src="../../../../images/ico_editrecord.gif" class="ibtn" /></td>
+                            <td align='right' (click)="deleteTvVolume(z.tvZoneID)"> <img src="../../../../images/ico_delete.png" class="ibtn" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 "><label class="pull-right boldItem">Total hoeveelheid:</label></div>
+        <div class="col-sm-8">
+            <label class="boldItem">{{totalHoeveelheid}}</label>
+        </div>
+    </div>
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3 pull-right">
+                <button type="button" class="btn btn-default" (click)="addTvVolumes()">NIEUW DEELVOLUME</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Tracering</h5>
+    </div>
+
+    <gw-documents [id]="tvId"
+                  [documentType]="gwDocumentType"
+                  [uploadByParent]="false"
+                  [refreshNeeded]="refreshDocumentsNeeded"
+                  [emailHistoriekType]="emailHistoriekType"
+                  [showDocuments]="true"
+                  [showMails]="true"
+                  [canSendNewEmail]="canSendNewEmail"
+                  [status]="uploadStatus"
+                  (uploadingFiles)="uploadFiles($event)">
+    </gw-documents>
+</form>
+

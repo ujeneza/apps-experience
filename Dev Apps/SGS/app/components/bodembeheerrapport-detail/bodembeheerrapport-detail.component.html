@@ -1,0 +1,302 @@
+﻿<h4>Bestemming/Transport</h4>
+<form [formGroup]="bbrForm" class="container-fluid">
+    <div class="row">
+        <h5 class="col-sm-11">Herkomst</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nummer</label></div>
+        <div class="col-sm-8"><label>{{bbr?.bbrNummer}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Technisch Verslag</label></div>
+        <div class="col-sm-8"><a [routerLink]="['/technisch-verslag-detail', bbr?.tvid]">{{bbr?.tvid}}</a></div>
+    </div>
+    <div *ngIf="grondtransportmeldingIsVisible" class="row">
+        <div class="col-sm-3"><label class="pull-right">Grondtransportmelding</label></div>
+        <div class="col-sm-8"><label>{{bbr?.grondtransportmeldingID}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Referentie</label></div>
+        <div class="col-sm-8"><label>{{bbr?.klantKenmerk}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Plaats herkomst</label></div>
+        <div class="col-sm-8"><label class="angular-with-newlines">{{plaatsVanHerkomst}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Status</label></div>
+        <div class="col-sm-8"><label>{{bbr?.statusDescription}}</label></div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Bestemming</h5>
+    </div>
+    <div class="row">
+        <label class="bestemmingTitel">{{bbr?.bestemmingsAard}}</label>
+    </div>
+    <div class="row marginTop20px">
+        <div class="col-sm-8 col-sm-offset-3"><button class="btn btn-default" [disabled]="!andereGvtBbrNaarDezeLocatieButtonEnabled" (click)="andereGvtBbrNaarDezeLocatie()">Andere GVT BBR naar deze locatie</button></div>
+    </div>
+
+    <div *ngIf="andereGvtBbrNaarDezeLocatieContentVisible" class="row marginTop20px">
+        <div class="NgxTable col-sm-8 col-sm-offset-3">
+            <ngx-datatable #table
+                           class="bootstrap"
+                           (activate)="onActivate($event)"
+                           [rows]="andereGvts"
+                           [columnMode]="'flex'"
+                           [headerHeight]="25"
+                           [footerHeight]="20"
+                           [limit]="appLabels.tableViewRows"
+                           [rowClass]="getRowClass"
+                           [cssClasses]="appLabels.iconsCss"
+                           [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                           [rowHeight]="'auto'">
+                >
+                <ngx-datatable-column [flexGrow]="1" prop="bbrStatusID" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Status ID</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="1" prop="bbrNummer" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Nummer</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="2" prop="klantKenmerk" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Referentie</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="1" prop="tvid" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">CV nummer</span></div>
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        <a [routerLink]="['/technisch-verslag-detail', value]">{{value}}</a>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="2" prop="afzetadres" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Adres</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="2" prop="plaats" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Adres</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="2" prop="aanvraagDatum" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Datum aanvraag</span></div>
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value | date:"dd/MM/yyyy"}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="2" prop="status" headerClass="NgxHeader">
+                    <ng-template let-column="column" ngx-datatable-header-template>
+                        <div><span class=" NgxFilterLabel">Status</span></div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="1" name="Detail" headerClass="NgxHeader">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    </ng-template>
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <img src="../../../images/ico_editrecord.gif" class="ibtn" (click)="redirectForAndereGvtBbrNaarDezeLocatie(row['bbrStatusID'], row['bbrNummer'])" />
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+    <div class="row">
+        <h6 class="col-sm-10 col-sm-offset-1">Eigenaar of Exploitant</h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam</label></div>
+        <div class="col-sm-8"><label>{{bbr?.eigenaar}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><label>{{bbr?.adres1}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><label>{{bbr?.adres2}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><label>{{bbr?.postcode}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><label>{{bbr?.plaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Contactpersoon</label></div>
+        <div class="col-sm-8"><label>{{bbr?.contactPersoon}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+        <div class="col-sm-8"><label>{{bbr?.telefoon}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Email</label></div>
+        <div class="col-sm-8"><label>{{bbr?.email}}</label></div>
+    </div>
+
+    <div class="row">
+        <h6 class="col-sm-10 col-sm-offset-1">Locatie waar de grond wordt afgezet</h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><label>{{bbr?.afzetAdres1}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><label>{{bbr?.afzetAdres2}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><label>{{bbr?.afzetPostcode}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><label>{{bbr?.afzetPlaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Omschrijving toepassing</label></div>
+        <div class="col-sm-8"><label>{{bbr?.bestemmingsBeschrijving}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Studie ontvangende grond</label></div>
+        <div class="col-sm-8"><label>{{bbr?.studieBestemming}}</label></div>
+    </div>
+    <div *ngIf="kadastraleGegevensVisible" class="row">
+        <div class="col-sm-3"><label class="pull-right">Kadastrale gegevens</label></div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-right">Afdeling</label></div>
+                <div class="col-sm-9"><label>{{bbr?.kadAfdeling}}</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-right">Afdelingsnr (indien bekend)</label></div>
+                <div class="col-sm-9"><label>{{bbr?.kadAfdelingsNr}}</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-right">Sectie</label></div>
+                <div class="col-sm-9"><label>{{bbr?.kadSectie}}</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label class="pull-right">Nummer(s)</label></div>
+                <div class="col-sm-9"><label>{{bbr?.kadNummers}}</label></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="lambertCoordinatenVisible" class="row">
+        <div class="col-sm-3"><label class="pull-right">Lambert 1 coördinaten (centrale punt aanvulling)</label></div>
+        <div class="col-sm-8"><label>({{bbr?.lX1}},{{bbr?.lY1}})</label></div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Deelvolume(s)</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <table class="GWTable">
+                <thead>
+                    <tr>
+                        <th style="width: 20px">Nr.</th>
+                        <th>Beschrijving</th>
+                        <th style="text-align: center">(X)</th>
+                        <th style="text-align: center">(Y)</th>
+                        <th style="text-align: center">(Z)</th>
+                        <th>Gepland gebruik (m³)</th>
+                        <th>Werkelijk (m³) <br />(van online ingevuld VA)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let deelvolume of deelvolumes; let i = index;">
+                        <td><input type="hidden" value="{{deelvolume.tvZoneId}}" /><a [routerLink]="['/technisch-verslag-detail', bbr?.tvid]">{{deelvolume.tvZoneNr}}</a></td>
+                        <td><span class="pull-left">{{deelvolume.beschrijving}}</span></td>
+                        <td style="text-align: center">{{deelvolume.kgbuOmschrijving}}</td>
+                        <td style="text-align: center">{{deelvolume.kgbiOmschrijving}}</td>
+                        <td style="text-align: center">{{deelvolume.kgboOmschrijving}}</td>
+                        <td style="text-align: left">{{deelvolume.geplandGebruik}}</td>
+                        <td style="text-align: left">{{deelvolume.ontvangstVerklaringOnlineRealQuantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Ontvangstverklaring / bestaande bestanden</h5>
+    </div>
+    <div *ngIf="onlineOnvangstVerklaringInvullenButtonIsVisible">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3"><label>Hieronder kan u de ontvangstverklaring online invullen, naar uzelf emailen of direct uploaden (voor zover dit nog niet is gebeurd)</label></div>
+        </div>
+        <div class="row">
+            <h6 class="col-sm-10 col-sm-offset-1">Online invullen</h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3"><button type="button" class="btn btn-default" (click)="ontvangstVerklaringOnlineInvullen()">Ontvangst verklaring online invullen</button></div>
+        </div>
+    </div>
+    <div *ngIf="onlineOnvangstVerklaringBekijkenButtonIsVisible">
+        <div class="row">
+            <h6 class="col-sm-10 col-sm-offset-1">Ontvangst verklaring online ingevulde gegevens bekijken</h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3"><button type="button" class="btn btn-default" (click)="ontvangstVerklaringOnlineBekijken()">Gegevens bekijken</button></div>
+        </div>
+    </div>
+    <div *ngIf="!onlineOnvangstVerklaringBekijkenButtonIsVisible && !onlineOnvangstVerklaringInvullenButtonIsVisible">
+        <div class="row">
+            <h6 class="col-sm-10 col-sm-offset-1">Er is geen online ingevulde ontvangst verklaring beschikbaar</h6>
+        </div>        
+    </div>
+    <!--09/04/2019: Timothy requested to shut off this functionality due to new legislation-->
+    <!--<div *ngIf="onlineOnvangstVerklaringInvullenButtonIsVisible">
+        <div class="row marginTop10px">
+            <h6 class="col-sm-10 col-sm-offset-1">Emailen</h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Email</label></div>
+            <div class="col-sm-8"><input type="text" email DottedBorderBelow formControlName="klantContactEmail" class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button class="btn btn-default marginTop10px" [disabled]="!(bbrForm.get('klantContactEmail').valid && emailButtonIsEnabled)" (click)="mailOntvangstVerklaring()">Lege ontvangstverklaring emailen</button>
+            </div>
+        </div>
+    </div>-->
+    <div *ngIf="existingFiles!=null && existingFiles.length > 0">
+        <div class="row marginTop20px">
+            <h6 class="col-sm-10 col-sm-offset-1">Documenten</h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <div *ngFor="let file of existingFiles;">
+                    <a [routerLink]="" (click)="showFileWithId(file.id)" class="pdfLink">
+                        <label>{{file.fileName}}</label>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row paddingTop20px">
+        <h6 class="col-sm-10 col-sm-offset-1">Uploaden</h6>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <file-uploader #fileUploader
+                           hasSendButton="true"
+                           fileType="UserUploadOntvangstVerklaring"
+                           [status]="uploadStatus"
+                           [fullWidth]="true"
+                           (uploaded)="filesUploaded($event)"
+                           (inQueue)="queueCountChanged($event)"
+                           (moveToFinalDestinationSucceeded)="moveToFinalDestinationSucceeded($event)">
+            </file-uploader>
+        </div>
+    </div>
+</form>

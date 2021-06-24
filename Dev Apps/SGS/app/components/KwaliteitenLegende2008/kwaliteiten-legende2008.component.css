@@ -1,0 +1,16 @@
+﻿.divBorder {
+    padding: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #017342;
+}
+
+table tr {
+    border-bottom: 1px solid;
+    border-collapse: collapse;
+}
+
+    table tr td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }

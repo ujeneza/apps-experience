@@ -1,0 +1,282 @@
+﻿<h4>Grondtransportmelding voor TOP/GRC</h4>
+<form [formGroup]="RForm" class="container-fluid  paddingTop30px" *ngIf="regId===0;else sent">
+    <label>
+        Transport naar een tussentijdse opslagplaats of grondreinigingscentrum dient steeds aan een erkende bodembeheerorganisatie te worden gemeld door de uitvoerder van de grondwerken in volgende gevallen:
+        <br /><br />
+        - transport van meer dan 250m³ onverdachte uitgegraven bodem<br />
+        - transport van meer dan 50 m³ verdachte uitgegraven bodem (incl. wegenis en berm)
+    </label>
+    <div class="row">
+        <div class="col-sm-11"><h5>Klant - Contactpersoon</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="KlantContactAchternaam" class="pull-right" [class.validationHint]="RForm.controls['KlantContactAchterNaam']?.errors">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="KlantContactAchternaam" class="form-control" maxlength="50" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="KlantContactVoornaam" class="pull-right" [class.validationHint]="RForm.controls['KlantContactVoorNaam']?.errors">* Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="KlantContactVoornaam" class="form-control" maxlength="50" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="KlantContactTelefoon" class="pull-right" [class.validationHint]="RForm.controls['KlantContactTelefoon']?.errors">* Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="KlantContactTelefoon" class="form-control" maxlength="50" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="KlantContactEmail" class="pull-right" [class.validationHint]="RForm.controls['KlantContactEmail']?.errors">* E-mail</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="KlantContactEmail" class="form-control" maxlength="50" DottedBorderBelow email></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="KlantKenmerk" class="pull-right" [class.validationHint]="RForm.controls['KlantKenmerk']?.errors">* Uw referentie</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="KlantKenmerk" class="form-control" maxlength="50" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Herkomst uitgegraven bodem</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TVbeschikbaar" class="pull-right">Technisch verslag beschikbaar voor plaats van herkomst</label></div>
+        <div class="col-sm-8 dropdown">
+            <select formControlName="TVbeschikbaar" DottedBorderBelow>
+                <option value="1">Ja</option>
+                <option value="0">Nee</option>
+            </select>
+        </div>
+    </div>
+    <ng-container *ngIf="RForm.get('TVbeschikbaar').value === '1';else noTV">
+        <div class="row">
+            <div class="col-sm-3"><label for="TechnischVerslagID" class="pull-right" [class.validationHint]="RForm.controls['TechnischVerslagID']?.errors">* Nr. van Grondwijzer</label></div>
+            <div class="col-sm-2"><input type="text" formControlName="TechnischVerslagID" class="form-control" DottedBorderBelow (change)="clearZone()" AllowOnlyNumbers></div>
+            <div class="col-sm-7">
+                <button type="button" [disabled]="!this.RForm.controls['TechnischVerslagID'].valid" class="btn btn-default" (click)="fillTVzones()">Toon onderzochte deelvolumes</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#TVzoek">Technisch Verslag Nr opzoeken</button>
+            </div>
+        </div>
+        <ng-container *ngIf="zones.length > 0">
+            <div class="row paddingTop10px">
+                <div class="col-sm-8 col-sm-offset-3">
+                    <label>Vul in onderstaande tabel de beschrijving en geplande hoeveelheden in van de deelvolumes die u naar de TOP/CGR wenst af te voeren.</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-3"><label>Deelvolumes:</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-3">
+                    <table class="GWTableE labelFont">
+                        <thead>
+                            <tr>
+                                <th style="width:20px"></th>
+                                <th>Beschrijving</th>
+                                <th style="text-align: center">(X)</th>
+                                <th style="text-align: center">(Y)</th>
+                                <th style="text-align: center">(Z)</th>
+                                <th>Beschikbaar (m³)</th>
+                                <th>Geplande hoeveelheid (m³)</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="Zones">
+                            <tr *ngFor="let z of RForm.get('Zones').controls; let i = index;" [formGroupName]="i">
+                                <td><img src="../../../images/ico_delete.png" class="ibtn" (click)="delZone(i)" /></td>
+                                <td>{{z.controls["beschrijving"].value}}</td>
+                                <td style="text-align: center">{{z.controls["x"].value}}</td>
+                                <td style="text-align: center">{{z.controls["y"].value}}</td>
+                                <td style="text-align: center">{{z.controls["z"].value}}</td>
+                                <td class="textAlignLeft">{{z.controls["saldo"].value}}</td>
+                                <td>
+                                    <input formControlName="hoeveelheid" class="form-control" DottedBorderBelow AllowOnlyNumbers>
+                                    <label *ngIf="+z.controls['hoeveelheid'].value > +z.controls['saldo'].value" class="validationHint">Bent u zeker dat u meer wil opgeven dan {{z.controls['saldo'].value}}, nl. dan het beschikbare saldo</label>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="!isVolumesValid()" [hidden]="isVolumesValid()" class="col-sm-8 col-sm-offset-3 validation"><label class="validation">- Er zijn nog bepaalde waarden m.b.t. de Onderzochte deelvolumes vereist</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-11">
+                    <kwaliteiten-legende *ngIf="!isTechnischVerslagVlarebo2008;else TV2008"></kwaliteiten-legende>
+                    <ng-template #TV2008>
+                        <kwaliteiten-legende2008></kwaliteiten-legende2008>
+                    </ng-template>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #noTV>
+        <div class="row paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3"><label>Geef de gegevens van de oorspronkelijke plaats van herkomst op</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="Adres" class="pull-right" [class.validationHint]="RForm.controls['Adres']?.errors">* Straat en nr</label></div>
+            <div class="col-sm-8"><input type="text" formControlName="Adres" class="form-control" maxlength="50" DottedBorderBelow></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="Postcode" class="pull-right" [class.validationHint]="RForm.controls['Postcode']?.errors">* Postcode</label></div>
+            <div class="col-sm-8"><input type="text" formControlName="Postcode" class="form-control" maxlength="10" DottedBorderBelow></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="Plaats" class="pull-right" [class.validationHint]="RForm.controls['Plaats']?.errors">* Gemeente</label></div>
+            <div class="col-sm-8"><input type="text" formControlName="Plaats" class="form-control" maxlength="50" DottedBorderBelow></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right" [class.validationHint]="RForm.controls['LX']?.errors || RForm.controls['LY']?.errors">* Lambert coördinaten</label></div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <label for="LX" class="col-sm-2">X </label>
+                    <div class="col-sm-10">
+                        <input type="text" formControlName="LX" class="form-control" DottedBorderBelow AllowOnlyNumbers>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <label for="LY" class="col-sm-2">Y </label>
+                    <div class="col-sm-10">
+                        <input type="text" formControlName="LY" class="form-control" DottedBorderBelow AllowOnlyNumbers>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row paddingTop10px">
+            <div class="col-sm-push-3 col-sm-8">
+                <label>
+                    De X-coördinaat moet tussen 20000 en 280000 liggen.<br />
+                    De Y-coördinaat moet tussen 150000 en 250000 liggen.<br />
+                    Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken: <a href="#" (click)="$event.preventDefault();toGeopunt()">www.geopunt.be</a>
+                </label>
+            </div>
+        </div>
+        <div class="row paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3">
+                <label>Vul in onderstaande tabel de beschrijving en geplande hoeveelheden in van de deelvolumes die u naar de TOP/CGR wenst af te voeren.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11"></div>
+        </div>
+        <div class="row rowSetContentTop">
+            <div class="col-sm-8 col-sm-offset-3"><label>Deelvolumes:</label></div>
+        </div>
+        <div class="row rowSetContentTop">
+            <div class="col-sm-8 col-sm-offset-3">
+                <table class="GWTableE labelFont width100percent">
+                    <thead>
+                        <tr>
+                            <th style="width:20px"></th>
+                            <th>Beschrijving</th>
+                            <th>Geplande hoeveelheid (m³)</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="Zones">
+                        <tr *ngFor="let z of RForm.get('Zones').controls; let i = index;" [formGroupName]="i">
+                            <td><img src="../../../images/ico_delete.png" class="ibtn" (click)="delZone(i)" /></td>
+                            <td>
+                                <input formControlName="beschrijving" class="form-control" DottedBorderBelow>
+                                <label *ngIf="z.controls['beschrijving'].errors" class="validationHint">Verplicht veld</label>
+                            </td>
+                            <td>
+                                <input formControlName="hoeveelheid" class="form-control" DottedBorderBelow AllowOnlyNumbers Minimum="1">
+                                <label *ngIf="z.controls['hoeveelheid'].errors" class="validationHint">Verplicht veld en groter dan 0</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-default marginTop10px" (click)="addZone()">Deelvolume toevoegen</button>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="row">
+        <div class="col-sm-11"><h5>Bestemming</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TopCrgId" class="pull-right" [class.validationHint]="RForm.controls['TopCrgId']?.errors">* Naam bedrijf</label></div>
+        <div class="col-sm-8 dropdown">
+            <select formControlName="TopCrgId" DottedBorderBelow>
+                <option [ngValue]=""></option>
+                <option *ngFor="let o of topcgrlist" [ngValue]="o.klantId">{{o.organisatie}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-push-3 col-sm-8">
+            <label>
+                Er dient een bedrijf uit bovenstaande tabel te worden geselecteerd.<br />
+                Alleen geregistreerde sites zijn hierin opgenomen.<br />
+                Indien uw geplande bestemming niet op de lijst voorkomt, dient u contact op te nemen met Grondwijzer vzw.
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TopStraat" class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="TopStraat" class="form-control" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-push-3 col-sm-8"><input type="text" formControlName="TopStraat2" class="form-control" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TopPostcode" class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="TopPostcode" class="form-control" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TopGemeente" class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="TopGemeente" class="form-control" DottedBorderBelow></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="GrondtransportmeldingGebruikId" class="pull-right">Toepassing/Gebruik</label></div>
+        <div class="col-sm-8 dropdown">
+            <select formControlName="GrondtransportmeldingGebruikId" DottedBorderBelow>
+                <option *ngFor="let r of tglist" [ngValue]="r.grondtransportmeldingGebruikId">{{r.grondtransportmeldingGebruik}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TransportAanvangDatum" class="pull-right" [class.validationHint]="RForm.controls['TransportAanvangDatum']?.errors">Verwachte datum aanvang transport</label></div>
+        <div class="col-sm-2"><input type="text" formControlName="TransportAanvangDatum" class="form-control ng-trim-ignore" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }" (bsValueChange)="TransportEindeDatumValidate()"></div>
+        <div *ngIf="RForm.get('TransportAanvangDatum').errors && RForm.get('TransportAanvangDatum').dirty && RForm.get('TransportAanvangDatum').errors" class="col-sm-6 alert-danger">
+            {{RForm.get('TransportAanvangDatum').errors.message}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="TransportEindeDatum" class="pull-right" [class.validationHint]="RForm.controls['TransportEindeDatum']?.errors">Verwachte datum einde transport</label></div>
+        <div class="col-sm-2"><input type="text" formControlName="TransportEindeDatum" class="form-control ng-trim-ignore" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+        <div *ngIf="RForm.get('TransportEindeDatum').errors && RForm.get('TransportEindeDatum').dirty && RForm.get('TransportEindeDatum').errors" class="col-sm-6 alert-danger">
+            {{RForm.get('TransportEindeDatum').errors.message}}
+        </div>
+    </div>
+
+    <div class="paddingTop40px">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <button type="button" [disabled]="!RFormIsValid() || inSending" class="btn btn-default" (click)="sendFormData()" name="sendform">{{(inSending)?appLabels.Wait:appLabels.Send}}</button>
+                <!-- <button type="button" class="btn btn-default" (click)="testPDF()">testPDF</button> -->
+                <br />&nbsp;
+            </div>
+        </div>
+    </div>
+</form>
+<ng-template #sent>
+    <div class="row">
+        <div class="col-sm-11">
+            <label>
+                Uw grondtransportmelding is bij Grondwijzer geregistreerd onder nr. {{regId}}
+                <br /><br />
+                Nader bericht volgt via e-mail.
+                <br /><br />&nbsp;
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11">
+            <button type="button" class="btn btn-default" (click)="GTMoverview()">Detail van grondtransportmelding {{regId}}</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Modal TV zoek-->
+<div class="modal fade" id="TVzoek" role="dialog" *ngIf="regId===0">
+    <technisch-verslag-zoeken (selected)="onTVSelected($event)"></technisch-verslag-zoeken>
+</div>

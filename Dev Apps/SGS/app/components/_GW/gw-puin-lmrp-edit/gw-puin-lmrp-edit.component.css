@@ -1,0 +1,62 @@
+﻿.setTop {
+    align-items: flex-start;
+}
+
+.setArea {
+    border: 1px solid #DADADA;
+}
+
+
+.locationBorderBottom {
+    border-bottom: 1px solid #7faa2a;
+}
+
+
+.controlWidth {
+    width: 100%;
+}
+
+/*.openModal {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}*/
+
+.openModal {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #017342;
+    border: none;
+    color: #B0D001;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    width: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+ .openModal span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+ }
+
+    .openModal span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -10px;
+        transition: 0.5s;
+    }
+
+    .openModal:hover span {
+        padding-right: 10px;
+    }
+
+        .openModal:hover span:after {
+            opacity: 1;
+            right: 0;
+        }

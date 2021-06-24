@@ -1,0 +1,73 @@
+﻿
+
+
+
+
+    <nav *ngIf="PgIndex === -1 && useToolbar" class="navbar navbar-default navbar-fixed-bottom" style="background-color:#CCCCCC;">
+        <div class="container-fluid" style="margin: 10px 0px 27px 0px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" (click)="toggleButton(0)" style="margin-left: -5px;" [ngClass]="getButtonClass(btns[0])">Ontgravingen</button>
+                    <button type="button" (click)="singleButton(0)" [ngClass]="getSingleClass(btns[0])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(1)" [ngClass]="getButtonClass(btns[1])">TV</button>
+                    <button type="button" (click)="singleButton(1)" [ngClass]="getSingleClass(btns[1])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(2)" [ngClass]="getButtonClass(btns[2])">GTM</button>
+                    <button type="button" (click)="singleButton(2)" [ngClass]="getSingleClass(btns[2])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(3)" [ngClass]="getButtonClass(btns[3])">GVT</button>
+                    <button type="button" (click)="singleButton(3)" [ngClass]="getSingleClass(btns[3])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(4)" [ngClass]="getButtonClass(btns[4])">Online Ingevuld</button>
+                    <button type="button" (click)="singleButton(4)" [ngClass]="getSingleClass(btns[4])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(5)" [ngClass]="getButtonClass(btns[5])">Gegevens Aanpassen</button>
+                    <button type="button" (click)="singleButton(5)" [ngClass]="getSingleClass(btns[5])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(6)" [ngClass]="getButtonClass(btns[6])">Klanten</button>
+                    <button type="button" (click)="singleButton(6)" [ngClass]="getSingleClass(btns[6])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(7)" [ngClass]="getButtonClass(btns[7])">BBR</button>
+                    <button type="button" (click)="singleButton(7)" [ngClass]="getSingleClass(btns[7])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(8)" [ngClass]="getButtonClass(btns[8])">Puin</button>
+                    <button type="button" (click)="singleButton(8)" [ngClass]="getSingleClass(btns[8])">&nbsp;</button>
+                    <button type="button" (click)="toggleButton(-1)" [ngClass]="getButtonClass(allButtonsShown)">Toon Alles</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div [hidden]="!btns[0]">
+            <h4>Kleine Werken</h4>
+            <gw-kw-grid></gw-kw-grid>
+        </div>
+        <div [hidden]="!btns[1]">
+            <h4>Technische Verslagen</h4>
+            <gw-tv-grid NieuweAanvragen="true" ExtendedSearch="true" [AllowDelete]="allowDelete"></gw-tv-grid>
+        </div>
+        <div [hidden]="!btns[2]">
+            <h4>Grond Transport Meldingen</h4>
+            <gw-gtm-grid NieuweAanvragen="false" ExtendedSearch="true" [AllowDelete]="allowDelete"></gw-gtm-grid>
+        </div>
+        <div [hidden]="!btns[3]">
+            <h4>Grond Verzet Toelatingen</h4>
+            <gw-gvt-grid NieuweAanvragen="false" ExtendedSearch="true" [AllowDelete]="allowDelete"></gw-gvt-grid>
+        </div>
+        <div [hidden]="!btns[4]">
+            <h4>Upload of Online Ingevuld - VA/OV</h4>
+            <bodembeheerrapport-grid isGWStart="true" Type="BBR" [FillType]="UPLFillType" [title]="'Bodembeheer rapporten:'"></bodembeheerrapport-grid>
+        </div>
+        <div [hidden]="!btns[5]">
+            <h4>Vraag tot gegevensaanpassingen</h4>
+            <gw-klantwijz-grid></gw-klantwijz-grid>
+        </div>
+        <div [hidden]="!btns[6]">
+            <h4>Nieuwe Klanten</h4>
+            <gw-klant-grid isGWStart="true"></gw-klant-grid>
+        </div>
+        <div [hidden]="!btns[7]">
+            <h4>Bodem Beheer Rapporten</h4>
+            <gw-bbr-grid NieuweAanvragen="false" ExtendedSearch="true" [AllowDelete]="allowDelete"></gw-bbr-grid>
+        </div>
+        <div [hidden]="!btns[8]">
+            <h4>Puin</h4>
+            To Be Developed
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,116 @@
+<div class="tableContainair">
+
+    <div class="example-loading-shade" *ngIf="isLoadingResults ">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <div class="filterInputClearLocalStorage">
+        <span class="spacer"></span>
+        <div class="clearSortingData">
+            <button class="clearSortingData" matTooltip="Clear Sorting Data" mat-mini-fab style="color:white" (click)="onClearLocalStorgage()"><i
+                    class="material-icons">
+                    clear
+                </i></button>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows [matSortActive]="matSortNameActiveMetalMvtView"
+        [matSortDirection]="matSortDirectionMetalMvtView" (matSortChange)="sortData($event)" class="mat-elevation-z8"
+        matSort>
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <div *ngIf="column !== 'detail' &&  column !== 'hasValidationErrors'">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> {{metalMvtViewLabel.get(column)}} </th>
+                <td mat-cell class="globalDetailColumn" *matCellDef="let element"> {{element[column]}}
+                </td>
+            </div>
+            <div *ngIf="column === 'detail'">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> {{metalMvtViewLabel.get(column)}} </th>
+                <td mat-cell *matCellDef="let element" class="detailColumn" (click)="$event.stopPropagation(); expandedElement = expandedElement === element ? null : element">
+                    <div class="toogleButtonExpand">
+                        <i class="material-icons" *ngIf="expandedElement !== element && element.isMetalUnit===true">
+                            expand_more
+                        </i>
+                        <i class="material-icons" *ngIf="expandedElement === element  && element.isMetalUnit===true">
+                            expand_less
+                        </i>
+                    </div>
+
+                </td>
+            </div>
+
+            <div *ngIf="column === 'hasValidationErrors'">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> {{metalMvtViewLabel.get(column)}} </th>
+                <td mat-cell *matCellDef="let element" class="detailColumn">
+                    <div class="hasErrors">
+                        <i  style="color:orange" class="material-icons" *ngIf="element.hasValidationErrors===true">
+                            warning
+                        </i>
+
+                        <div *ngIf="element.hasValidationErrors===false"> 
+
+                        </div>
+
+                    </div>
+                </td>
+            </div>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length" class="dataDetailExpand">
+                <div *ngFor="let metalUnit of element.metalUnits" class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+                    <div class="listElementLeft">
+                        <mat-list>
+
+                            <mat-list-item>Metal Unit: {{metalUnit?.metalUnit}} </mat-list-item>
+
+                            <mat-list-item>Weight: {{metalUnit?.weight}}</mat-list-item>
+
+                            <mat-list-item>Length: {{metalUnit?.length}} </mat-list-item>
+
+                        </mat-list>
+                    </div>
+                    <div class="listElementRight">
+                        <mat-list>
+
+                            <mat-list-item>Next Metal Movement: {{metalUnit?.nextMetalMovement}} </mat-list-item>
+
+                            <mat-list-item>Width: {{metalUnit?.width}} </mat-list-item>
+
+                            <mat-list-item>Thickness: {{metalUnit?.thickness}}</mat-list-item>
+
+                        </mat-list>
+
+                    </div>
+                    <div matTooltip="Detail" class="matActionRow" (click)="navigateToDetails(metalUnit.metalUnitId)">
+
+                        <button mat-icon-button color="warn">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                        <!--     <i class="material-icons">
+                                    more_horiz
+                                    </i> -->
+                    </div>
+
+
+
+
+
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element" (click)="navigateToDetailsMvt(element.metalMovementId)">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+    </table>
+
+    <mat-paginator [length]="pageLengthMetalMvtView" 
+                    [pageSizeOptions]="[5, 10, 25, 100]" 
+                    [pageSize]="pageSizeMetalMvtView"
+                    [pageIndex]="pageIndexMetalMvtView"
+        (page)="pageEvent($event)" showFirstLastButtons></mat-paginator>
+</div>

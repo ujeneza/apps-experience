@@ -1,0 +1,148 @@
+<form [formGroup]="operationSectionForm" class="operationContainer">
+  <div class="example-loading-shade " *ngIf="!isDataLoading ">
+    <mat-spinner *ngIf="!isDataLoading"></mat-spinner>
+  </div>
+  <!--  title -->
+  <mat-toolbar class="toolBarContainer">
+    <div *ngIf="isMvtCopied"> Operation:{{operationSection?.operation}} </div>
+    
+
+    <span class="spacer">
+      <div *ngIf="!isMvtCopied" class="copiedFrom">Copied from: 
+        {{operationSection?.operation}}</div> 
+    </span>
+
+    <div class="navigationButton">
+    
+       
+
+      <button mat-icon-button *ngIf="isMvtCopied" (click)="saveMetalMovement()" class="operationAction"
+        matTooltip="Save" matTooltipShowDelay="1000"><i class="fa fa-lg fa-save"></i></button>
+
+      <button mat-icon-button *ngIf="!isMvtCopied" (click)="saveCopiedData(operationSection.metalMovementId) "
+        class="operationAction" matTooltip="Save" matTooltipShowDelay="1000"><i class="fa fa-lg fa-save"></i></button>
+
+      <button mat-icon-button *ngIf="isMvtCopied" (click)="copyMetalMovement(); getProductionLineFromSite(operationSection?.siteId);" class="operationAction"
+        matTooltip="Copy" matTooltipShowDelay="1000"><i class="fa fa-lg fa-copy"></i></button>
+
+      <button *ngIf="!isMvtCopied" mat-icon-button (click)="cancelCopy()" class="action float-sm-right"
+        matTooltip="Cancel" matTooltipShowDelay="1000"><i class="material-icons">
+          cancel
+        </i></button>
+
+      <button mat-icon-button *ngIf="isMvtCopied" (click)="deleteMetalMovement(operationSection.metalMovementId)"
+        class="operationAction" matTooltip="Delete" matTooltipShowDelay="1000"><i
+          class="fa fa-lg fa-trash"></i></button>
+
+    </div>
+  </mat-toolbar>
+  <!-- Error area -->
+  <div class="errorsMessages" >
+    <mat-toolbar class="errorMessage" *ngIf="isMvtCopied && miniValidationErrors?.length>0 ">
+   
+      <span class="spacer">
+          <div class="errors"> <span *ngFor="let miniValidationError of miniValidationErrors">
+              <span> {{miniValidationError.violationMessage}}</span>
+            </span></div>
+      </span>
+
+      <div class="navigationButton">
+        <button mat-icon-button (click)="snackBarSuccessActionInfo('Succcessfully delegated', 'info')"
+          matTooltip="Delegate" matTooltipShowDelay="1000"><i class="material-icons">
+            group_work
+          </i></button>
+      </div> 
+    </mat-toolbar>
+
+    <div class="operationData" *ngIf="!isMvtCopied ">
+      <div class="operationIdLine">
+          <mat-form-field class="productionLine" >
+              <mat-select formControlName="productionLineId" [disabled]="isMvtCopied" placeholder="Production Line" disableOptionCentering="true"
+                (selectionChange)="getOperationFromProduction($event.value); ">
+                <mat-option>All</mat-option>
+      
+                <mat-option *ngFor="let  productionLineList of productionLinesList"
+                  [value]="productionLineList?.productionLineId">{{productionLineList?.productionLine}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <mat-form-field class="operationId">
+              <mat-select formControlName="operationId" [disabled]="isMvtCopied || !selectedProductionLine" placeholder="Operation Nr" disableOptionCentering="true">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let  operationList of operationsList" [value]="operationList?.operationId">
+                  {{operationList?.operation}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+     
+      <div class="sequenceNumberLocal"s>
+          <mat-form-field class="formField" >
+              <input matInput formControlName="sequenceNumberLocal" placeholder="Sequence Nr">
+            </mat-form-field>
+      </div>
+
+      
+
+    </div>
+  </div>
+  <!-- input area -->
+
+  <div class="formContainer">
+    <div class="generalData">
+      <div class="leftGeneralData">
+        <mat-form-field class="formField">
+          <input matInput formControlName="coilPartNumber" placeholder="Coil Part Nr.">
+        </mat-form-field>
+
+        <mat-form-field class="formField">
+          <input matInput formControlName="endDate" [matDatepicker]="picker" placeholder="End date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="rightGeneralData">
+        <mat-form-field class="formField">
+          <input matInput formControlName="packageNo" placeholder="Package nr.">
+        </mat-form-field>
+
+
+        <mat-form-field class="formField">
+          <input matInput autocomplete="off" formControlName="time" placeholder="Time">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <!--  <div class="spacerData"></div> -->
+    <mat-card class="direction">
+      <mat-toolbar class="titleMatCard"> Duration</mat-toolbar>
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="rot" placeholder="ROT">
+      </mat-form-field>
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="uot" placeholder="UOT">
+      </mat-form-field>
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="ft" placeholder="FT">
+      </mat-form-field>
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="otForActivity" placeholder="OT for activity">
+      </mat-form-field>
+
+    </mat-card>
+    <mat-card class="speed">
+      <mat-toolbar class="titleMatCard">Speed</mat-toolbar>
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="setpoint" placeholder="Setpoint">
+        <span matSuffix>m/h</span>
+      </mat-form-field><br />
+      <mat-form-field class="formField">
+        <input matInput autocomplete="off" formControlName="realised" placeholder="Realised">
+        <span matSuffix>m/h</span>
+      </mat-form-field>
+    </mat-card>
+  </div>
+</form>
+

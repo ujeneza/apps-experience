@@ -1,0 +1,278 @@
+﻿
+<h4>Aanvraag verklaring LMRP-Puin</h4>
+<form [formGroup]="puinForm" class="container-fluid paddingTop10px">
+
+    <div class="row">
+        <div class="col-sm-11"><h5>Klant Aanvrager Gegevens</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactAchterNaam" class="pull-right" [class.validationHint]="puinForm.get('klantContactAchterNaam')?.errors">* Familienaam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactAchterNaam" formControlName="klantContactAchterNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactVoorNaam" class="pull-right" [class.validationHint]="puinForm.get('klantContactVoorNaam').errors">* Naam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactVoorNaam" formControlName="klantContactVoorNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactTelefoon" class="pull-right" [class.validationHint]="puinForm.get('klantContactTelefoon').errors">* Telefoon / Gsm</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactTelefoon" formControlName="klantContactTelefoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactEmail" class="pull-right" [class.validationHint]="puinForm.get('klantContactEmail')?.errors">* Email</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactEmail" email formControlName="klantContactEmail" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantKenmerk" class="pull-right" [class.validationHint]="puinForm.get('klantKenmerk').errors">* Uw Referentie</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantKenmerk" formControlName="klantKenmerk" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-sm-11"><h5>Herkomst uitgezeefd puin</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left">Geef de herkomst van het uitgezeefde puin aan op basis van het Technisch Verslag, en de hoeveelheden die u wenst te breken.</label></div>
+    </div>-->
+    <!--<puintechnischverslagdata [parentForm]="puinForm"
+                              [showAddRemoveOptions]="showAddRemoveOptionForTechnischVerslagBlock"
+                              [indieningsTypeId]="indieningsTypeId"
+                              (technischVerslagNumberChanged)="tvNumberChanged($event)"></puintechnischverslagdata>
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtStartDatum" class="pull-right" [class.validationHint]="puinForm.controls['StartDatumAfvoerPuin']?.errors">* Vermoedelijke startdatum afvoer puin</label></div>
+        <div class="col-sm-3"><input type="text" id="txtStartDatum" formControlName="StartDatumAfvoerPuin" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div [hidden]="isKlantSectionValid()">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(puinForm.get('KlantContactAchterNaam').touched || puinForm.get('KlantContactAchterNaam').dirty) && !puinForm.get('KlantContactAchterNaam').valid" [hidden]="!puinForm.controls['KlantContactAchterNaam'].errors.required" class="col-sm-8"><label class="validation">- Familienaam is vereist.</label></div>
+                <div *ngIf="(puinForm.get('KlantContactVoorNaam').touched || puinForm.get('KlantContactVoorNaam').dirty) && !puinForm.get('KlantContactVoorNaam').valid" [hidden]="!puinForm.controls['KlantContactVoorNaam'].errors.required" class="col-sm-8"><label class="validation">- Naam is vereist.</label></div>
+                <div *ngIf="(puinForm.get('KlantContactTelefoon').touched || puinForm.get('KlantContactTelefoon').dirty) && !puinForm.get('KlantContactTelefoon').valid" [hidden]="!puinForm.controls['KlantContactTelefoon'].errors.required" class="col-sm-8"><label class="validation">- Telefoon is vereist.</label></div>
+                <div *ngIf="(puinForm.get('KlantContactEmail').touched || puinForm.get('KlantContactEmail').dirty) && !puinForm.get('KlantContactEmail').valid" [hidden]="!puinForm.controls['KlantContactEmail'].errors.required" class="col-sm-8"><label class="validation">- Email Aanvrager is vereist.</label></div>
+                <div *ngIf="klantemailValidationMessage" class="col-sm-8"><label class="validation">{{klantemailValidationMessage}}</label></div>
+                <div *ngIf="(puinForm.get('StartDatumAfvoerPuin').touched || puinForm.get('StartDatumAfvoerPuin').dirty) && !puinForm.get('StartDatumAfvoerPuin').valid" [hidden]="!puinForm.controls['StartDatumAfvoerPuin'].errors.required" class="col-sm-8"><label class="validation">- Start Datum is vereist.</label></div>
+                <div *ngIf="puinForm.get('StartDatumAfvoerPuin').errors && puinForm.get('StartDatumAfvoerPuin').dirty && puinForm.get('StartDatumAfvoerPuin').errors.DateLessThanToday" class="col-sm-8"><label class="validation">- StartDatum kan niet ingesteld worden op een datum in het verleden.</label></div>
+            </div>
+        </div>
+    </div>-->
+
+
+
+    <div class="row">
+        <div class="col-sm-11"><h5>Bestemming - {{title}}</h5></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label for="txtEigenaar" class="pull-right" [class.validationHint]="puinForm.get('eigenaar').errors">* Naam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtEigenaar" formControlName="eigenaar" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtAdres1" class="pull-right">Straat en nummer</label></div>
+        <div class="col-sm-8"><input type="text" id="txtAdres1" formControlName="adres1" maxlength="100" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtAdres2" class="pull-right">Straat en nummer (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" id="txtAdres2" formControlName="adres2" maxlength="100" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtPostcode" class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" id="txtPostcode" formControlName="postcode" maxlength="10" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtGemeente" class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" id="txtGemeente" formControlName="plaats" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtContactPersoon" class="pull-right" [class.validationHint]="puinForm.get('contactPersoon').errors">* ContactPersoon</label></div>
+        <div class="col-sm-8"><input type="text" id="txtContactPersoon" formControlName="contactPersoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTelefoon" class="pull-right">Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" id="txtTelefoon" formControlName="telefoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtEmail" class="pull-right">Email</label></div>
+        <div class="col-sm-8"><input type="text" id="txtEmail" formControlName="email" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left">(Voor Eigenaar/Exploitant is telefoon of email verplicht)</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtCertificaatNummerBestemming" class="pull-right" [class.validationHint]="puinForm.get('brekerCertificaatNummer').errors">* Nummer certificaat</label></div>
+        <div class="col-sm-8"><input type="text" id="txtCertificaatNummerBestemming" formControlName="brekerCertificaatNummer" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h6>Lokatie waar het puin wordt gebroken</h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label for="txtafzetReferentie" class="pull-right">Referentie</label></div>
+        <div class="col-sm-8"><input type="text" id="txtafzetReferentie" formControlName="afzetReferentie" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtExplAdres1" class="pull-right" [class.validationHint]="puinForm.get('afzetAdres1').errors">Straat en nummer</label></div>
+        <div class="col-sm-8"><input type="text" id="txtExplAdres1" formControlName="afzetAdres1" maxlength="100" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtExplAdres2" class="pull-right">Straat en nummer (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" id="txtExplAdres2" formControlName="afzetAdres2" maxlength="100" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtExplPostcode" class="pull-right" [class.validationHint]="puinForm.get('afzetPostcode').errors">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" id="txtExplPostcode" formControlName="afzetPostcode" maxlength="10" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtExplGemeente" class="pull-right" [class.validationHint]="puinForm.get('afzetPlaats').errors">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" id="txtExplGemeente" formControlName="afzetPlaats" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left" [class.validationHint]="puinForm.get('afzetPlaats').errors">('Straat en nummer' en postcode en gemeente is verplicht)</label></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1"><h6>Aanvullende Gegevens</h6></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtOpmerkingen" class="pull-right">Klant opmerkingen</label></div>
+        <div class="col-sm-8"><textarea id="txtOpmerkingen" formControlName="klantOpmerkingen" rows="4" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Deelvolumes</h5>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Evaluatie</h5>
+    </div>
+
+    <div class="row  setTop paddingTop10px">
+
+        <div class="col-sm-3"><label class="pull-right">Uitspraak absest</label></div>
+
+
+        <div class="col-sm-5">
+            <textarea formControlName="uitspraakAbsest" rows="7" cols="50" maxlength="750" class="form-control setArea"></textarea>
+        </div>
+
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraak_absest" type="radio" [value]="1" formControlName="check_uitspraak_absest" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Ok</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraak_absest" type="radio" [value]="2" formControlName="check_uitspraak_absest" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Nok</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraak_absest" type="radio" [value]="3" formControlName="check_uitspraak_absest" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Nvt</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-3">
+            <button type="button" style="vertical-align:middle" class="btn btn-default marginTop10px pull-right" data-toggle="modal" data-target="#selectedUitSpraaktAbsest"><span>Absest evaluatie</span> </button>
+        </div>
+    </div>
+    <div class="row  setTop paddingTop10px">
+
+        <div class="col-sm-3"><label class="pull-right">Uitspraak storende stoffen</label></div>
+
+        <div class="col-sm-5"><textarea formControlName="uitspraatStorendeStoffen" rows="7" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraat_storende_stoffen" type="radio" [value]="1" formControlName="check_uitspraat_storende_stoffen" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Ok</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraat_storende_stoffen" type="radio" [value]="2" formControlName="check_uitspraat_storende_stoffen" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Nok</label>
+        </div>
+        <div class="form-check form-check-inline col-sm-1">
+            <input class="form-check-input" name="check_uitspraat_storende_stoffen" type="radio" [value]="3" formControlName="check_uitspraat_storende_stoffen" />
+            <label class="form-check-label" for="actueleMilieuvergunningBeschikbaarNvt">Nvt</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-3">
+            <button type="button" style="vertical-align:middle" class="btn btn-default marginTop10px pull-right" data-toggle="modal" data-target="#selectedUitSpraaktStorendeStoffen"><span>Absest evaluatie</span> </button>
+        </div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtOpmerkingen" class="pull-right">Internal opmerkingen</label></div>
+        <div class="col-sm-8"><textarea id="txtOpmerkingen" formControlName="opmerkingen" rows="4" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Status</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="statusID">
+                <!--<option [value]="1">Goedgekeurd</option>
+                <option [value]="2"></option>
+                <option [value]="3"></option>-->
+                <option *ngFor="let o of statusListItems" [value]="o.tvStatusID">{{o.status}}</option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!--<div [hidden]="allIsValid()">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(puinForm.get(eigenaar).touched || puinForm.get(eigenaar).dirty) && !puinForm.get(eigenaar).valid" [hidden]="!puinForm.get(eigenaar).errors.required" class="col-sm-8"><label class="validation">- Naam Eigenaar/Exploitant is vereist.</label></div>
+                <div *ngIf="(puinForm.get(contactPersoon).touched || puinForm.get(contactPersoon).dirty) && !puinForm.get(contactPersoon).valid" [hidden]="!puinForm.get(contactPersoon).errors.required" class="col-sm-8"><label class="validation">- Eigenaar/Exploitant Contact Persoon is vereist.</label></div>
+                <div *ngIf="(puinForm.get(brekerCertificaatNummer).touched || puinForm.get(brekerCertificaatNummer).dirty) && !puinForm.get(brekerCertificaatNummer).valid" [hidden]="!puinForm.get(brekerCertificaatNummer).errors.required" class="col-sm-8"><label class="validation">- Breker Cerificaat Nummer is vereist.</label></div>
+
+                <div *ngIf="bestemailValidationMessage" class="col-sm-8"><label class="validation">{{bestemailValidationMessage}}</label></div>
+                <div *ngIf="bestemmingValidationMessage" class="col-sm-8"><label class="validation">{{bestemmingValidationMessage}}</label></div>
+            </div>
+        </div>
+    </div>-->
+    <!--<div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <div><label class="pull-left">(Gelieve de verplichte velden op te geven aub)</label></div>
+        </div>
+    </div>
+    </div>
+    <div class="row paddingTop10px">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button type="button" class="btn btn-default pull-left" [disabled]="!allIsValid()" (click)="indienen()">Aanvraag Indienen</button>
+        </div>
+    </div>-->
+    
+
+
+    <gw-documents [id]="puinId"
+                  [documentType]="gwDocumentType"
+                  [emailHistoriekType]="emailHistoriekType"  
+                  [canSendNewEmail]="canSendNewEmail"
+                  [status]="uploadStatus"
+                  (uploadingFiles)="sendData($event)">
+    </gw-documents>
+
+    <div class="row">
+        <h5 class="col-sm-11">E-mail Historiek</h5>
+    </div>
+
+    <!--<gw-email-historiek-grid [id]="puinId"
+                             [emailType]="emailType"
+                             [canSendNewEmail]="canSendNewEmail"></gw-email-historiek-grid>-->
+
+
+
+</form>
+<div class="modal fade" id="selectedUitSpraaktAbsest" role="dialog">
+    <gw-modal-puin (selected)="onUitspraakAbsestSelected($event)"></gw-modal-puin>
+</div>
+
+<div class="modal fade" id="selectedUitSpraaktStorendeStoffen" role="dialog">
+    <gw-modal-puin (selected)="onUitspraatStorendeStoffenSelected($event)"></gw-modal-puin>
+</div>

@@ -1,0 +1,41 @@
+﻿.jumbotron {
+    background-color: #B0D001;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoDiv {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: white;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.text {
+    color: #F0F0F0;
+}
+.loader {
+    color: #017342;
+    background-color: #B0D001;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 50px;
+    padding: 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+loadPage {
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+}

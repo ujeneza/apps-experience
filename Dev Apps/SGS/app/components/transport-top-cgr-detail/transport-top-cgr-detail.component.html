@@ -1,0 +1,157 @@
+﻿<h4>Grondtransportmelding {{Id}}</h4>
+<form class="container-fluid" *ngIf="GTM">
+    <div class="row">
+        <div class="col-sm-11"><h5>Contactpersoon</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Achternaam:</label></div>
+        <div class="col-sm-8"><label>{{GTM.klantContactAchternaam}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Voornaam:</label></div>
+        <div class="col-sm-8"><label>{{GTM.klantContactVoornaam}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon:</label></div>
+        <div class="col-sm-8"><label>{{GTM.klantContactTelefoon}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">E-mail:</label></div>
+        <div class="col-sm-8"><label>{{GTM.klantContactEmail}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Referentie:</label></div>
+        <div class="col-sm-8"><label>{{GTM.klantKenmerk}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Herkomst uitgegraven bodem</h5></div>
+    </div>
+    <ng-container *ngIf="GTM.technischVerslagID != null;else noTV">
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Nummer Technisch Verslag:</label></div>
+            <div class="col-sm-8"><a [routerLink]="['/technisch-verslag-detail', GTM.technischVerslagID]">{{GTM.technischVerslagID}}</a></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Technisch Verslag straat:</label></div>
+            <div class="col-sm-8"><label>{{technischVerslag?.titel2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Technisch Verslag gemeente:</label></div>
+            <div class="col-sm-8"><label>{{technischVerslag?.titel3}}</label></div>
+        </div>
+    </ng-container>
+    <ng-template #noTV>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat en nr:</label></div>
+            <div class="col-sm-8"><label>{{GTM.adres}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode:</label></div>
+            <div class="col-sm-8"><label>{{GTM.postcode}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente:</label></div>
+            <div class="col-sm-8"><label>{{GTM.plaats}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Lambert coördinaten:</label></div>
+            <div class="col-sm-8"><label>X: {{GTM.lx}}&nbsp;&nbsp;&nbsp;&nbsp;Y: {{GTM.ly}}</label></div>
+        </div>
+    </ng-template>
+    <div class="row">
+        <div class="col-sm-11"><h5>Deelvolumes</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <table class="GWTableE labelFont" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Beschrijving</th>
+                        <th style="text-align: center">(X)</th>
+                        <th style="text-align: center">(Y)</th>
+                        <th style="text-align: center">(Z)</th>
+                        <th>Geplande hoeveelheid (m³)</th>
+                        <th>Werkelijke hoeveelheid (m³)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let z of GTMzones;">
+                        <td>{{z.tvZoneNr}}</td>
+                        <td>{{z.beschrijving}}</td>
+                        <td style="text-align: center">{{z.kgbuOmschrijving}}</td>
+                        <td style="text-align: center">{{z.kgbiOmschrijving}}</td>
+                        <td style="text-align: center">{{z.kgboOmschrijving}}</td>
+                        <td>{{z.hoeveelheid}}</td>
+                        <td>{{z.werkelijkeHoeveelheid}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Bestemming</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam bedrijf:</label></div>
+        <div class="col-sm-8"><label>{{topCGR.organisatie}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr:</label></div>
+        <div class="col-sm-8"><label>{{topCGR.straat}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode:</label></div>
+        <div class="col-sm-8"><label>{{topCGR.postcode}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente:</label></div>
+        <div class="col-sm-8"><label>{{topCGR.plaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Toepassing/Gebruik:</label></div>
+        <div class="col-sm-8"><label>{{grondtransportmeldingGebruik}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Verwachte datum aanvang transport:</label></div>
+        <div class="col-sm-8"><label>{{GTM.transportAanvangDatum | date : "dd/MM/yyyy"}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Verwachte datum einde transport:</label></div>
+        <div class="col-sm-8"><label>{{GTM.transportEindeDatum | date : "dd/MM/yyyy"}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Verklaring afnemer / bestaande bestanden</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label>{{lbl1}}</label></div>
+    </div>
+    <div class="row marginTop20px">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button type="button" class="btn btn-default" (click)="verklaringAfnemerOnline()" *ngIf="isAlreadyOnlineSent || !isAfgerond">{{lbl2}}</button>  &nbsp;  &nbsp;
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <div *ngFor="let f of files;">
+                <label class="grayed" *ngIf="(f.type===7 || f.type===9) && !enableFiles;else Link">
+                    {{f.fileName}}
+                </label>
+                <ng-template #Link>
+                    <label class="ibtn" (click)="showFile(f.id)">{{f.fileName}}</label>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="enableFiles" class="col-sm-8 col-sm-offset-3">
+        <file-uploader #fileUploader
+                       fileType="UserUploadVerklaringAfnemer"
+                       [status]="uploadStatus"
+                       hasSendButton="true"
+                       fullWidth="true"
+                       (uploaded)="filesUploaded($event)"
+                       (moveToFinalDestinationSucceeded)="moveToFinalDestinationSucceeded($event)">
+        </file-uploader>
+    </div>
+</form>

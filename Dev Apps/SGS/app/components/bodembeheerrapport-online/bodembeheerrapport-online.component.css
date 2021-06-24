@@ -1,0 +1,17 @@
+﻿.GWTable tbody tr:hover {
+    color: #017342 !important;
+    background-color: white !important;
+}
+
+
+.datatable-row-even {
+    background: white !important;
+}
+.datatable-row-odd {
+    background: #EEEEEE !important;
+}
+
+
+.validationHint {
+    text-align: left;
+}

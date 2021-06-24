@@ -1,0 +1,29 @@
+﻿<form [formGroup]="zkForm" class="container-fluid paddingTop30px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2"><label for="ddlIndiener" class="pull-right">Klant/Indiener</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlIndiener" formControlName="Indiener" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let klant of IndienerListItems" [value]="klant.klantID" [innerHTML]="klant.naam"></option>
+                </select>
+            </div>
+            <div class="col-sm-2"><label for="chkVerklaringOntvangen" class="pull-right">Verklaring Ontvangen:</label></div>
+            <div class="checkbox col-sm-4"><div class="marginTopMin10px marginLeft20px"><input type="checkbox" id="chkVerklaringOntvangen" class="marginBottom0" formControlName="VerklaringOntvangen" value="" /></div></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtReferentie" class="pull-right">Referentie:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtReferentie" formControlName="Referentie" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlDossierBeheerder" class="pull-right">DossierBeheerder</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlDossierBeheerder" formControlName="DossierBeheerder" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let dossbeh of DossierBeheerderListItems" [value]="dossbeh.dossierBeheerderID" [innerHTML]="dossbeh.naam"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8"><button type="button" (click)="raiseSearch()" class="btn btn-default">{{appLabels.Send}}</button></div>
+        </div>
+    </div>
+</form>

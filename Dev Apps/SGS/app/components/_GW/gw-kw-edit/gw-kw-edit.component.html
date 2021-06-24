@@ -1,0 +1,405 @@
+﻿<h4>Detail Kleine Werken</h4>
+<form [formGroup]="kwForm" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Kleine Werken Nummer</label></div>
+        <div class="col-sm-8"><label>{{kw?.kleineWervenMeldingID}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Uw Referentie</label></div>
+        <div class="col-sm-8"><label>{{kw?.klantReferentie}}</label></div>
+    </div>
+    <div class="row">
+        <h5 class="col-sm-11">Grondwerker</h5>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['gwFirmaNaam']?.errors">* Firmanaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwFirmaNaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['gwAchternaam']?.errors">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwAchternaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['gwVoornaam']?.errors">* Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwVoornaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['gwTelefoon']?.errors">* Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwTelefoon" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['gwEmail']?.errors">* Email</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwEmail" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwStraat1" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">&nbsp;</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwStraat2" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Plaats</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="gwPlaats" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Transporteur</h5>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['tptFirmaNaam']?.errors">* Firmanaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptFirmaNaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['tptAchternaam']?.errors">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptAchternaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['tptVoornaam']?.errors">* Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptVoornaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['tptTelefoon']?.errors">* Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptTelefoon" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['tptEmail']?.errors">* Email</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptEmail" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptStraat1" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">&nbsp;</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptStraat2" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Plaats</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="tptPlaats" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Herkomst</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Container Bedrijf</label></div>
+        <div class="col-sm-8"><label>{{kw?.herkContainerBedrijfNaam}} {{kw?.herkIsContainerPark == true ? '(gezamenlijk container-/recyclagepark)' : ''}}</label></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><input type="checkbox" id="chkHerContainerBedrijf" formControlName="herkIsContainerBedrijf" DottedBorderBelow class="pull-right"></div>
+        <div class="col-sm-8"><label for="chkHerContainerBedrijf" class="pull-left"> De herkomst betreft een containerbedrijf</label></div>
+    </div>
+    <div *ngIf="isHerContainerBedrijf === true" class="row">
+        <div class="col-sm-3"><label for="txtHerFirmaNaam" class="pull-right">Firmanaam:</label></div>
+        <div class="col-sm-8"><input type="text" id="txtHerFirmaNaam" formControlName="herkContainerBedrijfNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><input type="checkbox" id="chkHerContainerPark" formControlName="herkIsContainerPark" DottedBorderBelow class="pull-right"></div>
+        <div class="col-sm-8"><label for="chkHerContainerPark" class="pull-left"> De herkomst betreft een gemeentelijk container-/recyclagepark</label></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="locationBorderBottom">Via Lokatie gegevens</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en Nummer</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkAdres1" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en Nummer (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkAdres2" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkPlaats" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="paddingTop20px locationBorderBottom">Via kadastrale gegevens</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['herkKadAfdeling']?.errors">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkKadAfdeling" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['herkKadAfdelingsNr']?.errors">Afdelingsnummer</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkKadAfdelingsNr" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['herkKadSectie']?.errors">Sectie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkKadSectie" class="form-control" maxlength="1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['herkKadNummers']?.errors">Nummer(s)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="herkKadNummers" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="paddingTop20px locationBorderBottom">Via coördinaten (centrale punt aanvulling)</h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lambert-coördinaten centraal punt</label></div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LX" class="col-sm-2" [class.validationHint]="kwForm.get('herkLX1').errors">X </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="herkLX1" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LY" class="col-sm-2" [class.validationHint]="kwForm.get('herkLY1').errors">Y </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="herkLY1" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label>Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken:<a href="#" (click)="$event.preventDefault();toGeopuntHerkomst()">www.geopunt.be</a></label></div>
+    </div>
+
+
+    <div class="row">
+        <h5 class="col-sm-11">Bestemming {{kw?.isTop == true ? '(TOP)' : ''}}</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><input type="checkbox" id="chkBestContainerBedrijf" formControlName="bestIsContainerBedrijf" DottedBorderBelow class="pull-right"></div>
+        <div class="col-sm-8"><label for="chkBestContainerBedrijf" class="pull-left"> De bestemming betreft een containerbedrijf</label></div>
+    </div>
+    <div *ngIf="isBestContainerBedrijf === true" class="row">
+        <div class="col-sm-3"><label for="txtBestFirmaNaam" class="pull-right">Firmanaam:</label></div>
+        <div class="col-sm-8"><input type="text" id="txtBestFirmaNaam" formControlName="bestContainerBedrijfNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><input type="checkbox" id="chkBestContainerPark" formControlName="bestIsContainerPark" DottedBorderBelow class="pull-right"></div>
+        <div class="col-sm-8"><label for="chkBestContainerPark" class="pull-left"> De bestemming betreft een gemeentelijk container-/recyclagepark</label></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="locationBorderBottom">Via Lokatie gegevens</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Organisatie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestOrganisatie" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en Nummer</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestAdres1" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en Nummer (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestAdres2" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestPlaats" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="paddingTop20px locationBorderBottom">Via kadastrale gegevens</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['bestKadAfdeling']?.errors">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestKadAfdeling" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['bestKadAfdelingsNr']?.errors">Afdelingsnummer</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestKadAfdelingsNr" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['bestKadSectie']?.errors">Sectie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestKadSectie" class="form-control" maxlength="1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['bestKadNummers']?.errors">Nummer(s)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="bestKadNummers" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <h6 class="paddingTop20px locationBorderBottom">Via coördinaten (centrale punt aanvulling)</h6>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lambert-coördinaten centraal punt</label></div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LX" class="col-sm-2" [class.validationHint]="kwForm.get('bestLX1').errors">X </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="bestLX1" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LY" class="col-sm-2" [class.validationHint]="kwForm.get('bestLY1').errors">Y </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="bestLY1" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top" maxlength="6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label>Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken:<a href="#" (click)="$event.preventDefault();toGeopuntBestemming()">www.geopunt.be</a></label></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Afgevoerd Volume</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Vooropgestelde Transport Datum</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="geplandeStartDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+
+        <!--<div class="col-sm-8"><label>{{kw?.geplandeStartDatum | date:"dd/MM/yyyy"}}</label></div>-->
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Vooropgestelde Volume</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="geplandVolume" class="form-control" maxlength="50"></div>
+    </div>
+
+
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="kwForm.controls['werkelijkeStartDatum']?.errors">* Werkelijke Startdatum transport</label></div>
+        <!--<div class="col-sm-8"><input type="text"  formControlName="werkelijkeStartDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }" (bsValueChange)="EindDatumValidation()"></div>-->
+        <div class="col-sm-8"><input type="text" formControlName="werkelijkeStartDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label for="txtEindDatum" class="pull-right" [class.validationHint]="kwForm.controls['werkelijkeEindDatum']?.errors">* Werkelijke Einddatum transport</label></div>
+        <!--<div class="col-sm-8"><input type="text" id="txtEindDatum" formControlName="werkelijkeEindDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }" (bsValueChange)="StartDatumValidation()"></div>-->
+        <div class="col-sm-8"><input type="text" id="txtEindDatum" formControlName="werkelijkeEindDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtVolume" class="pull-right" [class.validationHint]="kwForm.controls['werkelijkVolume']?.errors">* Werkelijk Volume</label></div>
+        <div class="col-sm-8"><input type="text" id="txtVolume" formControlName="werkelijkVolume" DottedBorderBelow AllowOnlyNumbers class="form-control"></div>
+    </div>
+    <!--<div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8">
+            <label>
+                <input type="checkbox" formControlName="sendOK" [class.validationHint]="kwForm.controls['sendOK'].errors">
+                Ondergetekende verklaart hierbij de aangegeven partij grond in de aangegeven periode naar de opgegeven bestemming gevoerd te hebben.
+            </label>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Status</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="status" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div [hidden]="kwForm.valid">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(kwForm.get('gwFirmaNaam').touched || kwForm.get('gwFirmaNaam').dirty) && !kwForm.get('gwFirmaNaam').valid" [hidden]="!kwForm.controls['gwFirmaNaam'].errors.required" class="col-sm-8"><label class="validation">- Grondwerker Firmanaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('gwAchternaam').touched || kwForm.get('gwAchternaam').dirty) && !kwForm.get('gwAchternaam').valid" [hidden]="!kwForm.controls['gwAchternaam'].errors.required" class="col-sm-8"><label class="validation">- Grondwerker Achternaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('gwVoornaam').touched || kwForm.get('gwVoornaam').dirty) && !kwForm.get('gwVoornaam').valid" [hidden]="!kwForm.controls['gwVoornaam'].errors.required" class="col-sm-8"><label class="validation">- Grondwerker Voornaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('gwTelefoon').touched || kwForm.get('gwTelefoon').dirty) && !kwForm.get('gwTelefoon').valid" [hidden]="!kwForm.controls['gwTelefoon'].errors.required" class="col-sm-8"><label class="validation">- Grondwerker Telefoon is vereist.</label></div>
+                <div *ngIf="(kwForm.get('gwEmail').touched || kwForm.get('gwEmail').dirty) && !kwForm.get('gwEmail').valid" [hidden]="!kwForm.controls['gwEmail'].errors.required" class="col-sm-8"><label class="validation">- Grondwerker Email is vereist.</label></div>
+                <div *ngIf="(kwForm.get('gwEmail').touched || kwForm.get('gwEmail').dirty) && !kwForm.get('gwEmail').valid" [hidden]="!kwForm.controls['gwEmail'].errors.pattern" class="col-sm-8"><label class="validation">- Emailadres Grondwerker is niet geldig.</label></div>
+
+                <div *ngIf="(kwForm.get('tptFirmaNaam').touched || kwForm.get('tptFirmaNaam').dirty) && !kwForm.get('tptFirmaNaam').valid" [hidden]="!kwForm.controls['tptFirmaNaam'].errors.required" class="col-sm-8"><label class="validation">- Transporteur Firmanaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('tptAchternaam').touched || kwForm.get('tptAchternaam').dirty) && !kwForm.get('tptAchternaam').valid" [hidden]="!kwForm.controls['tptAchternaam'].errors.required" class="col-sm-8"><label class="validation">- Transporteur Achternaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('tptVoornaam').touched || kwForm.get('tptVoornaam').dirty) && !kwForm.get('tptVoornaam').valid" [hidden]="!kwForm.controls['tptVoornaam'].errors.required" class="col-sm-8"><label class="validation">- Transporteur Voornaam is vereist.</label></div>
+                <div *ngIf="(kwForm.get('tptTelefoon').touched || kwForm.get('tptTelefoon').dirty) && !kwForm.get('tptTelefoon').valid" [hidden]="!kwForm.controls['tptTelefoon'].errors.required" class="col-sm-8"><label class="validation">- Transporteur Telefoon is vereist.</label></div>
+                <div *ngIf="(kwForm.get('tptEmail').touched || kwForm.get('tptEmail').dirty) && !kwForm.get('tptEmail').valid" [hidden]="!kwForm.controls['tptEmail'].errors.required" class="col-sm-8"><label class="validation">- Transporteur Email is vereist.</label></div>
+                <div *ngIf="(kwForm.get('tptEmail').touched || kwForm.get('tptEmail').dirty) && !kwForm.get('tptEmail').valid" [hidden]="!kwForm.controls['tptEmail'].errors.pattern" class="col-sm-8"><label class="validation">- Emailadres Transporteur is niet geldig.</label></div>
+
+                <div *ngIf="(kwForm.get('bestLX1').touched || kwForm.get('bestLX1').dirty) && !kwForm.get('bestLX1').valid" [hidden]="!kwForm.controls['bestLX1'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                <div *ngIf="(kwForm.get('bestLX1').touched || kwForm.get('bestLX1').dirty) && !kwForm.get('bestLX1').valid" [hidden]="!kwForm.controls['bestLX1'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                <div *ngIf="(kwForm.get('bestLY1').touched || kwForm.get('bestLY1').dirty) && !kwForm.get('bestLY1').valid" [hidden]="!kwForm.controls['bestLY1'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                <div *ngIf="(kwForm.get('bestLY1').touched || kwForm.get('bestLY1').dirty) && !kwForm.get('bestLY1').valid" [hidden]="!kwForm.controls['bestLY1'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                <div *ngIf="invalidDOPLambert" class="col-sm-8"><label class="validation">De bestemming lambert gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="invalidHerkomstKadaster" class="col-sm-8"><label class="validation">De herkomst kadastrale gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="invalidHerkomstLokatie" class="col-sm-8"><label class="validation">De herkomst lokatie gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="!isHerkomstValid" class="col-sm-8"><label class="validation">Opgave van de herkomst lokatie is vereist</label></div>
+
+                <div *ngIf="(kwForm.get('herkLX1').touched || kwForm.get('herkLX1').dirty) && !kwForm.get('herkLX1').valid" [hidden]="!kwForm.controls['herkLX1'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                <div *ngIf="(kwForm.get('herkLX1').touched || kwForm.get('herkLX1').dirty) && !kwForm.get('herkLX1').valid" [hidden]="!kwForm.controls['herkLX1'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                <div *ngIf="(kwForm.get('herkLY1').touched || kwForm.get('herkLY1').dirty) && !kwForm.get('herkLY1').valid" [hidden]="!kwForm.controls['herkLY1'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                <div *ngIf="(kwForm.get('herkLY1').touched || kwForm.get('herkLY1').dirty) && !kwForm.get('herkLY1').valid" [hidden]="!kwForm.controls['herkLY1'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                <div *ngIf="invalidHerkomstLambert" class="col-sm-8"><label class="validation">De herkomst lambert gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="invalidDOPKadaster" class="col-sm-8"><label class="validation">De bestemming kadastrale gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="invalidDOPLambert" class="col-sm-8"><label class="validation">De bestemming lambert gegevens werden slechts gedeeltelijk aangevuld</label></div>
+                <div *ngIf="!isDOPValid" class="col-sm-8"><label class="validation">Opgave lokatie van bestemming is vereist</label></div>
+
+                <div *ngIf="(kwForm.get('werkelijkeStartDatum').touched || kwForm.get('werkelijkeStartDatum').dirty) && !kwForm.get('werkelijkeStartDatum').valid" [hidden]="!kwForm.controls['werkelijkeStartDatum'].errors.required" class="col-sm-8"><label class="validation">- Werkelijke StartDatum is vereist.</label></div>
+                <div *ngIf="(kwForm.get('werkelijkeEindDatum').touched || kwForm.get('werkelijkeEindDatum').dirty) && !kwForm.get('werkelijkeEindDatum').valid" [hidden]="!kwForm.controls['werkelijkeEindDatum'].errors.required" class="col-sm-8"><label class="validation">- Werkelijke Eind datum is vereist.</label></div>
+                <div *ngIf="(kwForm.get('werkelijkVolume').touched || kwForm.get('werkelijkVolume').dirty) && !kwForm.get('werkelijkVolume').valid" [hidden]="!kwForm.controls['werkelijkVolume'].errors.required" class="col-sm-8"><label class="validation">- Werkelijk Volume is vereist.</label></div>
+                <!--<div *ngIf="(kwForm.get('werkelijkeStartDatum').touched || kwForm.get('werkelijkeStartDatum').dirty) && !kwForm.get('werkelijkeStartDatum').valid" [hidden]="!kwForm.controls['werkelijkeStartDatum'].errors || kwForm.controls['werkelijkeStartDatum'].value < kwForm.controls['werkelijkeEindDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Start datum kan niet voorbij de Werkelijke Eind datum liggen.</label></div>
+                <div *ngIf="(kwForm.get('werkelijkeEindDatum').touched || kwForm.get('werkelijkeEindDatum').dirty) && !kwForm.get('werkelijkeEindDatum').valid" [hidden]="!kwForm.controls['werkelijkeEindDatum'].errors || kwForm.controls['werkelijkeStartDatum'].value < kwForm.controls['werkelijkeEindDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Eind datum kan niet eerder ingesteld worden dan de Werkelijke Start Datum.</label></div>
+                <div *ngIf="(kwForm.get('werkelijkeEindDatum').touched || kwForm.get('werkelijkeEindDatum').dirty) && !kwForm.get('werkelijkeEindDatum').valid" [hidden]="!kwForm.controls['werkelijkeEindDatum'].errors || kwForm.controls['werkelijkeEindDatum'].value <= kwForm.controls['werkelijkeAfsluitDatum'].value" class="col-sm-8"><label class="validation">- Werkelijke Eind datum kan niet voorbij de afsluit datum (vandaag) worden ingesteld.</label></div>-->
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class="row">
+        <h5 class="col-sm-11">Documenten</h5>
+    </div>
+    <div class="row, NgxTable" *ngIf="pdfrows!=null && pdfrows.length > 0">
+        <div class="col-sm-8 col-sm-offset-3" *ngFor="let r of pdfrows;">
+            <a [routerLink]="" (click)="showFileId(r.id)" class="pdfLink"><label><u>{{r.fileName}}</u></label></a>
+        </div>
+    </div>-->
+
+    <gw-documents [id]="kwID"
+                  [documentType]="gwDocumentType"
+                  [emailHistoriekType]="emailHistoriekType"  
+                  [canSendNewEmail]="canSendNewEmail"
+                  [status]="uploadStatus"
+                  (uploadingFiles)="sendData($event)">
+    </gw-documents>
+
+
+    <!--<gw-email-historiek-grid [id]="kwID"
+                             [emailType]="emailType"
+                             [canSendNewEmail]="canSendNewEmail"></gw-email-historiek-grid>-->
+
+
+</form>

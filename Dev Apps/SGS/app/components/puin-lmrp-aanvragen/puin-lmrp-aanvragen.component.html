@@ -1,0 +1,84 @@
+﻿<h4>Aanvraag verklaring LMRP-PUIN - Selecteer bestemming</h4>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-1">
+            <h5>Breken binnen de werf</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1"><button type="button" class="btn btn-default fixedWidth extramargin" (click)="routeTo(puinAanvragenTypes.MobieleBrekerOpDeWerf)">Mobiele breker op de werf</button></div>
+        <div class="col-sm-3">&nbsp;</div>
+        <div class="col-sm-3">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-1">
+            <h5>Breken buiten de werf</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1"><button type="button" class="btn btn-default fixedWidth extramargin" (click)="routeTo(puinAanvragenTypes.NieuweLocatie)">Afvoer naar een nieuwe vaste lokatie</button></div>
+        <div class="col-sm-3"><button type="button" class="btn btn-default fixedWidth halfmargin" (click)="loadGrid()">Afvoer naar een bestaande vaste lokatie</button></div>
+    </div>
+    <div class="row" *ngIf="showLoadingGrid">
+        <div class="col-sm-9 col-sm-offset-1">
+            <p></p>
+            <label class="extramargin">Bestaande bestemmingen worden ingeladen ...</label>
+        </div>
+    </div>
+    <form [formGroup]="bestaandeBestemmingForm">
+        <div *ngIf="showGrid">
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-1">
+                    <label class="extramargin marginTop30px">U kunt de detailgegevens bekijken door op het icoontje <img src="../../../images/ico_editrecord.gif" /> te klikken, of door te dubbelklikken op een rij van de grid</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-1">
+                    <div class="extramargin">
+                        <div class="NgxTable">
+                            <ngx-datatable #bestaandebestemming_table
+                                           class="bootstrap"
+                                           (activate)="onActivate($event)"
+                                           [rows]="rows"
+                                           [columnMode]="'flex'"
+                                           [headerHeight]="50"
+                                           [footerHeight]="40"
+                                           [limit]="15"
+                                           [messages]="{totalMessage: commonLabels.Total.toLowerCase(), emptyMessage: commonLabels.NoDataToDisplay}"
+                                           [cssClasses]="commonLabels.iconsCss"
+                                           [rowHeight]="'auto'">
+                                >
+                                <ngx-datatable-column [flexGrow]="3" prop="afzetReferentie" headerClass="NgxHeader">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        <span (click)="sort()" class="NgxFilterLabel">Referentie</span>
+                                        <div><input type="text" formControlName="afzetReferentie" class="NgxFilterField" (keyup)="filter()" /></div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column [flexGrow]="3" prop="adres1" headerClass="NgxHeader">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        <span (click)="sort()" class="NgxFilterLabel">Straat en nummer</span>
+                                        <div><input type="text" formControlName="adres1" class="NgxFilterField" (keyup)="filter()" /></div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column [flexGrow]="3" prop="gemeente" headerClass="NgxHeader">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        <span (click)="sort()" class="NgxFilterLabel">Gemeente</span>
+                                        <div><input type="text" formControlName="gemeente" class="NgxFilterField" (keyup)="filter()" /></div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+                                <ngx-datatable-column [flexGrow]="1" name="Keuze" headerClass="NgxHeader">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                    </ng-template>
+                                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                        <img src="../../../images/ico_editrecord.gif" class="ibtn" (click)="routeTo(puinAanvragenTypes.BestaandeLocatie, row['id']);" />
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

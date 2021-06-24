@@ -1,0 +1,3 @@
+﻿<select [(ngModel)]="selectedValue" (change)="onChange()" class="width100percent">
+    <option *ngFor="let c of branches" [ngValue]="c.brancheID">{{c.branche}}</option>
+</select>

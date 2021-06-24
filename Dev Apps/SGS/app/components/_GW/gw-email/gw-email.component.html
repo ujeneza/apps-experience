@@ -1,0 +1,68 @@
+﻿<h4>New email</h4>
+<form [formGroup]="emailForm" class="container-fluid paddingTop10px">
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="emailForm.controls['from']?.errors">* From</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="from" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="emailForm.controls['to']?.errors">* To</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="to" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="emailForm.controls['cc']?.errors">CC</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="cc" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="emailForm.controls['subject']?.errors">* Subject</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="subject" class="form-control" ></div>
+    </div>
+    <div class="row" *ngIf="canHiddenDatum">
+        <div class="col-sm-3"><label class="pull-right">Datum</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="datum" class="form-control ng-trim-ignore" tooltip="(bv. 31/01/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Body</label></div>
+        <div class="col-sm-8">
+            <textarea formControlName="body" rows="12" cols="50" class="form-control setArea">Some default value</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Attachment</label></div>
+        <div class="col-sm-8"> <label> {{mailData?.attachment}}</label></div>
+    </div>
+
+    <div [hidden]="emailForm.valid">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(emailForm.get('from').touched || emailForm.get('from').dirty) && !emailForm.get('from').valid" [hidden]="!emailForm.controls['from'].errors.required" class="col-sm-8"><label class="validation">- From is vereist.</label></div>
+                <div *ngIf="(emailForm.get('from').touched || emailForm.get('from').dirty) && !emailForm.get('from').valid" [hidden]="!emailForm.controls['from'].errors.pattern" class="col-sm-8"><label class="validation">- From is een ongeldig emailadres.</label></div>
+                <div *ngIf="(emailForm.get('to').touched || emailForm.get('to').dirty) && !emailForm.get('to').valid" [hidden]="!emailForm.controls['to'].errors.required" class="col-sm-8"><label class="validation">- To is vereist.</label></div>
+                <div *ngIf="(emailForm.get('to').touched || emailForm.get('to').dirty) && !emailForm.get('to').valid" [hidden]="!emailForm.controls['to'].errors.pattern" class="col-sm-8"><label class="validation">- To is een ongeldig emailadres.</label></div>
+                <div *ngIf="(emailForm.get('cc').touched || emailForm.get('cc').dirty) && !emailForm.get('cc').valid" [hidden]="!emailForm.controls['cc'].errors.pattern" class="col-sm-8"><label class="validation">- Cc is een ongeldig emailadres.</label></div>
+                <div *ngIf="(emailForm.get('subject').touched || emailForm.get('subject').dirty) && !emailForm.get('subject').valid" [hidden]="!emailForm.controls['subject'].errors.required" class="col-sm-8"><label class="validation">- Subject is vereist.</label></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-3">
+                <button type="button" (click)="back()" class="btn btn-default">ANNULEREN</button>
+            </div>
+            <div class="col-sm-4 col-sm-offset-3">
+                <button type="button" [disabled]="!emailForm.valid" (click)="send()" class="btn btn-default">VERSTUREN</button>
+            </div>
+
+        </div>
+    </div>
+
+    <gw-file-uploader *ngIf="!canHiddenUpload"
+                      [fileType]="uploadType"
+                      [status]="uploadStatus"
+                      (uploaded)="filesUploaded($event)"
+                      (inQueue)="queueCountChanged($event)">
+    </gw-file-uploader>
+
+
+
+</form>

@@ -1,0 +1,36 @@
+﻿<div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Selecteer een uitspraak </h4>
+        </div>
+        <div class="modal-body">
+
+            <!--<div class="breadcrumb" *ngFor=" let o of data">
+                <a class="breadcrumb-item " aria-current="page" (click)="uitspraakSelect(o.name)">{{o.name}}</a>
+            </div>-->
+
+            <div class="panel panel-default"  *ngFor=" let o of data">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <label>  {{o.name}}</label>
+                        </div>
+                        <div class="form-check form-check-inline col-sm-1">
+                            <input class="form-check-input" name="checkA_01" type="radio" (click)="uitspraakSelect(o.name)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="closeTVzoek" class="btn btn-default" data-dismiss="modal">{{appLabels.Close}}</button>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,266 @@
+﻿<h4>{{pageTitle}}</h4>
+<!--<button (click)="setTestData()">Set test data</button>-->
+<form *ngIf="hasPendingChanges === false && actionSucceeded === false" [formGroup]="inschrijvenForm" class="container-fluid">
+    <div *ngIf="isForMijnGegevensAanpassen" class="row">
+        <h5 class="col-sm-11">Uw gebruikers ID: {{klantIDControl.value}}</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="voornaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('achternaam').errors">* Naam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="achternaam" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Functie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="functie" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Geslacht</label></div>
+        <div class="dropdown col-sm-8">
+            <select DottedBorderBelow formControlName="geslacht">
+                <option value="m">Man</option>
+                <option value="v">Vrouw</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam bedrijf / instelling</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="organisatie" class="form-control" maxlength="50"></div>
+    </div>
+    <div *ngIf="userType !== userTypes.Dop" class="row">
+        <div class="col-sm-3"><label class="pull-right">Inschrijving in hoedanigheid van</label></div>
+        <div class="dropdown col-sm-8">
+            <inschrijven-branche DottedBorderBelow formControlName="brancheID" [userType]='userType'></inschrijven-branche>
+        </div>
+    </div>
+    <div *ngIf="userType !== userTypes.Dop" class="row">
+        <div class="col-sm-3"><label class="pull-right"><a target="_blank" href="https://economie.fgov.be/nl/themas/ondernemingen/specifieke-sectoren/kwaliteit-de-bouw/erkenning-van-aannemers">Databank van erkende aannemers</a></label></div>
+        <div class="col-sm-8"></div>
+    </div>
+    <div *ngIf="!isForMijnGegevensAanpassen && userType === userTypes.Top">
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Bent U reeds ingeschreven bij Grondwijzer als aannemer?</label></div>
+            <div class="col-sm-8"><label class="pull-right">Indien U reeds bent ingeschreven bij Grondwijzer als aannemer geef dan hier Uw lidnummer en emailadres in dat U hebt opgegeven bij de vorige inschrijving. U vindt deze informatie terug op Uw contract.</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1"><label class="pull-right">Lidnummer</label></div>
+            <div class="col-sm-7"><input type="text" DottedBorderBelow formControlName="aannemerLidNummer" class="form-control" AllowOnlyNumbers Minimum="100001" Maximum="999999" (blur)="existingRegistrationOnBlur()"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1"><label class="pull-right">Email</label></div>
+            <div class="col-sm-7"><input type="text" DottedBorderBelow formControlName="aannemerEmail" class="form-control" (blur)="existingRegistrationOnBlur()"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">BTW nummer (voor organisaties)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="btwNummer" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nr. identiteitskaart (voor particulieren)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="idKaartNummer" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lid bij koepel-organisatie</label></div>
+        <div class="dropdown col-sm-8">
+            <inschrijven-beroepsorganisatie DottedBorderBelow formControlName="beroepsorganisatieID" (onValueChanged)="onBeroepsorganisatieChange($event)"></inschrijven-beroepsorganisatie>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">{{lidnummerBouwunieText}}</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="lidnummerBouwunie" class="form-control" maxlength="20"></div>
+    </div>
+
+
+    <div class="row">
+        <h5 class="col-sm-11">Contactgegevens</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('adres1').errors">* Straat en nr</label></div>
+        <div class="col-sm-8"><input DottedBorderBelow formControlName="adres1" type="text" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><input DottedBorderBelow formControlName="adres2" type="text" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('postcode').errors">* Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="postcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('plaats').errors">* Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="plaats" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Land</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="land" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="telefoon" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Fax</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="fax" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('email').errors">* Email</label></div>
+        <div class="col-sm-8"><input type="text" email DottedBorderBelow formControlName="email" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <h5 class="col-sm-11">Facturatie-adres (indien verschillend van vorig adres)</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurAdres1" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurAdres2" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurPlaats" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Land</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurLand" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <h5 class="col-sm-11">Gebruikersinformatie</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('login').errors">* Gewenste gebruikersnaam (minstens 3 karakters)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="login" class="form-control" (blur)="loginOnBlur()" maxlength="50"></div>
+    </div>
+    <div *ngIf="isForMijnGegevensAanpassen" class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('paswoord').errors">* Gewenst paswoord (min 6 karakters)</label></div>
+        <div [ngClass]="{'col-sm-8': !showPasswordErrorMessage, 'col-sm-3': showPasswordErrorMessage}"><input type="password" DottedBorderBelow formControlName="paswoord" class="form-control" maxlength="50"></div>
+        <div *ngIf="showPasswordErrorMessage" class="col-sm-5 alert-danger">{{inschrijvenForm.get('paswoord').errors.message}}</div>
+    </div>
+    <div *ngIf="isForMijnGegevensAanpassen" class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="inschrijvenForm.get('herhaalPaswoord').errors">* Herhaal het gewenste paswoord</label></div>
+        <div [ngClass]="{'col-sm-8': !showPasswordErrorMessage, 'col-sm-3': showPasswordErrorMessage}"><input type="password" DottedBorderBelow formControlName="herhaalPaswoord" class="form-control" maxlength="50"></div>
+        <div *ngIf="showPasswordErrorMessage" class="col-sm-5 alert-danger">{{inschrijvenForm.get('herhaalPaswoord').errors.message}}</div>
+    </div>
+
+    <div *ngIf="userType === userTypes.Top || (userType === userTypes.Dop && !isForMijnGegevensAanpassen)">
+        <div class="row">
+            <h5 class="col-sm-11">{{gegevensVanHetTerreinTitle}}</h5>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingStraat" class="form-control" maxlength="50"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingStraat2" class="form-control" maxlength="50"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingPostcode" class="form-control" maxlength="50"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingGemeente" class="form-control" maxlength="50"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Bestemmingstype ontvangende locatie</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingBestemmingstype" class="form-control" maxlength="100"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Kadastrale gegevens</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingKadastraleGegevens" class="form-control" maxlength="100"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Lambert coördinaten</label></div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <label for="LX" class="col-sm-2" [class.validationHint]="inschrijvenForm.get('inrichtingLX').errors">X </label>
+                    <div class="col-sm-10">
+                        <input type="text" DottedBorderBelow formControlName="inrichtingLX" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <label for="LY" class="col-sm-2" [class.validationHint]="inschrijvenForm.get('inrichtingLY').errors">Y </label>
+                    <div class="col-sm-10">
+                        <input type="text" DottedBorderBelow formControlName="inrichtingLY" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3"><label>Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken:<a href="#" (click)="$event.preventDefault();toGeopunt()">www.geopunt.be</a></label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Datum verleende milieuvergunning</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingDatumMilieuvergunning" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Naam vergunningverlenende instantie</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingVergunningverlenendeInstantie" class="form-control" maxlength="50"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Datum bouwvergunning</label></div>
+            <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingDatumBouwvergunning" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Capaciteit van de inrichting (m³)</label></div>
+            <div class="col-sm-8"><input type="text" AllowOnlyNumbers DottedBorderBelow formControlName="inrichtingHoeveelheidGrond" class="form-control" maxlength="50"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="agrees" value="">De aanvrager verklaart zich akkoord met de geldende <a target="_blank" href="http://www.grondwijzer.be/tarieven"><b>tarieven en de algemene voorwaarden</b></a> van Grondwijzer vzw.</label>
+        </div>
+    </div>
+
+    <div [hidden]="isInschrijvenFormValid()">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="loginSpecialCharactersMessage != ''" class="col-sm-8"><label class="validation">{{loginSpecialCharactersMessage}}</label></div>
+                <div *ngIf="pwd1SpecialCharactersMessage != ''" class="col-sm-8"><label class="validation">{{pwd1SpecialCharactersMessage}}</label></div>
+                <div *ngIf="pwd2SpecialCharactersMessage != ''" class="col-sm-8"><label class="validation">{{pwd2SpecialCharactersMessage}}</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button type="button" [disabled]="!isInschrijvenFormValid()" class="btn btn-default" (click)="send()">{{buttonText}}</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div *ngIf="actionSucceeded" class="paddingTop20px">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <label class="angular-with-newlines">{{actionSucceededMessage}}</label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="hasPendingChanges" class="paddingTop20px">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <label>
+                U heeft nog wijzigingen open staan die nog niet zijn goedgekeurd of afgewezen.<br />
+                Van zodra de goedkeuring of afwijzing is uitgevoerd kan u opnieuw uw gegevens wijzigen.
+            </label>
+        </div>
+    </div>
+</div>

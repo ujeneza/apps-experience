@@ -1,0 +1,94 @@
+
+.flexForResidentContainer{
+display: flex;
+flex-direction: row;
+justify-content: center;
+flex-wrap: wrap;
+}
+.flexForResidentItem{
+width: 26em;
+
+}
+
+
+.globalCard{
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 28rem;
+  width: 24rem;
+
+}
+
+/* .isRentPaidTrue{
+  color: red;
+ù
+}
+
+.isRentPaidFalse{
+  color: green
+} */
+
+.residentHeader{
+  padding: 2%;
+}
+
+
+.mat-card-header{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 4rem;
+  width: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mat-list-item{
+  display: flex;
+  text-align: start;
+
+
+}
+
+/* .profileImage{
+  margin:auto;
+  height: 15%;
+  width: 20%;
+  padding: 0px;
+} */
+
+.matCardActionButton{
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.blue-snackbar {
+    background: #2196F3;
+}
+
+.red-snackbar {
+    background: #F44336;
+}
+
+
+

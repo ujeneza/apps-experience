@@ -1,0 +1,184 @@
+
+* {
+  box-sizing: border-box;
+}
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.operationAction{
+      outline: none;
+  }
+
+
+.formField{
+  width: 100%;
+  padding:  0  0.5em 0  0.5em;
+}
+
+
+   
+.productionLine{
+ /*  grid-area: productionLine; */
+  width: 50%;
+  padding:  0  0.5em 0  0.5em;
+}
+
+.operationId{
+ /*  grid-area: operationId; */
+  width: 50%;
+  padding:  0  0.5em 0  0.5em;
+}
+
+.sequenceNumberLocal{
+  /* grid-area: sequenceNumberLocal; */
+width: 100%;
+  padding:  0  0.5em 0  0.5em;
+  
+}
+
+.operationData{
+  display: grid;
+  grid:"operationIdLine     sequenceNumberLocal" 
+        /       50%         50%;
+  width: 100%;
+  height: 100%;
+}
+
+
+ .copiedFrom{
+  margin:0 auto;
+  background-color: gainsboro;
+  color: #6b1f7c;
+  font-weight: bold;
+  max-width: 90%;
+  align-items: center;
+  text-align: center;
+
+border-radius: 40px 40px 40px 40px;
+box-sizing: border-box;
+
+}
+.rightGeneralData{
+  grid-area: rightGeneralData;
+  width: 100%;
+  height: 100%;
+
+}
+.leftGeneralData{
+  grid-area: leftGeneralData;
+  width: 100%;
+  height: 100%;
+}
+
+
+  .generalData{
+    grid-area: generalData;
+    display: grid;
+    grid:" leftGeneralData rightGeneralData" 9fr
+        / 50%       50%;
+    width: 100%;
+    height: 100%;
+    padding-top:1.5em;
+    padding-bottom:1em;
+  }
+
+  .direction{
+
+    grid-area: direction;
+    width: 100%;
+    height: 19.3em;
+    padding: 0;
+  }
+  .speed{
+
+    grid-area: speed;
+    width: 100%;
+    height: 19.3em;
+    padding: 0;
+    
+  }
+/* .spacerData{
+  grid-area: spacerData;
+  height: 100%;
+  height: 100%;
+} */
+  .formContainer{
+    grid-area: formContainer;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid:"generalData generalData" 5fr
+          "direction   speed" 9fr
+          / 50%       50%;
+
+          width: 100%;
+          height: 100%;
+         
+  }
+  .toolBarContainer{
+    grid-area: toolBarContainer;
+    width: 100%;
+    height: 100%;
+    background-color:#865092;
+    color:white;
+    
+  }
+  .errorMessage{
+    width: 100%;
+    max-height:100%;
+    margin: 1em  auto 0.5em;
+    background-color: #AFA31A;
+    color: white;
+  }
+ .errors{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+    width: 100%;
+    font-size: 0.7em;
+  } 
+
+  .errorsMessages{
+    grid-area: errorsMessages;
+    width: 100%;
+  height: 100%;
+  }
+
+  .operationContainer{
+    display: grid;
+    grid: "toolBarContainer" 3em
+          "errorsMessages" 3em
+          "formContainer" 10em; 
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+
+  .titleMatCard{
+    font-size:1.2em;
+    padding: 0.5em;
+    color:#6b1f7c;
+    background-color: rgba(107, 31, 124, 0.1);
+    height: 2em;
+  }
+
+  .example-loading-shade {
+    position: relative;
+     top: -13em;
+     left: 0;
+     bottom:0;
+     right: 0; 
+     height: 33em;
+     background: rgba(0, 0, 0, 0.15);
+     z-index: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+
+  .mat-card {
+    box-sizing: border-box;
+  }
+ 

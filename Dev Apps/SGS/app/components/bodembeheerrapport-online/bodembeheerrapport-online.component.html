@@ -1,0 +1,203 @@
+﻿<h4>Bodem Beheer Rapport - Online</h4>
+<form [formGroup]="OForm" class="container-fluid">
+    <div class="container-fluid" *ngIf="!hasData">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <label>{{litHeader}}</label>
+                <br /><br />
+                <label>U heeft voor dit bodem beheer rapport geen online verklaring ingevuld</label>
+                <br /><br />
+                <button type="button" class="btn btn-default" (click)="goBack()">Terug</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="hasData">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <label>{{litHeader}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <label>Ondergetekende verklaart hierbij dat het grondverzet van onderstaande plaats van herkomst naar onderstaande plaats van bestemming werd beëindigd. Een overzicht van alle grondverzet dat heeft plaatsgevonden is weergegeven in de tabel op deze webpagina</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h5>Herkomst van de grond</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Straat:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstStraat}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Gemeente:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstGemeente}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Technisch Verslag</label></div>
+            <div class="col-sm-8">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Erkend Bodemsaneringsdeskundige:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstTvEbsd}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Datum:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstTvDatum}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Kenmerk:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstKenmerk}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Conformiteitsnummer Grondwijzer:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstCvNummer}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Onderscheiden Deelvolumes:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.herkomstDeelVolumes}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h5>Bestemming van de grond</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Adres:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingAdres}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">&nbsp;</div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingAdres2}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Postcode / Gemeente:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingPostcodeGemeente}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Kadastrale Gegevens:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingKadastraleGegevens}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Lambert Coördinaten:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingLambert}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Toepassing/Gebruik:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingToepassing}}</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label class="pull-right">Bestemmingstype terrein:</label></div>
+            <div class="col-sm-8"><label class="pull-left">{{bbrDetail?.bestemmingType}}</label></div>
+        </div>
+    </div>
+
+
+    <div *ngIf="gridZones!=null && gridZones.length>0">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3">
+                <table class="GWTable">
+                    <thead>
+                        <tr>
+                            <th>Code TV Deelvolume</th>
+                            <th>Beschrijving</th>
+                            <th style="text-align: center">(X)</th>
+                            <th style="text-align: center">(Y)</th>
+                            <th style="text-align: center">(Z)</th>
+                            <th>Datum Van</th>
+                            <th>Datum Tot</th>
+                            <th>Aangevraagde hoeveelheid (m³)</th>
+                            <th>Werkelijke hoeveelheid (m³)</th>
+                            <th hidden>TV Zone ID</th>
+                            <th hidden>Technisch Verslag ID</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="gridZones">
+                        <tr *ngFor="let z of OForm.get('gridZones').controls; let i = index;" [formGroupName]="i">
+                            <td>{{z.controls["tvZoneNr"].value}}</td>
+                            <td>{{z.controls["tvZoneBeschrijving"].value}}</td>
+                            <td style="text-align: center">{{z.controls["tvZoneKwaliteitGebruikBuiten"].value}}</td>
+                            <td style="text-align: center">{{z.controls["tvZoneKwaliteitGebruikBinnen"].value}}</td>
+                            <td style="text-align: center">{{z.controls["tvZoneKwaliteitGebruikBouwstof"].value}}</td>
+                            <td style="text-align: center">
+                                <input type="text" class="form-control ng-trim-ignore" formControlName="datumVan" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }">
+                                <label *ngIf="z.get('datumVan').errors" class="validationHint">{{z.get('datumVan').errors.message}}</label>
+                            </td>
+                            <td style="text-align: center">
+                                <input type="text" class="form-control ng-trim-ignore" formControlName="datumTot" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }">
+                                <label *ngIf="z.get('datumTot').errors" class="validationHint">{{z.get('datumTot').errors.message}}</label>
+                            </td>
+                            <td>{{z.controls["hoeveelheidGemeld"].value}}</td>
+                            <td>
+                                <input type="text" class="form-control" formControlName="werkelijkGebruik" DottedBorderBelow AllowOnlyNumbers>
+                            </td>
+                            <td hidden>{{z.controls["tvZoneID"].value}}</td>
+                            <td hidden>{{z.controls["technischVerslagID"].value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row paddingTop20px">
+            <div class="col-sm-10 col-sm-offset-1">
+                <br />
+                <i><label class="paddingBottom10px">(Het totaal veld hieronder hoeft u niet in te vullen, dit wordt automatisch berekend bij het versturen)</label></i>
+                <br /><label>In het kader van onderhavig grondverzet is in totaal&nbsp;</label>
+                <label>{{OForm.get('totaalGebruik').value}}</label>
+                <label>&nbsp;m³ van bovenvermelde plaats van herkomst getransporteerd naar bovenvermelde plaats van bestemming.</label>
+                <br />
+                <label>Bij het grondverzet is gewerkt volgens de &quot;Codes van goede praktijk voor het werken met uitgegraven bodem&quot; en conform de in de &quot;grondverzettoelating van Grondwijzer VZW opgelegde voorwaarden.</label>
+                <br />
+                <label>De aangevoerde partij(en) grond is/zijn volledig in overeenstemming met de milieuhygiënische kwaliteit en de zonering zoals aangegeven in het onderliggende Technisch verslag.</label>
+                <br />
+                <label>Ik verklaar hierbij expliciet dat aan onderhavige partij grond geen toevoegingen werden gedaan van grondvolumes die geen onderdeel vormden van onderzochte zones of deelvolumes zoals aangegeven in het Technisch verslag.</label>
+                <br />
+                <br />
+                <label>Op basis van deze gegevens verzoekt ondergetekende Grondwijzer vzw om voor dit grondverzet het bodembeheerrapport aan te leveren.</label>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-1"><label>Email adres van de Aanvrager:</label></div>
+            <div class="checkbox col-sm-8"><input type="text" email DottedBorderBelow formControlName="mailTo" class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-1"><label>Email adres van de Afnemer:</label></div>
+            <div class="checkbox col-sm-8"><input type="text" email DottedBorderBelow formControlName="mailTo2" class="form-control"></div>
+        </div>
+        <div class="row" *ngIf="toonCheckBox">
+            <div class="checkbox col-sm-10 col-sm-offset-1">
+                <label><input type="checkbox" formControlName="agreesThatAllIsCorrect" value="">Ondergetekende verklaart hierbij dat de ingevoerde gegevens correct zijn</label>
+            </div>
+        </div>
+        <div class="row" *ngIf="toonCheckBox">
+            <div class="checkbox col-sm-10 col-sm-offset-1">
+                <label><input type="checkbox" formControlName="aangeverANDafnemer" value="">Ondergetekende verklaart hierbij zowel aanvrager als afnemer te zijn en wenst voor deze aanvraag online voor beide te ondertekenen</label>
+            </div>
+        </div>
+
+        <div [hidden]="formIsValid() && totaleHoeveelheid != null">
+            <div class="row setTop paddingTop10px">
+                <div class="col-sm-10 col-sm-offset-1 validation">
+                    <div *ngIf="(OForm.get('mailTo').touched || OForm.get('mailTo').dirty) && !OForm.get('mailTo').valid" [hidden]="!OForm.controls['mailTo'].errors.required" class="col-sm-8"><label class="validation">- Emailadres Geadresseerde is vereist.</label></div>
+                    <div *ngIf="emailValidationMessage" class="col-sm-8"><label class="validation">{{emailValidationMessage}}</label></div>
+                    <div *ngIf="email2ValidationMessage" class="col-sm-8"><label class="validation">{{email2ValidationMessage}}</label></div>
+                    <div *ngIf="totaleHoeveelheid == null" class="col-sm-8"><label class="validation">Er dienen nog deelvolumes ingesteld te worden</label></div>
+                </div>
+            </div>
+        </div>
+        <div class="row paddingTop20px">
+            <div class="col-sm-10 col-sm-offset-1">
+                <button type="button" (click)="send()" *ngIf="!hasRows" [disabled]="!formIsValid() || totaleHoeveelheid == null" class="btn btn-default marginRight20px">{{appLabels.Send}}</button>
+                <button type="button" (click)="goBack()" *ngIf="terugVisible" class="btn btn-default">{{appLabels.Back}}</button>
+                <label *ngIf="waitingMessageVisible">Bezig met het genereren van de documenten, even geduld aub</label>
+            </div>
+        </div>
+    </div>
+
+</form>

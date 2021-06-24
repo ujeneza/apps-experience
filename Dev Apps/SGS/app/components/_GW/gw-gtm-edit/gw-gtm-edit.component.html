@@ -1,0 +1,274 @@
+﻿<h4>GTM details</h4>
+<form [formGroup]="gtmForm" class="container-fluid paddingTop10px">
+    <div class="row">
+        <div class="col-sm-11"><h5>Grondtransportmelding</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nummer</label></div>
+        <div class="col-sm-8"><label>{{gtmData?.grondtransportmeldingId}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Klant</label></div>
+        <div class="col-sm-8"> <label>{{gtmData?.organisatie}} </label> <a *ngIf="gtmData?.klantId" [routerLink]="['/gw/klant-edit', 1]" routerLinkActive="active-link">({{gtmData?.klantId}})</a></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-4"> <label>Tel:{{gtmData?.telefoon}}</label> </div>
+        <div class="col-sm-4"> <label>Fax:{{gtmData?.fax}}</label></div>
+    </div>
+    <div class="row">
+        <h6 class="col-sm-3 pull-right">Contactpersoon:</h6>
+        <!--<div class="col-sm-3"><label class="pull-right">Contactpersoon:</label></div>-->
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('klantContactAchternaam').errors">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="klantContactAchternaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('klantContactVoornaam').errors">* Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="klantContactVoornaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('klantContactTelefoon').errors">* Telefoon </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="klantContactTelefoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('klantContactEmail').errors">* Email </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="klantContactEmail" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('klantKenmerk').errors">* Referentie</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="klantKenmerk" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+
+    <!-- section 1 Herkomst -->
+
+    <div class="row">
+        <h5 class="col-sm-11">Herkomst uitgegraven bodem</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nummer Technisch Verslag </label></div>
+        <div class="col-sm-8"><a [routerLink]="['/gw/tv-edit', 1]" routerLinkActive="active-link">({{gtmData?.technischVerslagId}})</a></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Titel Technisch Verslag</label></div>
+        <div class="col-sm-8"><label>{{gtmData?.tvTitelTechnischVerslag}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat&nbsp;onderzoekslocatie r</label></div>
+        <div class="col-sm-8"><label>{{gtmData?.tvStraatOnderzoeksLocatie}}</label></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente onderzoekslocatie</label></div>
+        <div class="col-sm-8"><label>{{gtmData?.tvGemeenteOnderzoeksLocatie}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('postcode').errors">* Straat en nr</label></div>
+        <div class="col-sm-8"><input DottedBorderBelow formControlName="adres" type="text" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('postcode').errors">* Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="postcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="gtmForm.get('plaats').errors">* Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="plaats" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">* Lambert-coördinaten centraal punt</label></div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LX" class="col-sm-2" [class.validationHint]="gtmForm.get('inrichtingLX').errors">X </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="inrichtingLX" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LY" class="col-sm-2" [class.validationHint]="gtmForm.get('inrichtingLY').errors">Y </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="inrichtingLY" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add link and text to LX and LY -->
+
+    <div class="row">
+        <h5 class="col-sm-11">Deelvolumes</h5>
+    </div>
+    <div>
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-3"><label class="pull-right">Onderzochte deelvolumes</label></div>
+
+            <div class="col-sm-8">
+                <table class="GWTable">
+                    <thead>
+                        <tr>
+                            <th style="width:20px">Nr.</th>
+                            <th>Beschrijving</th>
+                            <th style="text-align: center">(X)</th>
+                            <th style="text-align: center">(Y)</th>
+                            <th style="text-align: center">(Z)</th>
+                            <th>Geplande hoeveelheid(m³)</th>
+                            <th>Gepland gebruik (m³)</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="gtmVolumes">
+                        <tr *ngFor="let z of gtmVolumes.controls; let i = index;" [formGroupName]="i">
+                            <td><input type="hidden" value="{{z.get('tvZoneId').value}}" />{{z.controls["tvZoneNr"].value}}</td>
+                            <td><label class="pull-left">{{z.get('beschrijving').value}}</label></td>
+                            <td style="text-align: center">{{z.get('kgbuOmschrijving').value}}</td>
+                            <td style="text-align: center">{{z.get('kgbiOmschrijving').value}}</td>
+                            <td style="text-align: center">{{z.get('kgboOmschrijving').value}}</td>
+                            <td align='right'>{{z.get('hoeveelheid').value}}</td>
+                            <td>
+                                <input type="text" class="form-control" formControlName="werkelijkeHoeveelheid" DottedBorderBelow AllowOnlyNumbers>
+                                <label class="validationHint">Bent u zeker dat u meer wil opgeven dan {{z.get('werkelijkeHoeveelheid').value}}, nl. meer dan het beschikbare saldo</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <label class="pull-left">Vul in deze tabel de hoeveelheid in van geplande gebruik op de nieuwe bestemming.</label>
+                <br />
+                <label class="pull-left">Indien uit de gegevens ingevuld bij deze bestemmingsaanvraag, de locatie niet duidelijk genoeg is (bvb. geen huisnummer, Lambertcoördinaten en geen kadastrale gegevens), dan behoudt Grondwijzer het recht een aanvulplan te vragen om de afzetlocatie te verduidelijken.</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adding table hier and the input for werkelijkeHoeveelheid -->
+    <div class="row">
+        <h5 class="col-sm-11">Bestemming</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam bedrijf</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="topOrganisatie">
+                <option value="-1">get data</option>
+                <option value="0">get data</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr </label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="topStraat" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="topPostcode" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="topGemeente" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Toepassing/Gebruike</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="grondtransportmeldingGebruik">
+                <option value="-1">get data</option>
+                <option value="0">get data</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Verwachte datum aanvang transport</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="transportAanvangDatum" class="form-control ng-trim-ignore" tooltip="(bv. 31/1/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right"> Verwachte datum&nbsp;einde transport</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="transportEindeDatum" class="form-control ng-trim-ignore" tooltip="(bv. 31/1/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Opmerking bij online VA</label></div>
+        <div class="col-sm-8"><textarea formControlName="remarkVaOnline" tooltip="Dit veld is automatisch ingevuld door de VA online" placement="top" rows="4" cols="50" maxlength="500" class="form-control setArea"></textarea></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Tracering</h5>
+    </div>
+    <!-- Adding table hier -->
+
+    <div class="row">
+        <h5 class="col-sm-11">Extra</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Beoordeling</label></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="afgravingsplanOntvangen" value=""> Afgravingsplan - voorzover nodig - ontvangen</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="verklaringAfnemerOntvangen" value="">  Verklaring van afnemer ontvangen</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="gefactureerd" value=""> Gefactureerd</label>
+        </div>
+    </div>
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">Interne opmerking</label></div>
+        <div class="col-sm-8"><textarea formControlName="interneOpmerking" rows="4" cols="50" maxlength="500" class="form-control setArea"></textarea></div>
+
+    </div>
+
+    <div [hidden]="gtmForm.valid">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(gtmForm.get('klantContactAchternaam').touched || gtmForm.get('klantContactAchternaam').dirty) &&!gtmForm.get('klantContactAchternaam').valid" [hidden]="!gtmForm.controls['klantContactAchternaam'].errors.required" class="col-sm-8"><label class="validation">- Achternaam is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('klantContactVoornaam').touched || gtmForm.get('klantContactVoornaam').dirty) &&!gtmForm.get('klantContactVoornaam').valid" [hidden]="!gtmForm.controls['klantContactVoornaam'].errors.required" class="col-sm-8"><label class="validation">- Voornaam is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('klantContactTelefoon').touched || gtmForm.get('klantContactTelefoon').dirty) &&!gtmForm.get('klantContactTelefoon').valid" [hidden]="!gtmForm.controls['klantContactTelefoon'].errors.required" class="col-sm-8"><label class="validation">- Telefoon is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('klantKenmerk').touched || gtmForm.get('klantKenmerk').dirty) &&!gtmForm.get('klantKenmerk').valid" [hidden]="!gtmForm.controls['klantKenmerk'].errors.required" class="col-sm-8"><label class="validation">- Referentie is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('adres').touched || gtmForm.get('adres').dirty) &&!gtmForm.get('adres').valid" [hidden]="!gtmForm.controls['adres'].errors.required" class="col-sm-8"><label class="validation">- Straat en nr is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('postcode').touched || gtmForm.get('postcode').dirty) &&!gtmForm.get('postcode').valid" [hidden]="!gtmForm.controls['postcode'].errors.required" class="col-sm-8"><label class="validation">- Postcode is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('plaats').touched || gtmForm.get('plaats').dirty) &&!gtmForm.get('plaats').valid" [hidden]="!gtmForm.controls['plaats'].errors.required" class="col-sm-8"><label class="validation">- Gemeente is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLX').touched || gtmForm.get('inrichtingLX').dirty) && !gtmForm.get('inrichtingLX').valid" [hidden]="!gtmForm.controls['inrichtingLX'].errors.required" class="col-sm-8"><label class="validation">- Lambert coördinaat X is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLX').touched || gtmForm.get('inrichtingLX').dirty) && !gtmForm.get('inrichtingLX').valid" [hidden]="!gtmForm.controls['inrichtingLX'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLX').touched || gtmForm.get('inrichtingLX').dirty) && !gtmForm.get('inrichtingLX').valid" [hidden]="!gtmForm.controls['inrichtingLX'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLY').touched || gtmForm.get('inrichtingLY').dirty) && !gtmForm.get('inrichtingLY').valid" [hidden]="!gtmForm.controls['inrichtingLY'].errors.required" class="col-sm-8"><label class="validation">- Lambert coördinaat Y is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLY').touched || gtmForm.get('inrichtingLY').dirty) && !gtmForm.get('inrichtingLY').valid" [hidden]="!gtmForm.controls['inrichtingLY'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                <div *ngIf="(gtmForm.get('inrichtingLY').touched || gtmForm.get('inrichtingLY').dirty) && !gtmForm.get('inrichtingLY').valid" [hidden]="!gtmForm.controls['inrichtingLY'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                <div *ngIf="(gtmForm.get('klantContactEmail').touched || gtmForm.get('klantContactEmail').dirty) && !gtmForm.get('klantContactEmail').valid" [hidden]="!gtmForm.controls['klantContactEmail'].errors.required" class="col-sm-8"><label class="validation">-Email  is vereist.</label></div>
+                <div *ngIf="(gtmForm.get('klantContactEmail').touched || gtmForm.get('klantContactEmail').dirty) && !gtmForm.get('klantContactEmail').valid" [hidden]="!gtmForm.controls['klantContactEmail'].errors.pattern" class="col-sm-8"><label class="validation">-Emailadres is niet geldig.</label></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button type="button" [disabled]="!gtmForm.valid" (click)="save()" class="btn btn-default">Send Data</button>
+            </div>
+        </div>
+    </div>
+
+    <gw-documents [id]="gtmId"
+                  [documentType]="gwDocumentType"
+                  [emailHistoriekType]="emailHistoriekType"  
+                  [canSendNewEmail]="canSendNewEmail"
+                  [status]="uploadStatus"
+                  (uploadingFiles)="sendData($event)">
+    </gw-documents>
+
+
+
+    <!--<gw-email-historiek-grid [id]="gtmId"
+                             [emailType]="emailType"
+                             [canSendNewEmail]="canSendNewEmail"></gw-email-historiek-grid>-->
+
+</form>

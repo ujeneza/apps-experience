@@ -1,0 +1,52 @@
+body{
+  margin: 0;
+  height: 100vh;
+}
+.routerOutlet {
+  width: 100%;
+  height: 100%;
+}
+
+.asideTop {
+  grid-area: asideTop;
+  height: auto;
+  min-height: 2em;
+  background-color: #ebebeb;
+}
+
+.header {
+  grid-area: header;
+  z-index: 9;
+}
+
+.content {
+  grid-area: content;
+  z-index: 0;
+
+}
+
+.asideRight {
+  grid-area: asideRight;
+  background-color: #ebebeb;
+}
+
+.asideLeft {
+  grid-area: asideLeft;
+  background-color: #ebebeb;
+}
+.footer{
+  grid-area: footer;
+}
+
+.container {
+  display: grid;
+  grid:
+        "header      header    header" 2fr
+        "asideTop    asideTop  asideTop" 2fr
+        "asideRight  content   asideLeft"  10fr
+        "footer      footer    footer" 2fr
+        / 1fr        10fr       1fr;
+        height: 100%;
+}
+
+

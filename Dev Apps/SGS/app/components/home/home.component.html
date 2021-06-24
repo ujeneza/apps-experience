@@ -1,0 +1,106 @@
+<div [class.jumbotron]="!(isGWLoggedIn && !showLogin)">
+    <div *ngIf="!isGWLoggedIn || (isGWLoggedIn && showLogin)" class="container-fluid">
+        <div class="row">
+            <div *ngIf="!isGWLoggedIn || (isGWLoggedIn && showLogin)" class="col-sm-2">
+                <div class="logoDiv">
+                    <img class="logo" src="../../../images/grondwijzer.jpg" />
+                </div>
+            </div>
+            <div *ngIf="!isGWLoggedIn || (isGWLoggedIn && showLogin)" class="col-sm-5 text">
+                <span>
+                    Grondwijzer vzw<br />
+                    Polderdijkweg 16 - Haven 407<br />
+                    2030 Antwerpen<br /><br />
+
+                    tel: 0032 (0)3 545 87 58<br />
+                    fax: 0032 (0)3 545 87 39<br />
+                    e-mail: <a href="mailto:grondwijzer@grondwijzer.be">grondwijzer@grondwijzer.be</a>
+                </span>
+            </div>
+            <div *ngIf="showLogin" class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Hier inloggen aub</div>
+                    <div class="panel-body">
+                        <form [formGroup]="loginForm">
+                            <div class="form-group">
+                                <label for="username" [class.validationHint]="loginForm.get('username').errors">Gebruikersnaam</label>
+                                <input id="username" formControlName="username" required DottedBorderBelow type="text" class="form-control" autocomplete="off" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" [class.validationHint]="loginForm.get('password').errors">Paswoord</label>
+                                <input id="password" formControlName="password" required DottedBorderBelow type="password" class="form-control">
+                            </div>
+                            <button [disabled]="!loginForm.valid" class="btn btn-default" (click)="login()">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showLogin" class="row">
+            <div class="col-sm-10 col-sm-offset-2 text">
+                Bent u reeds lid?<br />
+                Hiernaast kan u zich aanmelden en gebruik maken van onze diensten.<br />
+                <br />
+                Wenst u zich aan te sluiten?<br />
+                U kan zich hierboven inschrijven als nieuwe gebruiker, als tijdelijke opslagplaats of centrum voor grondreiniging.<br />
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!showLogin" class="container-fluid paddingTop40px">
+        <div *ngIf="!isGWLoggedIn">
+            <div class="row">
+                <h5 class="col-sm-10 col-sm-offset-2">Grondverzettoelating / Grondtransportmelding aanvragen</h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/transport-top-cgr-melden']"><label class="text">Transport TOP/CGR melden</label></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/grondverzettoelating-aanvragen']"><label class="text">Grondverzettoelating aanvragen</label></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h5 class="col-sm-10 col-sm-offset-2">Overzicht</h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/technisch-verslag-status']"><label class="text">Technisch verslag status</label></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/transport-top-cgr-status']"><label class="text">Transport TOP/CGR status</label></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/grondverzettoelating-status']"><label class="text">Grondverzettoelating status</label></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <a class="pdfLink" [routerLink]="['/bodembeheerrapport-status']"><label class="text">Bodembeheerrapport status</label></a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isGWLoggedIn"  class="loadPage">
+            <div class="loader">
+                Inladen Grondwijzer administratie gedeelte ...
+                <br/>
+            </div>
+         
+        </div>
+    </div>
+
+<!--<div class="loadPage">
+    <div class="loader">
+        Laden Grondwijzer, even geduld aub
+    </div>
+
+
+</div>-->
+

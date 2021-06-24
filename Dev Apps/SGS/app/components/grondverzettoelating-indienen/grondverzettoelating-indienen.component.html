@@ -1,0 +1,367 @@
+﻿<h4>Indienen Grondverzettoelating</h4>
+<form [formGroup]="GVTForm" class="container-fluid paddingTop10px">
+    <div *ngIf="!isContinued">
+        <div class="row">
+            <div class="col-sm-11"><h5>Klant Aanvrager Gegevens</h5></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"><label for="txtKlantContactAchterNaam" class="pull-right" [class.validationHint]="GVTForm.controls['KlantContactAchterNaam']?.errors">* Familienaam</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantContactAchterNaam" formControlName="KlantContactAchterNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="txtKlantContactVoorNaam" class="pull-right" [class.validationHint]="GVTForm.controls['KlantContactVoorNaam']?.errors">* Naam</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantContactVoorNaam" formControlName="KlantContactVoorNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="txtKlantContactTelefoon" class="pull-right" [class.validationHint]="GVTForm.controls['KlantContactTelefoon']?.errors">* Telefoon / Gsm</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantContactTelefoon" formControlName="KlantContactTelefoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="txtKlantContactEmail" class="pull-right" [class.validationHint]="GVTForm.controls['KlantContactEmail']?.errors || klantemailValidationMessage !== ''">* Email</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantContactEmail" formControlName="KlantContactEmail" maxlength="50" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="txtKlantKenmerk" class="pull-right" [class.validationHint]="GVTForm.controls['KlantKenmerk']?.errors">* Uw Referentie</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantKenmerk" formControlName="KlantKenmerk" maxlength="50" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11"><h5>Herkomst Uitgegraven Bodem</h5></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3"><label class="pull-left">Geef de herkomst van de uitgegraven grond aan op basis van het Technisch Verslag, en de hoeveelheden die u wenst af te voeren.</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><label for="txtTvNr" class="pull-right" [class.validationHint]="GVTForm.controls['TechnischVerslagId']?.errors">* Nr. van Grondwijzer</label></div>
+            <div class="col-sm-2">
+                <input type="text" id="txtTvNr" formControlName="TechnischVerslagId" AllowOnlyNumbers DottedBorderBelow class="form-control" [attr.disabled]="TvId!==0?'':null">                
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-default marginTop10px" data-toggle="modal" data-target="#TVzoek" [attr.disabled]="TvId!==0?'':null">Opzoeken Nummer</button>
+            </div>
+        </div>        
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-3"><label for="ddlHerkomst" class="pull-right" [class.validationHint]="GVTForm.get('KlantHerkomstTop')?.value === '-1'">* Herkomst</label></div>
+            <div class="col-sm-8"><label class="pull-left">Werd eerder grondtransportmelding voor afvoer naar een tussentijdse opslagplaats/grondreinigingscentrum gedaan:</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-3">
+                <select id="ddlHerkomst" class="controlWidth" DottedBorderBelow formControlName="KlantHerkomstTop" (change)="herkomstChanged()">
+                    <option value="-1">Selecteer</option>
+                    <option value="1">Ja</option>
+                    <option value="0">Nee</option>
+                </select>
+            </div>
+        </div>
+        <div class="row setTop paddingTop10px" *ngIf="this.GVTForm.controls.KlantHerkomstTop.value==='1' && (herkomstList==null||herkomstList.length===0)">
+            <div class="col-sm-6 col-sm-offset-3"><label class="pull-left">Er zijn helaas geen eerdere grondtransportmeldingen gekend. Gelieve 'Nee' aan te duiden.</label></div>
+        </div>
+        <div class="row setTop paddingTop10px" *ngIf="herkomstList!=null && herkomstList.length>0">
+            <div class="col-sm-3"><label for="ddlGTMId" class="pull-right" [class.validationHint]="!(GVTForm.controls['KlantGTMId']?.value !== '' && GVTForm.controls['KlantGTMId']?.value !== '0')">* Kies Grondtransportmelding Nummer</label></div>
+            <div class="col-sm-8">
+                <select id="ddlGTMId" formControlName="KlantGTMId" DottedBorderBelow class="controlWidth" (change)="gtmChanged()">
+                    <option [value]="0" selected>Selecteer</option>
+                    <option *ngFor="let o of herkomstList" [value]="o.grondtransportmeldingId">{{o.beschrijving}}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="(tvVolumes!=null && tvVolumes.length>0 && (herkomstList==null || herkomstList.length == 0)) || (tvVolumes!=null && tvVolumes.length>0 && herkomstList!=null && herkomstList.length > 0 && isGTMApproved)">
+            <div class="row setTop paddingTop10px">
+                <div class="col-sm-3"><label class="pull-right {{ !isTvVolumesValid() ? 'validationHint' : ''}}">Onderzochte deelvolumes</label></div>
+                <div class="col-sm-8">
+                    <table class="GWTable">
+                        <thead>
+                            <tr>
+                                <th style="width:20px">Nr.</th>
+                                <th>Beschrijving</th>
+                                <th style="text-align: center">(X)</th>
+                                <th style="text-align: center">(Y)</th>
+                                <th style="text-align: center">(Z)</th>
+                                <th>Beschikbaar (m³)</th>
+                                <th>Gepland gebruik (m³)</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="tvVolumes">
+                            <tr *ngFor="let z of GVTForm.get('tvVolumes').controls; let i = index;" [formGroupName]="i">
+                                <td><input type="hidden" value="{{z.controls['tvZoneId'].value}}" />{{z.controls["tvZoneNr"].value}}</td>
+                                <td><label class="pull-left">{{z.controls["beschrijving"].value}}</label></td>
+                                <td style="text-align: center">{{z.controls["kgbuOmschrijving"].value}}</td>
+                                <td style="text-align: center">{{z.controls["kgbiOmschrijving"].value}}</td>
+                                <td style="text-align: center">{{z.controls["kgboOmschrijving"].value}}</td>
+                                <td align='right'>{{z.controls["beschikbaar"].value}}</td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="geplandGebruik" DottedBorderBelow AllowOnlyNumbers>
+                                    <label *ngIf="z.controls['geplandGebruik'].value !== null && z.controls['geplandGebruik'].value !=='' && (+z.controls['geplandGebruik'].value > +z.controls['beschikbaar'].value)" class="validationHint">Bent u zeker dat u meer wil opgeven dan {{z.controls['beschikbaar'].value}}, nl. meer dan het beschikbare saldo</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <label class="pull-left">Vul in deze tabel de hoeveelheid in van geplande gebruik op de nieuwe bestemming.</label>
+                    <br />
+                    <label class="pull-left">Indien uit de gegevens ingevuld bij deze bestemmingsaanvraag, de locatie niet duidelijk genoeg is (bvb. geen huisnummer, Lambertcoördinaten en geen kadastrale gegevens), dan behoudt Grondwijzer het recht een aanvulplan te vragen om de afzetlocatie te verduidelijken.</label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isGTMApproved">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-3 marginTop10px"><label class="pull-left validation">De geselecteerde grondtransportmelding is nog niet goedgekeurd of nog niet afgerond.</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-3 marginTop10px"><button (click)="linkToVerklaringAfnemer()" class="btn btn-default">Grondtransportmelding afronden</button></div>
+            </div>
+        </div>
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-3"><label for="txtStartDatum" class="pull-right" [class.validationHint]="GVTForm.controls['StartDatum']?.errors">* Vermoedelijke startdatum grondwerken</label></div>
+            <div class="col-sm-3"><input type="text" id="txtStartDatum" formControlName="StartDatum" class="form-control ng-trim-ignore controlWidth" bsDatepicker placement="top left" DottedBorderBelow autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+        </div>
+        <div [hidden]="isKlantSectionValid()">
+            <div class="row setTop paddingTop10px">
+                <div class="col-sm-8 col-sm-offset-3 validation">
+                    <div *ngIf="(GVTForm.get('KlantContactAchterNaam').touched || GVTForm.get('KlantContactAchterNaam').dirty) && !GVTForm.get('KlantContactAchterNaam').valid" [hidden]="!GVTForm.controls['KlantContactAchterNaam'].errors.required" class="col-sm-8"><label class="validation">- Familienaam is vereist.</label></div>
+                    <div *ngIf="(GVTForm.get('KlantContactVoorNaam').touched || GVTForm.get('KlantContactVoorNaam').dirty) && !GVTForm.get('KlantContactVoorNaam').valid" [hidden]="!GVTForm.controls['KlantContactVoorNaam'].errors.required" class="col-sm-8"><label class="validation">- Naam is vereist.</label></div>
+                    <div *ngIf="(GVTForm.get('KlantContactTelefoon').touched || GVTForm.get('KlantContactTelefoon').dirty) && !GVTForm.get('KlantContactTelefoon').valid" [hidden]="!GVTForm.controls['KlantContactTelefoon'].errors.required" class="col-sm-8"><label class="validation">- Telefoon is vereist.</label></div>
+                    <div *ngIf="(GVTForm.get('KlantContactEmail').touched || GVTForm.get('KlantContactEmail').dirty) && !GVTForm.get('KlantContactEmail').valid" [hidden]="!GVTForm.controls['KlantContactEmail'].errors.required" class="col-sm-8"><label class="validation">- Email Aanvrager is vereist.</label></div>
+                    <div *ngIf="klantemailValidationMessage" class="col-sm-8"><label class="validation">{{klantemailValidationMessage}}</label></div>
+                    <div *ngIf="(GVTForm.get('TechnischVerslagId').touched || GVTForm.get('TechnischVerslagId').dirty) && !GVTForm.get('TechnischVerslagId').valid" [hidden]="!GVTForm.controls['TechnischVerslagId'].errors.required" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag is vereist.</label></div>
+                    <div *ngIf="(GVTForm.get('TechnischVerslagId').touched || GVTForm.get('TechnischVerslagId').dirty) && !GVTForm.get('TechnischVerslagId').valid" [hidden]="!GVTForm.controls['TechnischVerslagId'].errors.min" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag dient min. 100000 te zijn.</label></div>
+                    <div *ngIf="(GVTForm.get('TechnischVerslagId').touched || GVTForm.get('TechnischVerslagId').dirty) && !GVTForm.get('TechnischVerslagId').valid" [hidden]="!GVTForm.controls['TechnischVerslagId'].errors.max" class="col-sm-8 validation"><label class="validation">- Nummer Technisch Verslag mag max. 999999 zijn.</label></div>
+                    <div *ngIf="(GVTForm.get('TechnischVerslagId').touched || GVTForm.get('TechnischVerslagId').dirty) && !GVTForm.get('TechnischVerslagId').valid" [hidden]="!GVTForm.controls['TechnischVerslagId'].errors.NotOwnTv" class="col-sm-8 validation"><label class="validation">- {{GVTForm.controls['TechnischVerslagId'].errors.message}}.</label></div>
+
+                    <!--<div *ngIf="!isTvFromUser" [hidden]="isTvFromUser" class="col-sm-8 validation"><label class="validation">- Het opgegeven Technisch Verslag Nummer is ongeldig</label></div>-->
+
+                    <div *ngIf="(GVTForm.get('KlantHerkomstTop').touched || GVTForm.get('KlantHerkomstTop').dirty) && GVTForm.get('KlantHerkomstTop').value === '-1'" [hidden]="GVTForm.controls['KlantHerkomstTop'].value !== '-1'" class="col-sm-8 validation"><label class="validation">- Herkomst is vereist</label></div>
+                    <div *ngIf="(GVTForm.get('KlantGTMId').touched || GVTForm.get('KlantGTMId').dirty) && GVTForm.get('KlantHerkomstTop').value === '1' && (GVTForm.get('KlantGTMId').value === '' || GVTForm.get('KlantGTMId').value === '0')" [hidden]="GVTForm.controls['KlantGTMId'].value !== '' && GVTForm.controls['KlantGTMId'].value !== '0'" class="col-sm-8 validation"><label class="validation">- Grondtransportmelding Nummer is vereist</label></div>
+                    <div *ngIf="(GVTForm.get('StartDatum').touched || GVTForm.get('StartDatum').dirty) && !GVTForm.get('StartDatum').valid" [hidden]="!GVTForm.controls['StartDatum'].errors.required" class="col-sm-8"><label class="validation">- Start Datum is vereist.</label></div>
+                    <div *ngIf="GVTForm.get('StartDatum').errors && GVTForm.get('StartDatum').dirty && GVTForm.get('StartDatum').errors.DateLessThanToday" class="col-sm-8"><label class="validation">- StartDatum kan niet ingesteld worden op een datum in het verleden.</label></div>
+                    <div *ngIf="!isTvVolumesValid()" [hidden]="isTvVolumesValid()" class="col-sm-8 validation"><label class="validation">- Er zijn nog bepaalde waarden m.b.t. de Onderzochte deelvolumes vereist</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row paddingTop10px" *ngIf="isGTMApproved">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button type="button" class="btn btn-default" [disabled]="!isKlantSectionValid()" (click)="verder()">{{isContinued ? 'Terug' : 'Verder'}}</button>
+        </div>
+    </div>
+    <div *ngIf="isContinued && isGTMApproved">
+        <div class="row">
+            <div class="col-sm-11"><h5>Bestemming - {{GVTType}}</h5></div>
+        </div>
+        <div class="row" *ngIf="TypeId===4">
+            <div class="col-sm-8 col-sm-offset-3">
+                <label class="pull-left">Een partij uitgegraven bodem kan aan de hand van één grondverzettoelating en bodembeheerrapport worden hergebruikt op verschillende locaties.<br />De totale hoeveelheid grond die per bestemming wordt afgevoerd bedraagt maximaal 249m³.</label>
+                <br /><br />
+                <label class="pull-left">Een lijst met de verschillende bestemmingen dient te worden bijgehouden en vervolgens bezorgd aan Grondwijzer vzw.</label>
+            </div>
+        </div>
+        <div *ngIf="TypeId!==4">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h6>Eigenaar of Exploitant</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtEigenaar" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingEigenaar']?.errors">* Naam</label></div>
+                <div class="col-sm-8"><input type="text" id="txtEigenaar" formControlName="BestemmingEigenaar" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtAdres1" class="pull-right">Straat en nummer</label></div>
+                <div class="col-sm-8"><input type="text" id="txtAdres1" formControlName="BestemmingAdres1" maxlength="100" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtAdres2" class="pull-right">Straat en nummer (vervolg)</label></div>
+                <div class="col-sm-8"><input type="text" id="txtAdres2" formControlName="BestemmingAdres2" maxlength="100" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtPostcode" class="pull-right">Postcode</label></div>
+                <div class="col-sm-8"><input type="text" id="txtPostcode" formControlName="BestemmingPostcode" maxlength="10" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtGemeente" class="pull-right">Gemeente</label></div>
+                <div class="col-sm-8"><input type="text" id="txtGemeente" formControlName="BestemmingGemeente" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtContactPersoon" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingContactPersoon']?.errors">* ContactPersoon</label></div>
+                <div class="col-sm-8"><input type="text" id="txtContactPersoon" formControlName="BestemmingContactPersoon" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtTelefoon" class="pull-right" [class.validationHint]="!isBestEmailTelValid()">Telefoon</label></div>
+                <div class="col-sm-8"><input type="text" id="txtTelefoon" formControlName="BestemmingTelefoon" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="txtEmail" class="pull-right" [class.validationHint]="bestemailValidationMessage !== '' || !isBestEmailTelValid()">Email</label></div>
+                <div class="col-sm-8"><input type="text" id="txtEmail" formControlName="BestemmingEmail" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+            </div>
+            <div class="row" *ngIf="BestId===0">
+                <div class="col-sm-8 col-sm-offset-3"><label class="pull-left" [class.validationHint]="!isBestEmailTelValid()">(Voor Eigenaar/Exploitant is telefoon of email verplicht)</label></div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <h6>Lokatie waar de grond wordt afgezet</h6>
+                    </div>
+                </div>
+
+                <div *ngIf="isLokatieVisible">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <h6 class="locationBorderBottom">Via Lokatie gegevens</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtExplAdres1" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingExplAdres1']?.errors">Straat en Nummer</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtExplAdres1" formControlName="BestemmingExplAdres1" maxlength="100" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtExplAdres2" class="pull-right">Straat en nummer (vervolg)</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtExplAdres2" formControlName="BestemmingExplAdres2" maxlength="100" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtExplPostcode" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingExplPostcode']?.errors">Postcode</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtExplPostcode" formControlName="BestemmingExplPostcode" maxlength="10" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtExplGemeente" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingExplGemeente']?.errors">Gemeente</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtExplGemeente" formControlName="BestemmingExplGemeente" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!=0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left" [class.validationHint]="GVTForm.controls['BestemmingExplGemeente']?.errors">(Voor 'via Lokatie gegevens' is 'Straat en nummer' en postcode en gemeente is verplicht)</label></div>
+                    </div>
+                </div>
+
+                <div *ngIf="isKadastraleVisible">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <h6 class="paddingTop20px locationBorderBottom">Via kadastrale gegevens</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3"><label>Info: Indien geen gegevens beschikbaar zijn (openbaar domein of onbekend door u), vult u bij afdelingsnr. 1 in, bij Sectie A en bij nummer(s) het cijfer 9999 in.</label></div>
+                    </div>
+                    <div class="row locationBorderLeftAndRight">
+                        <div class="col-sm-3"><label for="txtKadGemeente" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingKadGemeente']?.errors">Gemeente</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtKadGemeente" formControlName="BestemmingKadGemeente" maxlength="30" DottedBorderBelow class="form-control" [attr.disabled]="BestId!==0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtKadAfdNummer" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingKadAfdNummer']?.errors">Afdelingsnummer (indien bekend)</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtKadAfdNummer" formControlName="BestemmingKadAfdNummer" AllowOnlyNumbers DottedBorderBelow class="form-control" [attr.disabled]="BestId!==0?'':null" tooltip="Er worden enkel numerieke waarden aanvaard" placement="top"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtKadSectie" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingKadSectie']?.errors">Sectie</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtKadSectie" formControlName="BestemmingKadSectie" maxlength="1" DottedBorderBelow class="form-control" [attr.disabled]="BestId!==0?'':null"><label>voorbeeld: A</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtKadNummers" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingKadNummers']?.errors">Nummer(s)</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtKadNummers" formControlName="BestemmingKadNummers" maxlength="50" DottedBorderBelow class="form-control" [attr.disabled]="BestId!==0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left" [class.validationHint]="GVTForm.controls['BestemmingKadNummers']?.errors">(Voor 'via kadastrale gegevens' is gemeente en afdelingsnummer en sectie en nummer verplicht)</label></div>
+                    </div>
+                </div>
+
+                <div *ngIf="isLambertVisible">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <h6 class="paddingTop20px locationBorderBottom">Via coördinaten (centrale punt aanvulling)</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtLambertX" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingLambertX']?.errors">X</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtLambertX" formControlName="BestemmingLambertX" AllowOnlyNumbers DottedBorderBelow class="form-control" tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top" [attr.disabled]="BestId!==0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3"><label for="txtLambertY" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingLambertY']?.errors">Y</label></div>
+                        <div class="col-sm-8"><input type="text" id="txtLambertY" formControlName="BestemmingLambertY" AllowOnlyNumbers DottedBorderBelow class="form-control" tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top" [attr.disabled]="BestId!==0?'':null"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3"><label class="pull-left" [class.validationHint]="GVTForm.controls['BestemmingLambertY']?.errors">(Voor 'via coördinaten' is X en Y verplicht)</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <label>Als u de Lambert coördinaten niet kent, kan u ze op de volgende website (<a href="#" (click)="$event.preventDefault();toGeopunt()">www.geopunt.be</a>) opzoeken, of kan u als default-waarden x = 20000 en y = 150000 invullen.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1"><h6>Aanvullende Gegevens</h6></div>
+            </div>
+            <div class="row setTop">
+                <div class="col-sm-3"><label for="txtToepassing" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingToepassing']?.errors">* Omschrijving toepassing</label></div>
+                <div class="col-sm-7"><textarea id="txtToepassing" formControlName="BestemmingToepassing" rows="4" cols="50" maxlength="500" class="form-control setArea"></textarea></div>
+                <div class="col-sm-1"><label class="pull-left">{{msgToepassing}}</label></div>
+            </div>
+            <div class="row setTop paddingTop10px">
+                <div class="col-sm-3"><label for="txtGebruik" class="pull-right">Gebruik terrein na aanvullingswerk</label></div>
+                <div class="col-sm-7"><textarea id="txtGebruik" formControlName="BestemmingGebruik" rows="4" cols="50" maxlength="500" class="form-control setArea"></textarea></div>
+                <div class="col-sm-1"><label class="pull-left">{{msgGebruik}}</label></div>
+            </div>
+            <div class="row setTop paddingTop10px">
+                <div class="col-sm-3"><label for="txtOpmerkingen" class="pull-right">Opmerkingen</label></div>
+                <div class="col-sm-7"><textarea id="txtOpmerkingen" formControlName="BestemmingOpmerkingen" rows="4" cols="50" maxlength="750" class="form-control setArea"></textarea></div>
+                <div class="col-sm-1"><label class="pull-left">{{msgOpmerkingen}}</label></div>
+            </div>
+            <div *ngIf="TypeId===2">
+                <div class="row">
+                    <div class="col-sm-11"><h5>Studie Ontvangende Grond</h5></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label for="ddlBodemStudie" class="pull-right" [class.validationHint]="GVTForm.controls['BestemmingBodemStudie']?.value==='0'">* Studie ontvangende grond</label></div>
+                    <div class="col-sm-8">
+                        <select id="ddlBodemStudie" formControlName="BestemmingBodemStudie" (change)="studieOntvangendeGrondChanged()">
+                            <option value="1">beschikbaar (rapport wordt opgestuurd via post)</option>
+                            <option value="2" selected>niet nodig</option>
+                            <option value="5">beschikbaar (rapport opladen)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <file-uploader *ngIf="GVTForm.get('BestemmingBodemStudie').value === '5'" fileType="AanvrBestTranspStudieOntvangendeGrond" [status]="uploadStatus" (uploaded)="filesUploaded($event)" (inQueue)="queueCountChanged"></file-uploader>
+
+                <div class="row">
+                    <div class="col-sm-3"><label for="txtBodemNaam" class="pull-right">Naam erkend bodemsaneringsdeskundige</label></div>
+                    <div class="col-sm-8"><input type="text" id="txtBodemNaam" formControlName="BestemmingBodemNaam" [readonly]="isStudieNietNodig" maxlength="50" DottedBorderBelow class="form-control"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label for="txtBodemRapport" class="pull-right">Rapportnummer bodemsaneringsdeskundige</label></div>
+                    <div class="col-sm-8"><input type="text" id="txtBodemRapport" formControlName="BestemmingBodemRapport" [readonly]="isStudieNietNodig" maxlength="50" DottedBorderBelow class="form-control"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label for="txtBodemRappDatum" class="pull-right">Rapportdatum bodemsaneringsdeskundige</label></div>
+                    <div class="col-sm-8"><input type="text" id="txtBodemRappDatum" formControlName="BestemmingBodemRappDatum" [readonly]="isStudieNietNodig" maxlength="50" DottedBorderBelow class="form-control"></div>
+                </div>
+            </div>
+            <div [hidden]="allIsValid()">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-3 validation">
+                        <div *ngIf="(GVTForm.get('BestemmingEigenaar').touched || GVTForm.get('BestemmingEigenaar').dirty) && !GVTForm.get('BestemmingEigenaar').valid" [hidden]="!GVTForm.controls['BestemmingEigenaar'].errors.required" class="col-sm-8"><label class="validation">- Naam Eigenaar/Exploitant is vereist.</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingContactPersoon').touched || GVTForm.get('BestemmingContactPersoon').dirty) && !GVTForm.get('BestemmingContactPersoon').valid" [hidden]="!GVTForm.controls['BestemmingContactPersoon'].errors.required" class="col-sm-8"><label class="validation">- Eigenaar/Exploitant Contact Persoon is vereist.</label></div>
+                        <div *ngIf="bestemailValidationMessage" class="col-sm-8"><label class="validation">{{bestemailValidationMessage}}</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingLambertX').touched || GVTForm.get('BestemmingLambertX').dirty) && !GVTForm.get('BestemmingLambertX').valid" [hidden]="!GVTForm.controls['BestemmingLambertX'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingLambertX').touched || GVTForm.get('BestemmingLambertX').dirty) && !GVTForm.get('BestemmingLambertX').valid" [hidden]="!GVTForm.controls['BestemmingLambertX'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingLambertY').touched || GVTForm.get('BestemmingLambertY').dirty) && !GVTForm.get('BestemmingLambertY').valid" [hidden]="!GVTForm.controls['BestemmingLambertY'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingLambertY').touched || GVTForm.get('BestemmingLambertY').dirty) && !GVTForm.get('BestemmingLambertY').valid" [hidden]="!GVTForm.controls['BestemmingLambertY'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                        <div *ngIf="bestemmingValidationMessage" class="col-sm-8"><label class="validation">{{bestemmingValidationMessage}}</label></div>
+                        <div *ngIf="kadgegValidationMessage" class="col-sm-8"><label class="validation">{{kadgegValidationMessage}}</label></div>
+                        <div *ngIf="lambertValidationMessage" class="col-sm-8"><label class="validation">{{lambertValidationMessage}}</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingToepassing').touched || GVTForm.get('BestemmingToepassing').dirty) && !GVTForm.get('BestemmingToepassing').valid" [hidden]="!GVTForm.controls['BestemmingToepassing'].errors.required" class="col-sm-8"><label class="validation">- Omschrijving toepassing is vereist.</label></div>
+                        <div *ngIf="(GVTForm.get('BestemmingBodemStudie').touched || GVTForm.get('BestemmingBodemStudie').dirty) && GVTForm.get('BestemmingBodemStudie').value == '0'" [hidden]="GVTForm.get('BestemmingBodemStudie').value != '0'" class="col-sm-8"><label class="validation">- Studie ontvangende grond is vereist.</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-3">
+                    <div *ngIf="!allIsValid()"><label class="pull-left">(Gelieve de verplichte velden op te geven aub)</label></div>
+                </div>
+            </div>
+        </div>
+        <div class="row paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button type="button" class="btn btn-default pull-left" [disabled]="!allIsValid()" (click)="indienen()">Aanvraag Indienen</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal fade" id="TVzoek" role="dialog">
+    <technisch-verslag-zoeken (selected)="onTVSelected($event)"></technisch-verslag-zoeken>
+</div>

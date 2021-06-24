@@ -1,0 +1,31 @@
+﻿<form [formGroup]="zkForm" class="container-fluid paddingTop30px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4"><label for="txtKlantId" class="pull-right">Klant Id:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtKlantId" formControlName="KlantId" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="txtOrganisatie" class="pull-right">Organisatie:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtOrganisatie" formControlName="Organisatie" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="txtVoornaam" class="pull-right">Voornaam:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtVoornaam" formControlName="Voornaam" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="txtAchternaam" class="pull-right">Achternaam:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtAchternaam" formControlName="Achternaam" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="txtStraat" class="pull-right">Straat:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtStraat" formControlName="Straat" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="txtGemeente" class="pull-right">Gemeente:</label></div>
+            <div class="col-sm-8"><input type="text" id="txtGemeente" formControlName="Gemeente" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-4"><button type="button" (click)="raiseSearch()" class="btn btn-default">{{appLabels.Send}}</button></div>
+        </div>
+    </div>
+</form>

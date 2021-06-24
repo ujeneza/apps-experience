@@ -1,0 +1,358 @@
+﻿
+
+
+<form [formGroup]="gvtStudieForm" class="container-fluid paddingTop10px paddingStudieForm ">
+
+
+
+
+    <div class="panel panel-default panelStudie">
+        <div class="panel-heading panelHeaderSize expandablePanel" id="headingBesluit">
+
+            <div class="row">
+                <div class="col-sm-8 pointer" data-toggle="collapse" tooltip="klik om te openen" data-target="#collapseBesluit" aria-controls="collapseBesluit">
+                    <label> Studie ontvangende&nbsp;bodem</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieOntvangendeGrondOK" type="radio" [value]="1" formControlName="studieOntvangendeGrondOK" [attr.disabled]="true" />
+                    <label class="form-check-label">Ja </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieOntvangendeGrondOK" type="radio" [value]="2" formControlName="studieOntvangendeGrondOK" [attr.disabled]="true" />
+                    <label class="form-check-label">Nee </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieOntvangendeGrondOK" type="radio" [value]="3" formControlName="studieOntvangendeGrondOK" [attr.disabled]="true" />
+                    <label class="form-check-label">n.v.t </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body collapse" id="collapseBesluit" aria-labelledby="headingheadingBesluit">
+
+            <h6>Locatie</h6>
+
+            <div class=" row">
+                <div class="col-sm-8 ">
+
+                    <label>
+                        straat/gemeente onderzoekslocatie komt overeen met plaats&nbsp; van voorgenomen
+                        aanvulling<br>
+                        Omlijning van de werkzone van de aanvullingszone:<br>
+                        Representatieve monstername m.b.t. de aanvullingszone
+                    </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail1" type="radio" [value]="1" formControlName="studieDetail1" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail1" type="radio" [value]="2" formControlName="studieDetail1" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail1" type="radio" [value]="3" formControlName="studieDetail1" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <h6>Expertise </h6>
+
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>  Onderzoek uitgevoerd door EBSD</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail2" type="radio" [value]="1" formControlName="studieDetail2" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail2" type="radio" [value]="2" formControlName="studieDetail2" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail2" type="radio" [value]="3" formControlName="studieDetail2" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+
+            <h6>Aard van onderzoek en conclusies van EBSD</h6>
+
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>  1. Aanrijkingsonderzoek van ontvangende bodem</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail3" type="radio" [value]="1" formControlName="studieDetail3" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail3" type="radio" [value]="2" formControlName="studieDetail3" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail3" type="radio" [value]="3" formControlName="studieDetail3" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> - Ontvangende bodem bevat hogere concentraties</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail4" type="radio" [value]="1" formControlName="studieDetail4" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail4" type="radio" [value]="2" formControlName="studieDetail4" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail4" type="radio" [value]="3" formControlName="studieDetail4" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> - Besluit EBSD dat grondverzet kan worden toegestaan</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail5" type="radio" [value]="1" formControlName="studieDetail5" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail5" type="radio" [value]="2" formControlName="studieDetail5" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail5" type="radio" [value]="3" formControlName="studieDetail5" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>
+                        2. Herzien procedure voor de beoordeling van het gebruik van grond in opvullingen
+                        en terreinverhogingen, studie vlg. standaard VITO
+                    </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail6" type="radio" [value]="1" formControlName="studieDetail6" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail6" type="radio" [value]="2" formControlName="studieDetail6" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail6" type="radio" [value]="3" formControlName="studieDetail6" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>  - grondwaterverontreiniging niet aannemelijk</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail7" type="radio" [value]="1" formControlName="studieDetail7" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail7" type="radio" [value]="2" formControlName="studieDetail7" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail7" type="radio" [value]="3" formControlName="studieDetail7" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> - extra risico door mogelijke blootstelling niet aannemelijk</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail8" type="radio" [value]="1" formControlName="studieDetail8" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail8" type="radio" [value]="2" formControlName="studieDetail8" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail8" type="radio" [value]="3" formControlName="studieDetail8" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>   - evaluatie milieukenmerken ontvangende bodem op basis van ontvangende grond</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail9" type="radio" [value]="1" formControlName="studieDetail9" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail9" type="radio" [value]="2" formControlName="studieDetail9" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail9" type="radio" [value]="3" formControlName="studieDetail9" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>  - rekening gehouden met plaatselijke omstandigheden en toekomstig gebruik</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail10" type="radio" [value]="1" formControlName="studieDetail10" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail10" type="radio" [value]="2" formControlName="studieDetail10" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail10" type="radio" [value]="3" formControlName="studieDetail10" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> - toetsingswijze per stofgroep</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail11" type="radio" [value]="1" formControlName="studieDetail11" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail11" type="radio" [value]="2" formControlName="studieDetail11" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail11" type="radio" [value]="3" formControlName="studieDetail11" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>
+                        - toetsingswijze per stof (voor uitloogbare stoffen, indien conc. &gt; voorwaarden
+                        voor vrij gebruik
+                    </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail12" type="radio" [value]="1" formControlName="studieDetail12" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail12" type="radio" [value]="2" formControlName="studieDetail12" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail12" type="radio" [value]="3" formControlName="studieDetail12" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>  - verhoging conc. in het grondwater &lt; maximale aanvaarde toename</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail13" type="radio" [value]="1" formControlName="studieDetail13" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail13" type="radio" [value]="2" formControlName="studieDetail13" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail13" type="radio" [value]="3" formControlName="studieDetail13" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label>
+                        - bij reeds aangerijkte grondwaters treedt geen verder toename of overschreiding
+                        van de grondwatersanering op
+                    </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail14" type="radio" [value]="1" formControlName="studieDetail14" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail14" type="radio" [value]="2" formControlName="studieDetail14" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail14" type="radio" [value]="3" formControlName="studieDetail14" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> - besluit EBSD dat grondverzet kan worden toegestaan</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail15" type="radio" [value]="1" formControlName="studieDetail15" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail15" type="radio" [value]="2" formControlName="studieDetail15" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail15" type="radio" [value]="3" formControlName="studieDetail15" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label> 3. Maatwerk studie omdat sprake is van groeven, graverijen en putten</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail16" type="radio" [value]="1" formControlName="studieDetail16" />
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail16" type="radio" [value]="2" formControlName="studieDetail16" />
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail16" type="radio" [value]="3" formControlName="studieDetail16" />
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+
+
+
+
+            </div>
+            <h6>Besluit</h6>
+            <div class=" row">
+                <div class="col-sm-8 ">
+                    <label class="positiefBesluit"> Op basis van de volledigheid van de uitgevoerde studie kan grondverzet worden toegestaan.</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail17" type="radio" [value]="1" formControlName="studieDetail17"/>
+                    <label class="form-check-label">Ja</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail17" type="radio" [value]="2" formControlName="studieDetail17"/>
+                    <label class="form-check-label">Nee</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-1">
+                    <input class="form-check-input" name="studieDetail17" type="radio" [value]="3" formControlName="studieDetail17"/>
+                    <label class="form-check-label">n.v.t</label>
+                </div>
+            </div>
+
+
+        </div>
+       
+    </div>
+   
+
+
+</form>

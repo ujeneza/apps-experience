@@ -1,0 +1,163 @@
+﻿<h4>Technisch Verslag Indienen - Bevestiging</h4> 
+<div *ngIf="IndieningsWijzeId===2"><h5>Indiening via fax</h5></div>
+<div *ngIf="IndieningsWijzeId===3"><h5>Indiening via post</h5></div>
+<div *ngIf="IndieningsWijzeId===4"><h5>Indiening via email</h5></div>
+<br />
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <label>Uw aanvraag is bij Grondwijzer geregistreerd onder het uniek nummer: {{TvId}}</label>
+        <br />
+    </div>
+</div>
+<div class="row" *ngIf="IndieningsWijzeId===4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <p>Gelieve de bestanden van uw Technisch Verslag door te mailen naar <a href="mailto:be.grondwijzer@sgs.com">be.grondwijzer@sgs.com</a> met vermelding van het nummer {{TvId}}</p>
+    </div>
+</div>
+<div class="row" *ngIf="IndieningsWijzeId===3">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <p>
+            Gelieve uw Technisch Verslag per post (met vermelding van het nummer {{TvId}} op te sturen naar onderstaand adres:
+            <br />
+            Grondwijzer vzw<br />
+            Polderdijkweg 16 - Haven 407<br />
+            2030 Antwerpen
+        </p>
+    </div>
+</div>
+<div class="row" *ngIf="IndieningsWijzeId===2">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <p>Gelieve uw Technisch Verslag door te faxen naar het volgende nummer: 0032 (0)3 545 87 39 met vermelding van het nummer {{TvId}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <br />
+        <label>In het geval dat de digitale bestanden niet zijn voorzien van de noodzakelijke handtekeningen dient U de betreffende pagina's nog wel te bezorgen aan Grondwijzer vzw onder vermelding van het door ons toegekende nummer.</label>
+        <br />
+        <label>Grondwijzer zal uw Technisch Verslag toetsen met het oog op een conformverklaring.</label>
+        <br />
+        <label>U kunt de status van uw project opvolgen op de <a [routerLink]="" (click)="linkToOverzicht()">overzichtpagina</a></label>
+        <br />
+        <label>Van zodra het resultaat van uw aanvraag bekend is, zal U van ons hierover per e-mail bericht ontvangen.</label>
+        <br />
+    </div>
+</div>
+<div class="row paddingTop10px">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <label>Bestemming/Afzet reeds bekend? Vraag onmiddellijk een grondverzettoelating aan</label>
+        <br /><br />
+        <label>Is uw bestemming voor één of meerdere partijen van dit technisch verslag bekend en wil u onmiddellijk een 'grondverzettoelating' aanvragen, dan kan u hieronder reeds de deelvolumes toevoegen. De in te vullen gegevens kan u terugvinden in de opmetingstabel van het technisch verslag</label>
+        <br /><br />
+        <label>Is uw bestemming nog niet bekend en u wilt alleen een conformiteitsverklaring voor uw technisch verslag, dan kan u nu uitloggen of gebruik maken van één van de andere onderdelen van de website.</label>
+        <br /><br />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="row" *ngIf="rows!=null && rows.length > 0">
+            <div class="col-sm-11">
+                <div class="NgxTable">
+                    <p class="pull-left NgxTitle">Deelvolumes :</p>
+                    <ngx-datatable #table
+                                   class="bootstrap"
+                                   (activate)="onActivate($event)"
+                                   [rows]="rows"
+                                   [columnMode]="'flex'"
+                                   [headerHeight]="26"
+                                   [footerHeight]="0"
+                                   [limit]="15"
+                                   [cssClasses]="appLabels.iconsCss"
+                                   [rowHeight]="'auto'">
+                        <ngx-datatable-column [flexGrow]="1" name="Delete" headerClass="NgxHeader">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">{{column.name}}</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <img src="../../../images/ico_delete.png" class="ibtn" (click)="linkDelete(row['tvZoneID'])" />
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="1" prop="id" headerClass="NgxHeader">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">{{column.name}}</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label>{{row['id']}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="4" name="Beschrijving" headerClass="NgxHeader">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label>{{value}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="1" name="kgbuCode" headerClass="NgxHeaderCentered">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">(X)</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label style="text-align: center; width: 100%;">{{value}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="1" name="kgbiCode" headerClass="NgxHeaderCentered">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">(Y)</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label style="text-align: center; width: 100%;">{{value}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="1" name="kgboCode" headerClass="NgxHeaderCentered">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">(Z)</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label style="text-align: center; width: 100%;">{{value}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="2" name="hoeveelheid" headerClass="NgxHeaderCentered">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">Hoeveelheid (m³)</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <label style="text-align: center; width: 100%;">{{value}}</label>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="1" name="Edit" headerClass="NgxHeader">
+                            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                <span (click)="sort()">{{column.name}}</span>
+                            </ng-template>
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{row['tvZoneId']}}
+                                <img src="../../../images/ico_editrecord.gif" class="ibtn" (click)="linkEdit(row['tvZoneID'])" />
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <button type="button" class="btn btn-default" (click)="linkToNieuwDeelvolume()">Nieuw Deelvolume</button>
+    </div>
+</div>
+<div class="row" *ngIf="showBBR">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <br />
+        <label>Wanneer U de deelvolumes hebt overgenomen kan u een grondverzettoelating indienen door op onderstaande knop te klikken</label>
+        <br />
+        <button type="button" class="btn btn-default" (click)="linkToGVT()">Grondverzettoelating</button>
+    </div>
+</div>

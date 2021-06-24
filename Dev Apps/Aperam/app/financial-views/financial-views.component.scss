@@ -1,0 +1,51 @@
+ .tabGroupConfig{
+     margin-left: 1em;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+} 
+
+.mat-tab-header {
+    padding-top: 2em;
+    background-color:  rgba(107, 31, 124, 0.1);
+}
+.matTabConfig{
+    font-size:3em;
+    background-color:  rgba(107, 31, 124, 0.1);
+}
+
+.mat-tab-label {
+   color:#6B1F7C;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+
+/* principal page set up */
+
+.financialViewFilters{
+    grid-area: financialViewFilters;
+    width: 100%;
+    height: 100%;
+
+}
+
+.financialViewTabs{
+    grid-area: financialViewTabs;
+    width: 100%;
+    height: 100%;
+
+
+}
+.financialViewHomePage{
+    display: grid;
+    grid: "financialViewFilters  financialViewTabs"
+          / 4fr                   15fr;
+          width: 100%;
+          height: 100%;
+          margin-top: 1em;
+          
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }

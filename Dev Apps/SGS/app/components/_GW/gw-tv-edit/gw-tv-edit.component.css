@@ -1,0 +1,33 @@
+﻿.setTop {
+    align-items: flex-start;
+}
+
+.setArea {
+    border: 1px solid #DADADA;
+}
+
+
+.locationBorderBottom {
+    border-bottom: 1px solid #7faa2a;
+}
+
+
+.controlWidth {
+    width: 100%;
+}
+
+.boldItem {
+    font-weight:bold;
+}
+
+.emailVersturen:hover {
+    text-decoration: underline;
+    color: #337ab7;
+}
+
+.dotted-border-below-hint {
+
+    border-bottom: 1px !important;
+    border-bottom-style: dotted !important;
+    border-bottom-color: #cc0000 !important;
+}

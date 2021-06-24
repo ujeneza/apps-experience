@@ -1,0 +1,26 @@
+<div class="validationViewTab">
+
+    <div class="validationFilters">
+           
+                    <app-validation-errors-filters></app-validation-errors-filters>
+         
+           
+    </div>
+
+
+    <div class="ValidationErrorsTab">
+        <mat-tab-group 
+            mat-align-tabs="center" class="tabGroupConfig">
+            <!-- tabt -->
+            <mat-tab class="matTabConfig">
+                <ng-template mat-tab-label>
+                    <i class="material-icons">
+                        warning
+                    </i>
+                    <span class="spacer"></span>
+                    &nbsp; &nbsp; Validation errors
+                </ng-template>
+                <app-validation-errors-tab></app-validation-errors-tab>
+            </mat-tab>
+        </mat-tab-group>
+    </div>

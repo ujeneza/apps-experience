@@ -1,0 +1,59 @@
+﻿
+<div *ngIf="ShowDocuments === true">
+    <div class="row">
+        <h5 class="col-sm-11">Bestanden</h5>
+    </div>
+    <div class="row" *ngIf="isLoading === true">
+        <div class="col-sm-8 col-sm-offset-3">
+            is loading ...
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <div *ngFor="let file of userFiles;">
+                <a [routerLink]="" *ngIf="file.fileName.indexOf('.msg') <= 0" (click)="showFileWithId(file.id)" class="pdfLink">
+                    <label>{{file.fileName}}</label>
+                </a>
+            </div>
+        </div>
+    </div>
+    <gw-file-uploader [fileType]="uploadFileType"
+                      [status]="uploadStatus"
+                      (uploaded)="filesUploaded($event)"
+                      (inQueue)="queueCountChanged($event)">
+    </gw-file-uploader>
+    <div class="row" *ngIf="!parentUploading">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button type="button" (click)="upload()" [disabled]="uploadQueueCount == 0" class="btn btn-default">UPLOAD</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="ShowMails === true">
+    <div class="row">
+        <h5 class="col-sm-11">E-mail Historiek</h5>
+    </div>
+    <div class="row" *ngIf="isLoading === true">
+        <div class="col-sm-8 col-sm-offset-3">
+            is loading ...
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <div *ngFor="let file of userFiles;">
+                <a [routerLink]="" *ngIf="file.fileName.indexOf('.msg') > 0" (click)="showFileWithId(file.id)" class="pdfLink">
+                    <label>{{file.fileName}}</label>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        <gw-email-historiek-grid [id]="id"
+                                 [emailHistoriekType]="emailHistoriekType"
+                                 [canSendNewEmail]="sendingNewEmail">
+        </gw-email-historiek-grid>
+    </div>
+</div>
+
+

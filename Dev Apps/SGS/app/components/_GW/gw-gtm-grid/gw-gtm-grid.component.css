@@ -1,0 +1,12 @@
+﻿.parentTop {
+    position: relative;
+    display: block;
+}
+
+.childTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    display: block;
+}

@@ -1,0 +1,26 @@
+<div>
+  <mat-card class="closing-card">
+    <h4>Closing</h4>
+    
+    <mat-card-content>
+      <mat-form-field>
+        <mat-select placeholder="Site" [(value)]="selectedSiteId" (selectionChange)="siteChanged()">
+          <mat-option *ngFor="let option of options" [value]="option.id">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Month" [value]="closingMonth" readonly="true">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput placeholder="Status" [value]="closingType" readonly="true">
+      </mat-form-field><br>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="Close()" [disabled]="!canClose" *ngIf="isSoftClose">Close</button>
+      <button mat-button (click)="Reopen()" [disabled]="!canClose" *ngIf="isSoftClose">Re-open</button>
+      <button mat-button (click)="SoftClose()" [disabled]="!canClose" *ngIf="!isSoftClose">Soft close</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

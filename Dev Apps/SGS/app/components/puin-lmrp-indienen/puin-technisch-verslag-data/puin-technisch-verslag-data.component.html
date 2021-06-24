@@ -1,0 +1,42 @@
+﻿
+
+<div *ngFor="let z of tvData.controls; let i = index">
+    <div class="row" *ngIf="showAddRemoveOptions">
+        <div class="col-sm-8 col-sm-offset-3">
+            <hr class="dividerLine" />
+        </div>
+    </div>
+    <puin-technisch-verslag-data-item [parentForm]="z"
+                                      [showAddRemoveOptions]="showAddRemoveOptions"
+                                      [index]="i"
+                                      (technischVerslagNumberChanged)="tvNumberChanged($event)"
+                                      (removeTechnischVerslag)="removeTechnischVerslag($event)"
+                                      (technischVerslagSearchClicked)="technischVerslagSearchClicked($event)">
+    </puin-technisch-verslag-data-item>
+</div>
+
+
+<div class="marginTop20px" *ngIf="showAddRemoveOptions">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <hr class="dividerLineWithoutPadding" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3 ">
+            <button type="button" class="btn btn-default" (click)="technischVerslagToevoegen()">Nieuw technisch verslag blok toevoegen</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <hr class="dividerLine" />
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="TVzoek" role="dialog">
+    <technisch-verslag-zoeken (selected)="onTvSelected($event)"></technisch-verslag-zoeken>
+</div>
+
+
+

@@ -1,0 +1,24 @@
+﻿.setTop {
+    align-items: flex-start;
+}
+
+.setArea {
+    border: 1px solid #DADADA;
+}
+
+
+.locationBorderBottom {
+    border-bottom: 1px solid #7faa2a;
+}
+
+
+.controlWidth {
+    width: 100%;
+}
+
+.btnLoad {
+    padding-bottom: 3px !important;
+    padding-top: 3px !important;
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}

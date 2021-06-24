@@ -1,0 +1,51 @@
+﻿<div class="row" *ngIf="sendingNewMail">
+    <div class="col-sm-8 col-sm-offset-3"><label> <a (click)="sendNewEmail()"> Send new e-mail </a> </label></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-3">
+        <div class="NgxTable">
+            <ngx-datatable #table
+                           class="bootstrap"
+                           (activate)="onActivate($event)"
+                           [rows]="rows"
+                           [columnMode]="'flex'"
+                           [headerHeight]="25"
+                           [footerHeight]="40"
+                           [limit]="appLabels.tableViewRows"
+                           [rowClass]="getRowClass"
+                           [cssClasses]="appLabels.iconsCss"
+                           [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                           [sorts]="[{prop:'datum', dir:'desc' }]"
+                           [rowHeight]="'auto'">
+
+                <ngx-datatable-column [flexGrow]="2" name="datum" headerClass="NgxHeader">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <div><span (click)="sort()" class=" NgxFilterLabel">Datum</span></div>
+                    </ng-template>
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value | date:"dd/MM/yyyy"}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [flexGrow]="3" prop="subject" headerClass="NgxHeader">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <span (click)="sort()" class="NgxFilterLabel">Email</span>
+                    </ng-template>
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [flexGrow]="1" prop="emailID" headerClass="NgxHeader">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        <span (click)="sort()" class="NgxFilterLabel">Details</span>
+                    </ng-template>
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <img src="../../../../images/ico_editrecord.gif" (click)="viewEmail(row['emailID'])" />
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+        </div>
+    </div>
+</div>

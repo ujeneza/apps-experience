@@ -1,0 +1,212 @@
+
+ .active {
+color: white !important;
+  background-color: #6B1F7C;
+  outline: none; 
+}
+
+/* HeaderUp */
+.buttonHeaderUp{
+  outline: none;
+  height: 100%;
+
+}
+
+.buttonHeaderUp:active {
+  outline: none;
+}
+.buttonHeaderUp:hover {
+  outline: none;
+  background-color: none;
+}
+
+.buttonHeaderUp:active {
+  outline: none;
+}
+
+/* logo */
+.logoContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  
+}
+.logoContainer>img {
+  padding: 0.5em;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  
+}
+
+.logoTitle{
+  font-size: 0.9em;
+  position: relative;
+  bottom: 1.5em;
+  left: 3em;
+  outline: none;
+}
+/* MenuBotton set-up */
+
+
+.buttonMenu{
+  height: 100%;
+  border-left: 1.5px solid #eef4f4;
+  border-top: 1px solid #eef4f4;
+  font-size: 0.65em;
+  font-weight: bold;
+  outline: none;
+}
+
+.buttonHeaderUp :active{
+  background-color: rgb(251, 246, 252) !important;
+  outline: none!important;
+}
+
+.buttonMenu:focus-within{
+  height: 100%;
+  outline: none;
+}
+
+.metalMouvement{
+  grid-area: metalMouvement;
+  border-right: 1px solid #eef4f4;
+ 
+}
+
+.validationErrors{
+  grid-area: validationErrors;
+}
+
+.closing{
+  grid-area: closing;
+}
+
+.admin{
+  grid-area: admin;
+  border-right: 1px solid #eef4f4;
+}
+
+.buttonMenuGroup{
+  display: grid;
+  grid:"metalMouvement  validationErrors  closing admin"
+  /      2fr              2fr             2fr     2fr;
+  height: 100%;
+}
+
+/* Global Header setup */
+
+.headerAsideLeft{
+  grid-area: headerAsideLeft;
+}
+
+.headerUp {
+  grid-area: headerUp ;
+  padding-right: 3em;
+  background-color: rgba(107, 31, 124, 0.1);
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
+.headerDown{
+  grid-area: headerDown;
+  width: 100%;
+  height: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+
+.headerAsideRight{
+  grid-area: headerAsideRight;
+  width: 100%;
+}
+
+.logoMenu{
+  grid-area: logoMenu;
+  width: 100%;
+  height: 100%;  
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  outline: none !important;
+}
+
+.logoMenu:hover{
+  grid-area: logoMenu;
+  background-color: rgba(0,0,0,.12);
+  width: 100%;
+  height: 100%;  
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.headedContainer{
+  display: grid;
+  grid: "headerUp         headerUp          headerUp          headerUp" 1fr
+        "headerAsideLeft  logoMenu           headerDown        headerAsideRight" 4em
+        / 3em             15em               auto              3em ;    
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  color: #6B1F7C;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+  .headerDown{
+    grid-area: headerDown;
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    font-weight: bold;
+  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .headedContainer{
+    display: grid;
+    grid: "headerUp" 2em
+          "logoMenu" 4em          
+          "headerDown" auto
+        ;    
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    color: #6B1F7C;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .headedContainer{
+    display: grid;
+    grid: "headerUp" 2em
+          "logoMenu" 4em          
+          "headerDown" auto
+        ;    
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    color: #6B1F7C;
+  }
+
+  .buttonMenuGroup{
+    display: grid;
+    grid:"metalMouvement"  
+         "validationErrors"
+         "closing" 
+         "admin"
+   ;
+    height: 100%;
+  }
+}

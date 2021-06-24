@@ -1,0 +1,118 @@
+﻿
+<form [formGroup]="afsluitRedenForm" class="container-fluid paddingTop10px">
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <h6>Bijzonderheden</h6>
+        </div>
+        <div class="col-sm-4"> <h6>Volume (m³)</h6></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenAfvoerNaarBrusselWallonie" value="">Afvoer naar Brussel/Wallonië/...</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenAfvoerNaarBrusselWallonieVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenToegepastZonderGvtBinnenDeWerf" value="">Toegepast zonder GVT binnen de werf</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenToegepastZonderGvtBinnenDeWerfVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenToegepastZonderGvtBuitenDeWerf" value="">Toegepast zonder GVT buiten de werf" </label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenToegepastZonderGvtBuitenDeWerfVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenAfgezeefdPuinTop" value="">Afgezeefd puin (TOP)</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenAfgezeefdPuinTopVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenMinvolumeVanaf10pWegensNietUitgevoerd" value="">Minvolume vanaf 10% (wegens niet uitgevoerd)</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenMinvolumeVanaf10pWegensNietUitgevoerdVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenMeervolumeVanaf10p" value="">Meervolume vanaf 10%</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenMeervolumeVanaf10pVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenDeelsViaGb" value="">Deels via GB"</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenDeelsViaGbVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenDeelsOpDeWerfGeblevenVoorDeBouwheer" value="">Deels op de werf gebleven voor de bouwheer</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenDeelsOpDeWerfGeblevenVoorDeBouwheerVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenOverschattingInTv" value="">Overschatting in TV</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenOverschattingInTvVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenZoneVoorGebruikTerPlaatse" value="">Zone voor gebruik ter plaatse</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenZoneVoorGebruikTerPlaatseVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenGtmNaarTopNieuwTv" value="">GTM naar TOP + nieuw TV</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenGtmNaarTopNieuwTvVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenGtmNaarCofETopCgr" value="">GTM naar C of E TOP/CGR</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenGtmNaarCofETopCgrVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenGedeelteNietDoorLidGwUitgevoerd" value="">Gedeelte niet door lid GW uitgevoerd</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenGedeelteNietDoorLidGwUitgevoerdVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenBbrsGeweigerd" value="">BBR's geweigerd</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenBbrsGeweigerdVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenSamengevoegd" value="">Samengevoegd</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenSamengevoegdVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+
+
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenNietGekend" value="">Niet gekend</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenNietGekendVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+
+
+    <div class="row">
+        <div class="checkbox col-sm-4">
+            <label><input type="checkbox" formControlName="afsluitRedenOverige" value="">Overige</label>
+        </div>
+        <div class="col-sm-4"><input type="text" DottedBorderBelow formControlName="afsluitRedenOverigeVolume" class="form-control" maxlength="50" AllowOnlyNumbers></div>
+    </div>
+
+</form>
+

@@ -1,0 +1,156 @@
+﻿<h4>Verklaring afnemer voor grond transport melding {{Id}}</h4>
+<form [formGroup]="RForm" class="container-fluid" *ngIf="vac.length>0">
+    <div class="row">
+        <div class="col-sm-11"><h5>Afnemer</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Klantnummer bij Grondwijzer vzw:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerKlantID}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Bedrijfsnaam:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerOrganisatie}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr. (bestemming):</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerStraat}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode / Gemeente (bestemming):</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerPostcode}} {{vac[0].afnemerPlaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerTelefoon}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Email:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerEmail}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Contactpersoon:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerContactpersoon}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Omschrijving van de toepassing:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].afnemerOmschrijvingToepassing}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Gegevens herkomst uitgegraven grond</h5></div>
+    </div>
+    <div class="row" style="align-items: flex-start">
+        <div class="col-sm-3"><label class="pull-right">Naam, adres en gemeente van de aannemer die u de uitgegraven bodem aanbiedt:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].aanbiederOrganisatie}}<br />{{vac[0].aanbiederStraat}}<br />{{vac[0].aanbiederPostcode}} {{vac[0].aanbiederPlaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat, nr en gemeente herkomst:</label></div>
+        <div class="col-sm-8"><label>{{vac[0].uitgravingStraat}} {{vac[0].uitgravingPlaats}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nr. Grondtransportmelding:</label></div>
+        <div class="col-sm-8"><label>{{Id}}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="RForm.get('StartDate').errors">*Datum start aanvoer bij afnemer:</label></div>
+        <div class="col-sm-2">
+            <input *ngIf="!hasData" type="text" formControlName="StartDate" class="form-control ng-trim-ignore" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }">
+            <label *ngIf="hasData">{{vacZones[0].startDate | date:"dd/MM/yyyy"}}</label>
+        </div>
+        <div class="col-sm-6">
+            <label *ngIf="!hasData && RForm.get('StartDate').errors" class="validation">{{RForm.get("StartDate")?.errors.message}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="RForm.get('EndDate').errors">*Datum einde aanvoer bij afnemer:</label></div>
+        <div class="col-sm-2">
+            <input *ngIf="!hasData" type="text" formControlName="EndDate" class="form-control ng-trim-ignore" [disabled]="true" DottedBorderBelow bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }">
+            <label *ngIf="hasData">{{vacZones[0].endDate | date:"dd/MM/yyyy"}}</label>
+        </div>
+        <div class="col-sm-6">
+            <label *ngIf="!hasData && RForm.get('EndDate').errors" class="validation">{{RForm.get("EndDate")?.errors.message}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>In onderstaande tabel de definitieve/werkelijke hoeveelheid invullen van de aangevoerde uitgegraven grond</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <table class="GWTableE labelFont width100percent">
+                <thead>
+                    <tr>
+                        <th>Code TV Deelvolume</th>
+                        <th>Code GTM</th>
+                        <th>Beschrijving</th>
+                        <th style="text-align: center">(X)</th>
+                        <th style="text-align: center">(Y)</th>
+                        <th style="text-align: center">(Z)</th>
+                        <th>Geplande hoeveelheid (m³)</th>
+                        <th>Werkelijke hoeveelheid (m³)</th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="Zones">
+                    <tr *ngFor="let z of RForm.get('Zones').controls; let i = index;" [formGroupName]="i">
+                        <td>{{vac[i]["zoneNr"]}}</td>
+                        <td>{{vac[i]["gtmZone"]}}</td>
+                        <td>{{vac[i]["zoneBeschrijving"]}}</td>
+                        <td style="text-align: center">{{vac[i]["kgbuOmschrijving"]}}</td>
+                        <td style="text-align: center">{{vac[i]["kgbiOmschrijving"]}}</td>
+                        <td style="text-align: center">{{vac[i]["kgboOmschrijving"]}}</td>
+                        <td class="textAlignLeft">{{vac[i]["zoneHoeveelheid"]}}</td>
+                        <td align="right">
+                            <input *ngIf="!hasData;else rq" formControlName="realQuantity" class="form-control" DottedBorderBelow AllowOnlyNumbers>
+                            <label *ngIf="+z.controls['realQuantity'].value > +vac[i]['zoneHoeveelheid']" class="validationHint">Bent u zeker dat u meer wil opgeven dan {{vac[i]["zoneHoeveelheid"]}}, nl. dan het beschikbare saldo</label>
+                            <ng-template #rq>{{zz[vac[i]["gtmZone"]]}}</ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="!isVolumesValid()" [hidden]="isVolumesValid()" class="col-sm-8 col-sm-offset-3 validation"><label class="validation">- Er zijn nog bepaalde waarden m.b.t. de Onderzochte deelvolumes vereist</label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <kwaliteiten-legende *ngIf="!isVlarebo2008"></kwaliteiten-legende>
+            <kwaliteiten-legende2008 *ngIf="isVlarebo2008"></kwaliteiten-legende2008>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Eventuele toelichtingen</h5></div>
+    </div>
+    <div class="row rowSetContentTop">
+        <div class="col-sm-3"><label class="pull-right">Opmerkingen:</label></div>
+        <div class="col-sm-8">
+            <textarea *ngIf="!hasData" formControlName="Remark" class="form-control multilineTextbox" DottedBorderBelow rows="4"></textarea>
+            <label *ngIf="hasData">{{vacZones[0].remark}}</label>
+        </div>
+    </div>
+    <div class="row paddingTop20px" *ngIf="!hasData">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8">
+            <label>
+                <input type="checkbox" formControlName="sendOK" [class.validationHint]="RForm.controls['sendOK'].errors">
+                Ondergetekende verklaart hierbij de hier aangegeven partij(en) uitgegraven grond in de aangegeven periode naar de opgegeven bestemming gevoerd te hebben.
+            </label>
+        </div>
+    </div>
+    <div class="paddingTop40px">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <button type="button" *ngIf="!hasData" [disabled]="!RFormIsValid() || inSending" class="btn btn-default" (click)="sendFormData()" name="sendform">{{(inSending)?appLabels.Wait:appLabels.Send}}</button>
+                <button type="button" *ngIf="hasData" class="btn btn-default" (click)="back()" name="sendform">{{appLabels.Back}}</button>
+                <br />&nbsp;
+            </div>
+        </div>
+    </div>
+
+</form>
+<div *ngIf="isAfgerond && vac.length==0">
+    <label>U heeft voor deze grond transport melding geen online verklaring ingevuld</label>
+</div>
+<div *ngIf="!isAfgerond && vac.length==0">
+    <label>Geen gegevens gevonden</label>
+</div>
+

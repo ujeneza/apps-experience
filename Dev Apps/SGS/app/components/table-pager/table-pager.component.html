@@ -1,0 +1,15 @@
+﻿
+<table class="GWTable pager" style="width:1%" *ngIf="tbl.nPages()>1">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let t of ' '.repeat(tbl.nPages()).split(''); let i = index">
+                    <td (click)="tbl.setPageNo(i+1)" *ngIf="i+1!=tbl.pageNo;else sel">
+                        <div>{{i+1}}</div>
+                    </td>
+                    <ng-template #sel>
+                        <th><div>{{i+1}}</div></th>
+                    </ng-template>
+                </ng-container>
+            </tr>
+        </thead>
+    </table>

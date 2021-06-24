@@ -1,0 +1,32 @@
+﻿h4 {
+    margin-bottom: 0px;
+}
+.btn-on {
+    color: #B0D001 !important;
+    border-color: #ddd !important;
+    background-color: #017342 !important;
+    padding: 5px 10px;
+    margin-left: 15px;
+}
+.btn-off {
+    color: #FFFFFF !important;
+    border-color: #ddd !important;
+    background-color: #FF0000 !important;
+    padding: 5px 10px;
+    margin-left: 15px;
+}
+.btn-single-on {
+    color: #B0D001 !important;
+    border-color: #ddd !important;
+    background-color: #017342 !important;
+    padding: 5px;
+    margin-left: -5px;
+}
+.btn-single-off {
+    color: #017342 !important;
+    border-color: #ddd !important;
+    background-color: #FF0000 !important;
+    padding: 5px;
+    margin-left: -5px;
+}
+

@@ -1,0 +1,100 @@
+﻿<h4>Overzicht van Grondtransport Meldingen</h4>
+<form [formGroup]="FForm" class="container-fluid">
+    <div><label>U kunt de detailgegevens bekijken door op het icoontje <img src="../../../images/ico_editrecord.gif" /> te klikken, of door te dubbelklikken op een rij van de grid</label></div>
+    <div class="row paddingTop20px">
+        <div class="col-sm-11">
+            <label class="paddingRight10px">Filter status</label>
+            <!--<select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" (change)="filterStatusChanged(selectedValue)">
+        <option [ngValue]="-1">Selecteer</option>
+        <option [ngValue]="0">Nog niet afgeronde GTM</option>
+        <option [ngValue]="1">Afgeronde GTM</option>
+    </select>-->
+            <select  formControlName="werkelijkeHoeveelheid" (change)="Filter()">
+                <option value="-1">Selecteer</option>
+                <option value="0">Nog niet afgeronde GTM</option>
+                <option value="1">Afgeronde GTM</option>
+            </select>
+        </div>
+    </div>
+    <div class="NgxTable">
+        <ngx-datatable #table
+                       class="bootstrap"
+                       (activate)="onActivate($event)"
+                       [rows]="trows"
+                       [columnMode]="'flex'"
+                       [headerHeight]="50"
+                       [footerHeight]="40"
+                       [limit]="appLabels.tableViewRows"
+                       [cssClasses]="appLabels.iconsCss"
+                       [rowClass]="getRowClass"
+                       [rowHeight]="'auto'"
+                       [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                       [sorts]="[{prop:'grondtransportmeldingID', dir:'desc' }]">
+            <ngx-datatable-column name="&nbsp;&nbsp;&nbsp;&nbsp;" prop="werkelijkeHoeveelheid" [flexGrow]="1" headerClass="NgxHeader">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <img *ngIf="value === -1" src="../../../images/Half.gif" title="Nog niet afgeronde GTM"/>
+                    <img *ngIf="value>-1" src="../../../images/Full.gif" title="Afgeronde GTM"/>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="3" prop="grondtransportmeldingID" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">Nummer</div>
+                    <input type='text' formControlName="grondtransportmeldingID" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <span class="ibtn" (click)="showGTM(value)">{{ value }}</span>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="10" prop="referentie" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">Referentie</div>
+                    <input type='text' formControlName="referentie" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="7" prop="adres" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">Adres</div>
+                    <input type='text' formControlName="adres" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="3" prop="technischVerslagID" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">CV nummer</div>
+                    <input type='text' formControlName="technischVerslagID" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <a *ngIf="row['klantId'] === userId;else dis" [routerLink]="" (click)="showTV(value)">{{ value }}</a>
+                    <ng-template #dis>
+                        <span class="grayed">{{ value }}</span>
+                    </ng-template>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="10" prop="organisatie" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">TOP/CGR</div>
+                    <input type='text' formControlName="organisatie" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="4" prop="indieningsDatum" headerClass="NgxHeader">
+                <ng-template let-sort="sortFn" ngx-datatable-header-template>
+                    <div (click)="sort()" class="NgxFilterLabel">Datum Aanvraag</div>
+                    <input type='text' formControlName="indieningsDatum" class="NgxFilterField" (keyup)='Filter()'/>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>{{value | date : "dd/MM/yyyy"}}</ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="2" [sortable]="false" headerClass="NgxHeader">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <img src="../../../images/ico_editrecord.gif" class="ibtn" (click)="showGTM(row['grondtransportmeldingID'])"/>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </ngx-datatable>
+    </div>
+</form>

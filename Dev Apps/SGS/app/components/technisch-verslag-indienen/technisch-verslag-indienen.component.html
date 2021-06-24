@@ -1,0 +1,125 @@
+﻿<h4>Indienen Technisch Verslag</h4>
+<form [formGroup]="TVForm" class="container-fluid paddingTop30px">
+    <div class="row">
+        <div class="col-sm-11"><h5>Contactgegevens</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactAchterNaam" class="pull-right" [class.validationHint]="TVForm.controls['KlantContactAchterNaam']?.errors">* Familienaam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactAchterNaam" formControlName="KlantContactAchterNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactVoorNaam" class="pull-right" [class.validationHint]="TVForm.controls['KlantContactVoorNaam']?.errors">* Naam</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactVoorNaam" formControlName="KlantContactVoorNaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactTelefoon" class="pull-right" [class.validationHint]="TVForm.controls['KlantContactTelefoon']?.errors">* Telefoon / Gsm</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactTelefoon" formControlName="KlantContactTelefoon" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantContactEmail" class="pull-right" [class.validationHint]="TVForm.controls['KlantContactEmail']?.errors || emailValidationMessage">* Email</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantContactEmail" formControlName="KlantContactEmail" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"><h5>Technische Gegevens</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTitel" class="pull-right" [class.validationHint]="TVForm.controls['Titel']?.errors">* Titel Techisch Verslag</label></div>
+        <div class="col-sm-8"><input type="text" id="txtTitel" formControlName="Titel" maxlength="40" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTitel2" class="pull-right" [class.validationHint]="TVForm.controls['Titel2']?.errors">Straat en Nummer</label></div>
+        <div class="col-sm-8"><input type="text" id="txtTitel2" formControlName="Titel2" maxlength="40" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTitel3" class="pull-right" [class.validationHint]="TVForm.controls['Titel3']?.errors">Gemeente Onderzoekslokatie (geen postcode aub)</label></div>
+        <div class="col-sm-8"><input type="text" id="txtTitel3" formControlName="Titel3" maxlength="40" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKenmerk" class="pull-right" [class.validationHint]="TVForm.controls['Kenmerk']?.errors">* Rapportnummer bodemsaneringsdeskundige</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKenmerk" formControlName="Kenmerk" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtTVDatum" class="pull-right" [class.validationHint]="TVForm.controls['TVDatum']?.errors">* Datum Technisch Verslag (dd/mm/yyyy)</label></div>
+        <div class="col-sm-8"><input type="text" id="NDatum" formControlName="TVDatum" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" DottedBorderBelow [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtEBSD" class="pull-right" [class.validationHint]="TVForm.controls['EBSD']?.errors">Naam erkende bodemsaneringsdeskundige</label></div>
+        <div class="col-sm-8"><input type="text" id="txtEBSD" formControlName="EBSD" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtFactuurReferentieKlant" class="pull-right" [class.validationHint]="TVForm.controls['FactuurReferentieKlant']?.errors">* Uw referentie voor deze opdracht</label></div>
+        <div class="col-sm-8"><input type="text" id="txtFactuurReferentieKlant" formControlName="FactuurReferentieKlant" maxlength="100" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3" >
+            <label><input type="checkbox" id="chkExternTV" class="marginTop0 marginBottom0" formControlName="ExternTV" value="" (change)="chkExternTVChanged()">TV beoordeeld door andere bodembeheersorganisatie</label>
+        </div>
+    </div>
+    <div *ngIf="TVForm.get('ExternTV').value === true">
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="txtExternTV" class="pull-right" [class.validationHint]="TVForm.controls['ExternTV']?.value === true && TVForm.controls['ExternTVReference']?.value === ''">* Referentie Conformverklaring</label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" id="txtExternTV" formControlName="ExternTVReference" DottedBorderBelow class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="dteExternTVDatum" class="pull-right">Conformverklaring geldig tot</label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" id="dteExternTVDatum" formControlName="ExternTvGeldigTotDatum" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" DottedBorderBelow [bsConfig]="{ showWeekNumbers: false }">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="ddlIndieningswijzeID" class="pull-right" [class.validationHint]="TVForm.get('IndieningswijzeID')?.value === '-1' || (TVForm.get('IndieningswijzeID')?.value === '1' && uploadQueueCount === 0)">* Wijze van Indiening</label></div>
+        <div class="dropdown col-sm-8">
+            <select id="ddlIndieningswijzeID" formControlName="IndieningswijzeID">
+                <option value="-1">Selecteer</option>
+                <option value="1">Upload</option>
+                <option value="2">Fax</option>
+                <option value="3">Post</option>
+            </select>
+        </div>
+    </div>
+
+    <file-uploader *ngIf="TVForm.get('IndieningswijzeID').value === '1'"
+                   fileType="TechnischVerslag"
+                   [status]="uploadStatus"
+                   (uploaded)="filesUploaded($event)"
+                   (inQueue)="queueCountChanged($event)">
+    </file-uploader>
+
+    <div class="row">
+        <div class="col-sm-11"><h5>{{ formIsValid() ? "Verzenden" : "Validatie Resultaten"}}</h5></div>
+    </div>
+    <div [hidden]="formIsValid()">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <div *ngIf="(TVForm.get('KlantContactAchterNaam').touched || TVForm.get('KlantContactAchterNaam').dirty) && !TVForm.get('KlantContactAchterNaam').valid" [hidden]="!TVForm.controls['KlantContactAchterNaam'].errors.required" class="col-sm-8"><label class="validation">- Familienaam is vereist.</label></div>
+                <div *ngIf="(TVForm.get('KlantContactVoorNaam').touched || TVForm.get('KlantContactVoorNaam').dirty) && !TVForm.get('KlantContactVoorNaam').valid" [hidden]="!TVForm.controls['KlantContactVoorNaam'].errors.required" class="col-sm-8"><label class="validation">- Naam is vereist.</label></div>
+                <div *ngIf="(TVForm.get('KlantContactEmail').touched || TVForm.get('KlantContactEmail').dirty) && !TVForm.get('KlantContactEmail').valid" [hidden]="!TVForm.controls['KlantContactEmail'].errors.required" class="col-sm-8"><label class="validation">- Email is vereist.</label></div>
+                <div *ngIf="emailValidationMessage" class="col-sm-8"><label class="validation">- Emailadres is ongeldig.</label></div>
+                <div *ngIf="(TVForm.get('Titel').touched || TVForm.get('Titel').dirty) && !TVForm.get('Titel').valid" [hidden]="!TVForm.controls['Titel'].errors.required" class="col-sm-8"><label class="validation">- Titel Technisch Verslag is vereist.</label></div>
+                <div *ngIf="(TVForm.get('Kenmerk').touched || TVForm.get('Kenmerk').dirty) && !TVForm.get('Kenmerk').valid" [hidden]="!TVForm.controls['Kenmerk'].errors.required" class="col-sm-8"><label class="validation">- Rapportnummer Bodemdeskundige is vereist.</label></div>
+                <div *ngIf="(TVForm.get('TVDatum').touched || TVForm.get('TVDatum').dirty) && !TVForm.get('TVDatum').valid" [hidden]="!TVForm.controls['TVDatum'].errors.required" class="col-sm-8"><label class="validation">- Datum Technisch Verslag is vereist.</label></div>
+                <div *ngIf="TVForm.get('TVDatum').errors && TVForm.get('TVDatum').dirty && TVForm.get('TVDatum').errors.DateHigherThanToday" class="col-sm-8"><label class="validation">- Datum Technisch Verslag kan niet ingesteld worden op een datum in de toekomst.</label></div>
+                <div *ngIf="(TVForm.get('FactuurReferentieKlant').touched || TVForm.get('FactuurReferentieKlant').dirty) && !TVForm.get('FactuurReferentieKlant').valid" [hidden]="!TVForm.controls['FactuurReferentieKlant'].errors.required" class="col-sm-8"><label class="validation">- Uw Referentie is vereist.</label></div>
+                <div *ngIf="TVForm.get('ExternTV').value === true && TVForm.get('ExternTVReference').value === ''" class="col-sm-8"><label class="validation">- Referentie Conformverklaring is vereist.</label></div>
+                <div *ngIf="(TVForm.get('IndieningswijzeID').touched || TVForm.get('IndieningswijzeID').dirty) && !TVForm.get('IndieningswijzeID').valid" [hidden]="!TVForm.controls['IndieningswijzeID'].errors.required" class="col-sm-8"><label class="validation">- Wijze van Indiening is vereist.</label></div>
+                <div *ngIf="TVForm.get('IndieningswijzeID').value === '1' && uploadQueueCount === 0" class="col-sm-8"><label class="validation">- Bij de upload indieningswijze dient er minimaal 1 bestand te worden geupload.</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <button type="button" (click)="create()" [disabled]="!formIsValid()" class="btn btn-default">{{appLabels.Send}}</button>
+            </div>
+        </div>
+    </div>
+</form>

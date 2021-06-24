@@ -1,0 +1,87 @@
+
+
+<div *ngIf="outputSectionService.isLoading || outputSectionService.outputMetalUnits.length > 0">
+
+  <div style="width:108px" *ngIf="outputSectionService.isLoading">
+    <div>
+      Loading
+    </div>
+    <div>
+      <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+    </div>
+  </div>
+<!-- 
+  <div *ngIf="!outputSectionService.isLoading && outputSectionService.outputMetalUnits.length == 0"></div> -->
+
+  <div *ngIf="outputSectionService.isLoading || outputSectionService.outputMetalUnits.length > 0">
+    <h6  *ngIf="!outputSectionService.isLoading && outputSectionService.outputMetalUnits.length == 0">Output</h6>
+    <!-- <div style="width:108px" *ngIf="outputSectionService.isLoading">
+      <div>
+        Loading
+      </div>
+      <div>
+        <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+      </div>
+    </div> -->
+
+    <div class="matExpansionalBody">
+      <table mat-table [dataSource]="outputSectionService.outputMetalUnits"  class="mat-elevation-z8 matTable" *ngIf="!outputSectionService.isLoading">
+        Position Column
+        <ng-container matColumnDef="metalUnit">
+          <th mat-header-cell *matHeaderCellDef class="header"> Metal Unit </th>
+          <td mat-cell (click)="clickOutputRow(element.metalUnitId)"  *matCellDef="let element" class="pointer">
+            {{element.metalUnit}} </td>
+        </ng-container>
+
+        Name Column
+        <ng-container matColumnDef="packageNo">
+          <th mat-header-cell *matHeaderCellDef class="header"> Package nr </th>
+          <td mat-cell (click)="clickOutputRow(element.metalUnitId)"  *matCellDef="let element" class="pointer">
+            {{element.packageNo}} </td>
+        </ng-container>
+
+        Weight Column
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef class="header"> Weight </th>
+          <td mat-cell (click)="clickOutputRow(element.metalUnitId)" *matCellDef="let element" class="pointer">
+            {{element.weight}}
+            {{element.NextMetalMovementId}} </td>
+        </ng-container>
+
+        Errors
+        <ng-container matColumnDef="hasValidationErrors">
+          <th mat-header-cell *matHeaderCellDef class="header"></th>
+          <td mat-cell (click)="clickOutputRow(element.metalUnitId)"*matCellDef="let element" class="pointer">
+            <i *ngIf="element.hasValidationErrors" class="fa fa-exclamation-triangle" style="color:orange" matTooltip="Validation errors identified"></i></td>
+        </ng-container>
+
+        Action Column
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button [disabled]="isMetalUnitDeleteLoading(element.metalUnitId)" appStopPropagation mat-icon-button *ngIf="canNavigate(element)" [routerLink]="['/operationdetail/metalmovement', element.nextMetalMovementId]"
+              class="action float-sm-right" matTooltip="Go to consuming metal movement" matTooltipShowDelay="1000"><i
+                class="fa fa-lg fa-sign-in"></i></button>
+            <button *ngIf="canDelete(element)" appStopPropagation mat-icon-button class="action float-sm-right" (click)="clickDeleteOutputRow(element.metalUnitId)"
+              matTooltip="Delete" matTooltipShowDelay="1000"><i class="fa fa-lg fa-trash"></i></button>
+            
+            <mat-spinner *ngIf="isMetalUnitDeleteLoading(element.metalUnitId)" diameter="16" strokeWidth="2.5" class="action float-sm-right"></mat-spinner>
+
+              
+            <button [disabled]="isMetalUnitDeleteLoading(element.metalUnitId)" *ngIf="canCopy(element)" appStopPropagation mat-icon-button class="action float-sm-right" (click)="clickCopyOutputRow(element.metalUnitId)"
+              matTooltip="Copy" matTooltipShowDelay="1000"><i class="fa fa-lg fa-copy"></i></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headerCell"></tr>
+        <tr mat-row [ngClass]="{'active': row.metalUnitId == outputSectionService.activeMetalUnit}"
+          *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+
+
+  </div>
+
+
+</div>

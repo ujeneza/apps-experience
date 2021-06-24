@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+.formField{
+  width: 100%;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.inputHeader{
+  background-color: #B86EC9!important;
+  color:white;
+}
+.inputHeader:hover{
+  background-color: #B86EC9;
+  color:white;
+}
+
+
+
+.operationSection{
+  grid-area: operationSection;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+}
+.metalUnitSection{
+  grid-area: metalUnitSection;
+  width: 100%;
+  height: 100%;
+}
+
+.inputSection{
+  grid-area: inputSection;
+  width: 100%;
+  height: 100%;
+}
+
+.outputSection{
+  grid-area: outputSection;
+  width: 100%;
+  height: 100%;
+}
+
+.spacerData{
+  grid-area: spacerData;
+  width: 0.3em;
+}
+
+.operationDetailContainer{
+  display: grid;
+  grid:
+    "operationSection spacerData  metalUnitSection" 36em
+       "inputSection   spacerData  outputSection" auto
+      /*  "scrapLine      spacerData  outputSection" auto */
+       / 39%             0.3em      auto;
+       
+       width: 100%;
+  height: 100%;
+  padding:0.3em  0.3em 0.3em  0.3em;
+  margin-top: 1em;
+   background-color: #865092; 
+   box-sizing: border-box;
+}
+
+
+.mat-card {
+  box-sizing: border-box;
+}
+
+.input{
+  margin-bottom: 0.3em;
+}

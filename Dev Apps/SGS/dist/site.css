@@ -1,0 +1,796 @@
+﻿html {
+    background-color: #FFFFFF;
+    font-size: 12px;
+}
+
+/*body {
+    font-size: 12px;
+}*/
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+.panel-default {
+    border-color: #017342 !important;
+}
+
+.width100percent {
+    width: 100%;
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+/* ------------------------------------ GUI styles ------------------------------------ */
+
+.angular-with-newlines {
+    white-space: pre;
+}
+
+a {
+    font-size: 12px;
+    font-style: italic;
+}
+
+    a label {
+        color: #337ab7;
+    }
+
+        a label:hover {
+            text-decoration: underline;
+        }
+
+nav a {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+h3, h4 {
+    color: #017342 !important;
+    border-bottom-color: #017342 !important;
+    border-bottom: 1px solid !important;
+    margin-bottom: 20px;
+}
+
+h5 {
+    border-bottom: 2px solid #017342;
+    font-style: italic;
+    padding-top: 15px;
+    margin-left: 20px;
+    color: #017342;
+    font-weight: bold;
+}
+
+h6 {
+    color: #7faa2a;
+    font-weight: bold;
+}
+
+label {
+    font-size: 12px;
+    color: #017342;
+    font-weight: normal;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+input[type]:focus, textarea:focus, select:focus {
+    outline: none !important;
+    box-shadow: 0 0 3px #017342;
+    border-style: none !important;
+}
+
+    input[type]:focus.ng-invalid, textarea:focus.ng-invalid, select:focus.ng-invalid {
+        box-shadow: 0 0 3px #cc0000 !important;
+        border-style: none !important;
+    }
+
+select {
+    font-size: 12px;
+    color: #017342;
+    height: 22px;
+    /* border-bottom: 1px solid; */
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #017342;
+    background-color: transparent;
+    border-style: dotted;
+    padding-left: 10px;
+}
+
+.validation {
+    color: #cc0000 !important;
+    font-weight: bold !important;
+}
+
+.validationHint {
+    color: #cc0000 !important;
+}
+
+.dotted-border-below {
+    border-bottom: 1px !important;
+    border-bottom-style: dotted !important;
+}
+
+.form-control {
+    font-size: 12px;
+    color: #017342;
+    height: 22px;
+    /* border-bottom: 1px solid; */
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #017342;
+    background-color: transparent;
+    border-style: dotted;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 0;
+}
+
+    .form-control.ng-invalid {
+        border-color: #cc0000 !important;
+        color: #cc0000 !important;
+    }
+
+    .form-control:focus {
+        padding-left: 12px;
+    }
+
+    .form-control[disabled] {
+        border-color: #DCDCDC !important;
+        border-style: dotted !important;
+    }
+
+.row {
+    align-items: center;
+    display: flex;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.rowSetContentTop {
+    align-items: flex-start !important;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-top: 1px
+}
+
+.btn {
+    font-size: 12px;
+}
+
+.btn-default {
+    color: #B0D001 !important;
+    border-color: #ddd !important;
+    background-color: #017342 !important;
+}
+
+    .btn-default:disabled {
+        color: #333 !important;
+        background-color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+
+.alert-danger {
+    border-radius: 2px;
+}
+
+.modal-title {
+    border-bottom: 0 !important;
+}
+
+.pull-right {
+    text-align: right;
+}
+
+.multilineTextbox {
+    border: 1px solid #DADADA;
+    padding: 2px;
+}
+
+/* ------------------------------------ GUI styles tooltip ------------------------------------ */
+.tooltip.left .tooltip-arrow {
+    border-left-color: #017342 !important;
+}
+
+.tooltip.top .tooltip-arrow {
+    border-top-color: #017342 !important;
+}
+
+.tooltip-inner {
+    background-color: #017342 !important;
+}
+
+.tooltip.in {
+    opacity: 1 !important;
+}
+
+/* ------------------------------------ GUI styles popover ------------------------------------ */
+.popover-alert-danger.popover-left .popover {
+    left: 20px !important;
+}
+
+.popover-alert-danger.popover-left .arrow {
+    left: 20px !important;
+}
+
+.popover-alert-danger .popover-content {
+    color: #a94442;
+    background-color: #f2dede;
+    border-radius: 5px;
+    margin: -1px;
+}
+
+.popover-alert-danger .popover {
+    border-color: #a94442;
+}
+
+    .popover-alert-danger .popover.top > .arrow {
+        border-top-color: #a94442;
+    }
+
+        .popover-alert-danger .popover.top > .arrow:after {
+            border-top-color: #f2dede;
+        }
+
+    .popover-alert-danger .popover.bottom > .arrow:after {
+        border-bottom-color: #f2dede;
+    }
+
+    .popover-alert-danger .popover.bottom > .arrow {
+        border-bottom-color: #a94442;
+    }
+
+/* ------------------------------------ GUI styles pdflink ------------------------------------ */
+
+.pdfLink label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ------------------------------------ Padding ------------------------------------ */
+.paddingLeft10px {
+    padding-left: 10px;
+}
+
+.paddingLeft15px {
+    padding-left: 15px;
+}
+
+.paddingLeft20px {
+    padding-left: 20px;
+}
+
+.paddingLeft30px {
+    padding-left: 30px;
+}
+
+.paddingLeft40px {
+    padding-left: 40px;
+}
+
+
+
+.paddingRight10px {
+    padding-right: 10px;
+}
+
+.paddingRight20px {
+    padding-right: 20px;
+}
+
+.paddingRight30px {
+    padding-right: 30px;
+}
+
+.paddingRight40px {
+    padding-right: 40px;
+}
+
+
+
+.paddingTop0 {
+    padding-top: 0;
+}
+
+.paddingTop10px {
+    padding-top: 10px;
+}
+
+.paddingTop20px {
+    padding-top: 20px;
+}
+
+.paddingTop30px {
+    padding-top: 30px;
+}
+
+.paddingTop40px {
+    padding-top: 40px;
+}
+
+
+.paddingBottom0 {
+    padding-bottom: 0;
+}
+
+.paddingBottom10px {
+    padding-bottom: 10px;
+}
+
+.paddingBottom40px {
+    padding-bottom: 40px;
+}
+
+.paddingBottom60px {
+    padding-bottom: 60px;
+}
+
+/* ------------------ Margin ------------------ */
+.marginLeft10px {
+    margin-left: 10px;
+}
+
+.marginLeft20px {
+    margin-left: 20px;
+}
+
+.marginLeft30px {
+    margin-left: 30px;
+}
+
+.marginLeft40px {
+    margin-left: 40px;
+}
+
+
+
+.marginRight10px {
+    margin-right: 10px;
+}
+
+.marginRight20px {
+    margin-right: 20px;
+}
+
+.marginRight30px {
+    margin-right: 30px;
+}
+
+.marginRight40px {
+    margin-right: 40px;
+}
+
+
+
+.marginTop0 {
+    margin-top: 0;
+}
+
+.marginTop10px {
+    margin-top: 10px;
+}
+
+.marginTop20px {
+    margin-top: 20px;
+}
+
+.marginTop30px {
+    margin-top: 30px;
+}
+
+.marginTop40px {
+    margin-top: 40px;
+}
+
+
+
+
+.marginBottom0 {
+    margin-bottom: 0;
+}
+
+.marginBottom10px {
+    margin-bottom: 10px;
+}
+
+.marginBottom20px {
+    margin-bottom: 20px;
+}
+
+.marginBottom30px {
+    margin-bottom: 30px;
+}
+
+.marginBottom40px {
+    margin-bottom: 40px;
+}
+
+
+
+
+/* NGX DATATABLE PACKAGE */
+.NgxFilterField {
+    width: 100%;
+    font-size: 12px;
+    border-radius: 3px;
+    box-shadow: none;
+    border: none;
+    color: #017342;
+    padding-left: 4px;
+    float: left;
+}
+
+.NgxFilterLabel {
+    float: left;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.NgxTitle {
+    font-size: 12px;
+    font-weight: bold;
+    color: #017342;
+    width: 100%;
+}
+
+
+.NgxTable {
+    text-align: left;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    border: 0px;
+    width: 100%;
+}
+
+    .NgxTable > input {
+        border-color: #017342;
+    }
+
+    .NgxTable .empty-row {
+        color: #017342;
+        font-size: 12px;
+    }
+
+.NgxHeader {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #017342;
+    color: #B0D001;
+}
+
+.NgxHeaderCentered {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #017342;
+    color: #B0D001;
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.NgxRow {
+    border-bottom-width: 1px;
+    border-color: #E5E5E5;
+    border-bottom-style: solid;
+}
+
+.NgxCell {
+    color: blue;
+    font-weight: bold;
+}
+
+.datatable-body-cell, .datatable-header-cell, .page-count {
+    padding-left: 4px;
+}
+
+.datatable-header-cell {
+    padding-top: 2px;
+    padding-bottom: 6px;
+    padding-right: 20px;
+}
+
+.datatable-body-cell {
+    border-left-style: solid;
+    border-color: #E5E5E5;
+    border-width: 1px;
+}
+
+.datatable-body-cell-label {
+    font-size: 12px;
+}
+
+.datatable-footer-inner .page-count {
+    font-size: 12px;
+}
+
+.pager li > a, .pager li > span {
+    font-size: 12px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.ngx-datatable label {
+    cursor: pointer;
+}
+
+.ngx-datatable span {
+    cursor: pointer;
+}
+
+.ngx-datatable.bootstrap {
+    border: solid 1px;
+    border-color: #E8E8E8;
+}
+
+    .ngx-datatable.bootstrap:not(.cell-selection) .datatable-body-row:not(:hover), .ngx- datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable- row-group {
+        color: #017342;
+    }
+
+    .ngx-datatable.bootstrap:not(.cell-selection) .datatable-body-row:hover, .ngx- datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable- row-group {
+        background: #7faa2a;
+        color: #dadada;
+    }
+
+.datatable-row-even {
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.datatable-row-odd {
+    background: #EEEEEE;
+    cursor: pointer;
+}
+
+.page-count, .datatable-pager > ul > li > a {
+    color: #017342;
+}
+
+.datatable-pager > ul > li.active > a {
+    font-weight: bold;
+}
+
+.ngx-datatable .datatable-footer .datatable-footer-inner {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #017342;
+    padding-right: 10px;
+}
+
+/*table component*/
+.GWTableContainer {
+    max-width: 1200pt;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10pt;
+    font-family: Calibri;
+    padding: 0.5em 1em 1em 1em;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #EEEEEE;
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+}
+
+    .GWTableContainer h2 {
+        color: #017342;
+        font-size: 1.2em;
+        font-weight: bold
+    }
+
+    .GWTableContainer h3 {
+        color: #017342;
+        font-size: 0.8em;
+        font-weight: normal;
+        text-align: center;
+    }
+
+.GWTable, .GWTableE {
+    text-align: left;
+    color: #017342;
+    border-collapse: collapse;
+}
+
+.GWTable {
+    width: 100%;
+}
+
+    .GWTable a,
+    .GWTable a:visited {
+        text-decoration: none !important;
+        color: #337ab7;
+    }
+
+    .GWTable tr.seperator td {
+        vertical-align: middle;
+        padding: 0.5em;
+    }
+
+    .GWTable tr:not(.seperator) td, .GWTableE tr:not(.seperator) td {
+        vertical-align: middle;
+        padding: 0.25em;
+        border: 1px solid #848685;
+        font-size: 12px;
+    }
+
+    .GWTable thead tr th, .GWTableE thead tr th {
+        text-align: left;
+        padding: 0.5em;
+        background-color: #017342;
+        color: #B0D001;
+        border: 1px solid #848685;
+        font-size: 12px;
+    }
+
+    .GWTable tbody tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+
+    .GWTable tbody tr:nth-child(even) {
+        background-color: #EEEEEE;
+    }
+
+    .GWTable tbody tr.seperator,
+    .GWTable tbody tr.seperator:hover {
+        text-align: left;
+        padding: 0.5em;
+        background-color: #EEEEEE;
+        color: #017342;
+    }
+
+    .GWTable tbody tr:hover {
+        /*cursor: pointer;*/
+        background-color: #7faa2a;
+        color: #dadada;
+    }
+
+        .GWTable tbody tr:hover a {
+            color: #dadada;
+        }
+
+    .GWTable tbody input[type=button] {
+        width: 100%;
+        color: #017342;
+        font-family: Calibri;
+        font-weight: bold;
+        padding: 0px;
+    }
+
+.GWFormContainer {
+    max-width: 1200pt;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20pt;
+    font-family: Calibri;
+    padding: 0.5em 1em 1em 1em;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #EEEEEE;
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+}
+
+    .GWFormContainer h2 {
+        color: #017342;
+        font-size: 1.2em;
+        font-weight: bold
+    }
+
+    .GWFormContainer h3 {
+        color: #017342;
+        font-size: 0.8em;
+        font-weight: normal;
+        text-align: center;
+    }
+
+.GWForm {
+    width: 66.66%;
+    text-align: left;
+    color: #017342;
+    background-color: #FFFFFF;
+    font-family: Calibri;
+    margin: 5px auto 0px auto;
+    border-top: 1px solid #017342;
+}
+
+    .GWForm thead th {
+        border-bottom: 1px solid #017342;
+    }
+
+    .GWForm tbody tr:not(.seperator):not(.FormActions) td:first-child {
+        background-color: #f2f2f2;
+        padding: 0px 5px 0px 15px;
+        width: 45%;
+        color: #017342;
+        font-size: 12px;
+    }
+
+    .GWForm tbody tr.seperator td:first-child {
+        border: 2px solid #EEEEEE;
+        padding: 5px 5px 5px 15px;
+        width: 100%;
+    }
+
+    .GWForm tbody tr:not(.seperator):not(.FormActions) td:not(first-child) {
+        width: 55%;
+        text-align: left;
+    }
+
+        .GWForm tbody tr:not(.seperator):not(.FormActions) td:not(first-child) select,
+        .GWForm tbody tr:not(.seperator):not(.FormActions) td:not(first-child) input:not([type=checkbox]):not([type=radio]) {
+            width: 100%;
+            text-align: left;
+            border: 1px solid #017342;
+            padding: 0px -15px 0px 15px;
+            color: #017342;
+        }
+
+    .GWForm tbody tr.FormActions td {
+        border-top: 1px solid #017342;
+        padding: 5px 5px 5px 15px;
+        font-weight: bold;
+        width: 100%;
+        text-align: right;
+    }
+
+    .GWForm tbody tr.FormActions input {
+        font-weight: bold;
+        font-family: Calibri;
+        margin-left: 10px;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        color: #017342;
+    }
+
+    .GWForm tfoot td {
+        border-top: 1px solid #017342;
+        font-family: Calibri;
+        color: #FF0000;
+    }
+
+.ibtn {
+    cursor: pointer
+}
+
+.pager td > div, .pager th > div {
+    width: 20px;
+    text-align: center;
+}
+
+.pager td, .pager th {
+    padding: 2px !important;
+}
+
+.pager td {
+    cursor: pointer;
+}
+
+.grayed {
+    color: gray
+}
+
+.labelFont {
+    font-size: 12px;
+}
+/* end of table component*/

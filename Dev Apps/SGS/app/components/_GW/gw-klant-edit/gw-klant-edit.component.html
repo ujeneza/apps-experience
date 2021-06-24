@@ -1,0 +1,320 @@
+﻿<h4>Klanten overzicht</h4>
+<form [formGroup]="klantForm" class="container-fluid paddingTop10px">
+
+    <!-- Klant gegevens -->
+    <div class="row">
+        <div class="col-sm-11"><h5>Klant Aanvrager Gegevens</h5></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="txtKlantNr" class="pull-right">Klantnummer</label></div>
+        <div class="col-sm-8"><input type="text" id="txtKlantNr" formControlName="KlantNr" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Voornaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="voornaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.controls['achternaam']?.errors">* Achternaam</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="achternaam" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="ddlGeslacht" class="pull-right">Geslacht</label></div>
+        <div class="col-sm-8">
+            <select id="ddlGeslacht" class="controlWidth" DottedBorderBelow formControlName="geslacht">
+                <option value="m">Man</option>
+                <option value="v">Vrouw</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Functie</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="functie" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam bedrijf/instelling </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="organisatie" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">BTW nummer (voor organisaties) </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="btwNummer" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Nr. identiteitskaart (voor particulieren) </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="idkaartNummer" maxlength="50" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lid bij koepel-organisatie</label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="beroepsorganisatieID">
+                <option [value]="nullItem"></option>
+                <option *ngFor="let o of BeroepsorganisatieListItems" [value]="o.beroepsorganisatieID">{{o.beroepsorganisatie}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lidnummer koepel-organisatie </label></div>
+        <div class="col-sm-8"><input type="text" formControlName="lidnummerBouwunie" maxlength="20" DottedBorderBelow class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lidnummer van Bouwunie is geldig </label></div>
+        <div class="col-sm-8">
+            <select value="0" class="controlWidth" DottedBorderBelow formControlName="lidnummerBouwunieok">
+                <option value="-1">Ja</option>
+                <option value="0">Nee</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Branche/hoedanigheid </label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="brancheID">
+                <option [value]="nullItem"></option>
+                <option *ngFor="let o of BrancheListItems" [value]="o.brancheID">{{o.branche}}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">EBDS Details<br>(Indien ingevuld verschijnt de EBSD in de lijst op het web)</label></div>
+        <div class="col-sm-8"><textarea formControlName="ebsdDetails" rows="4" cols="50" maxlength="1000" class="form-control setArea"></textarea></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.controls['lidNummerAannemer']?.errors">Lidnummer van registratie als aannemer</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="lidNummerAannemer" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Reeds gebruikte email adressen</h5>
+    </div>
+    <div class="row setTop paddingTop10px">
+        <div class="col-sm-3"><label class="pull-right">E-mails</label></div>
+        <div class="col-sm-8"><textarea formControlName="usedEmail" rows="4" cols="50" class="form-control setArea"></textarea></div>
+
+    </div>
+
+    <!-- Address -->
+    <div class="row">
+        <h5 class="col-sm-11">Adres</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.controls['adres1']?.errors">*  Straat en nr</label></div>
+        <div class="col-sm-8"><input type="text" formControlName="adres1" DottedBorderBelow class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><input DottedBorderBelow formControlName="adres2" type="text" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('postcode').errors">* Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="postcode" class="form-control" maxlength="10"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('plaats').errors">* Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="plaats" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Land</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="land" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <!-- Facturatie-adres -->
+    <div class="row">
+        <h5 class="col-sm-11">Facturatie-adres (indien verschillend van vorig adres)</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurAdres1" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurAdres2" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurPostcode" class="form-control" maxlength="10"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurPlaats" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Land</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="factuurLand" class="form-control" maxlength="50"></div>
+    </div>
+
+    <!-- gegevens inrichting  -->
+
+    <div class="row">
+        <h5 class="col-sm-11"> Aanvullende gegevens inrichting</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingStraat" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Straat en nr (vervolg)</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingStraat2" class="form-control" maxlength="100"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Postcode</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingPostcode" class="form-control" maxlength="10"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Gemeente</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingGemeente" class="form-control" maxlength="50"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Bestemmingstype ontvangende locatie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingBestemmingstype" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Kadastrale gegevens</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingKadastraleGegevens" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Lambert-coördinaten centraal punt</label></div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LX" class="col-sm-2" [class.validationHint]="klantForm.get('inrichtingLX').errors">X </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="inrichtingLX" class="form-control" AllowOnlyNumbers tooltip="De X-coördinaat moet tussen 20000 en 280000 liggen" placement="top">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <label for="LY" class="col-sm-2" [class.validationHint]="klantForm.get('inrichtingLY').errors">Y </label>
+                <div class="col-sm-10">
+                    <input type="text" DottedBorderBelow formControlName="inrichtingLY" class="form-control" AllowOnlyNumbers tooltip="De Y-coördinaat moet tussen 150000 en 250000 liggen" placement="top">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3"><label>Als u de Lambert coördinaten niet kent kan u ze op de volgende website opzoeken:<a href="#" (click)="$event.preventDefault();toGeopunt()">www.geopunt.be</a></label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Datum verleende milieuvergunning</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingDatumMilieuvergunning" class="form-control ng-trim-ignore" tooltip="(bv. 31/1/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Naam vergunningverlenende instantie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingVergunningverlenendeInstantie" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Datum bouwvergunning</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="inrichtingDatumBouwvergunning" class="form-control ng-trim-ignore" tooltip="(bv. 31/1/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Capaciteit van de inrichting (m³)</label></div>
+        <div class="col-sm-8"><input type="number" AllowOnlyNumbers DottedBorderBelow formControlName="inrichtingHoeveelheidGrond" class="form-control" maxlength="50"></div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Gebruikersinformatie</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Telefoon</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="telefoon" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Fax</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="fax" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('email').errors">* E-mail</label></div>
+        <div class="col-sm-3"><input type="text" DottedBorderBelow formControlName="email" class="form-control" maxlength="50"></div>
+        <div class="col-sm-5" *ngIf="klantForm.get('email').value && !klantForm.get('email').errors">
+            <label class="pull-left"><a (click)="sendPaswoordEmail()"> Paswoord gegevens mailen</a></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('login').errors || LoginValidationMessage != ''">* Gebruikersnaam</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="login" class="form-control" maxlength="50" [ngClass]="{'dotted-border-below-hint':LoginValidationMessage != ''}"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('paswoord').errors">* Paswoord</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="paswoord" class="form-control" maxlength="50"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right">Status </label></div>
+        <div class="col-sm-8">
+            <select class="controlWidth" DottedBorderBelow formControlName="KlantStatusID">
+                <option [value]="nullItem"></option>
+                <option *ngFor="let o of KlantStatusListItems" [value]="o.klantStatusID">{{o.status}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isGwCustomer" value="">Is klant bij GW</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="isVisibleForCustomers" value="">Is zichtbaar voor andere klanten</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label class="pull-right" [class.validationHint]="klantForm.get('facturatieStartDatum').errors"> Startdatum facturatie :<br>(indien klant aangesloten bij andere organisatie</label></div>
+        <div class="col-sm-8"><input type="text" DottedBorderBelow formControlName="facturatieStartDatum" class="form-control ng-trim-ignore" tooltip="(bv. 31/01/2004)" bsDatepicker placement="top left" autocomplete="off" [bsConfig]="{ showWeekNumbers: false }"></div>
+    </div>
+    <div class="row">
+        <div class="checkbox col-sm-8 col-sm-offset-3">
+            <label><input type="checkbox" formControlName="gefactureerd" value="">  Gefactureerd</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <h5 class="col-sm-11">Bewaren klantgegevens</h5>
+    </div>
+    <div [hidden]="isKlantFormValid()">
+        <div class="row setTop paddingTop10px">
+            <div class="col-sm-8 col-sm-offset-3 validation">
+                <div *ngIf="(klantForm.get('achternaam').touched || klantForm.get('achternaam').dirty) &&!klantForm.get('achternaam').valid" [hidden]="!klantForm.controls['achternaam'].errors.required" class="col-sm-8"><label class="validation">- Achternaam is vereist.</label></div>
+                <div *ngIf="(klantForm.get('lidNummerAannemer').touched || klantForm.get('lidNummerAannemer').dirty) && !klantForm.get('lidNummerAannemer').valid" [hidden]="!klantForm.controls['lidNummerAannemer'].errors.min" class="col-sm-8 validation"><label class="validation">-Lidnummer van registratie als aannemer dient min. 100000 te zijn.</label></div>
+                <div *ngIf="(klantForm.get('lidNummerAannemer').touched || klantForm.get('lidNummerAannemer').dirty) && !klantForm.get('lidNummerAannemer').valid" [hidden]="!klantForm.controls['lidNummerAannemer'].errors.max" class="col-sm-8 validation"><label class="validation">-Lidnummer van registratie als aannemer mag max. 999999 zijn.</label></div>
+                <div *ngIf="(klantForm.get('adres1').touched || klantForm.get('adres1').dirty) &&!klantForm.get('adres1').valid" [hidden]="!klantForm.controls['adres1'].errors.required" class="col-sm-8"><label class="validation">- Straat en nr is vereist.</label></div>
+                <div *ngIf="(klantForm.get('postcode').touched || klantForm.get('postcode').dirty) &&!klantForm.get('postcode').valid" [hidden]="!klantForm.controls['postcode'].errors.required" class="col-sm-8"><label class="validation">- Postcode is vereist.</label></div>
+                <div *ngIf="(klantForm.get('plaats').touched || klantForm.get('plaats').dirty) &&!klantForm.get('plaats').valid" [hidden]="!klantForm.controls['plaats'].errors.required" class="col-sm-8"><label class="validation">- Gemeente is vereist.</label></div>
+                <div *ngIf="(klantForm.get('inrichtingLX').touched || klantForm.get('inrichtingLX').dirty) && !klantForm.get('inrichtingLX').valid" [hidden]="!klantForm.controls['inrichtingLX'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat X dient min. 20000 te zijn.</label></div>
+                <div *ngIf="(klantForm.get('inrichtingLX').touched || klantForm.get('inrichtingLX').dirty) && !klantForm.get('inrichtingLX').valid" [hidden]="!klantForm.controls['inrichtingLX'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat X mag max. 280000 zijn.</label></div>
+                <div *ngIf="(klantForm.get('inrichtingLY').touched || klantForm.get('inrichtingLY').dirty) && !klantForm.get('inrichtingLY').valid" [hidden]="!klantForm.controls['inrichtingLY'].errors.min" class="col-sm-8"><label class="validation">- Lambert coördinaat Y dient min. 150000 te zijn.</label></div>
+                <div *ngIf="(klantForm.get('inrichtingLY').touched || klantForm.get('inrichtingLY').dirty) && !klantForm.get('inrichtingLY').valid" [hidden]="!klantForm.controls['inrichtingLY'].errors.max" class="col-sm-8"><label class="validation">- Lambert coördinaat Y mag max. 250000 zijn.</label></div>
+                <div *ngIf="(klantForm.get('email').touched || klantForm.get('email').dirty) && !klantForm.get('email').valid" [hidden]="!klantForm.controls['email'].errors.required" class="col-sm-8"><label class="validation">-Email Aanvrager is vereist.</label></div>
+                <div *ngIf="(klantForm.get('email').touched || klantForm.get('email').dirty) && !klantForm.get('email').valid" [hidden]="!klantForm.controls['email'].errors.pattern" class="col-sm-8"><label class="validation">-Emailadres is niet geldig.</label></div>
+                <div *ngIf="(klantForm.get('login').touched || klantForm.get('login').dirty) && !klantForm.get('login').valid" [hidden]="!klantForm.controls['login'].errors?.required" class="col-sm-8"><label class="validation">-Gebruikersnaam is vereist.</label></div>
+                <div *ngIf="(klantForm.get('paswoord').touched || klantForm.get('paswoord').dirty) && !klantForm.get('paswoord').valid" [hidden]="!klantForm.controls['paswoord'].errors?.required" class="col-sm-8"><label class="validation">-Paswoord is vereist.</label></div>
+                <div *ngIf="LoginValidationMessage != ''" class="col-sm-8"><label class="validation">{{LoginValidationMessage}}</label></div>
+            </div>
+        </div>
+    </div>
+    <div class="paddingBottom40px">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button type="button" [disabled]="!isKlantFormValid()" (click)="save()" class="btn btn-default">Send Data</button>
+            </div>
+        </div>
+    </div>
+
+    <gw-documents [id]="klantId"
+                  [documentType]="gwDocumentType"
+                  [emailHistoriekType]="emailHistoriekType"
+                  [canSendNewEmail]="canSendNewEmail"
+                  [status]="uploadStatus"
+                  [uploadByParent]="false"
+                  [refreshNeeded]="refreshDocumentsNeeded"
+                  [showDocuments]="true"
+                  [showMails]="true"
+                  (uploadingFiles)="uploadFiles($event)">
+    </gw-documents>
+
+
+</form>

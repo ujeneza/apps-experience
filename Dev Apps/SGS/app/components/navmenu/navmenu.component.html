@@ -1,0 +1,168 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="container-fluid">
+                <a *ngIf="!gwIsLoggedIn" class="navbar-brand" [routerLink]="['/home']">
+                    <span class="glyphicon glyphicon-home paddingRight10px" style="margin-left: -12px;"></span>Grondwijzer
+                </a>
+                <a  *ngIf="gwIsLoggedIn" class="navbar-brand" [routerLink]="['/gw/home']">
+                    <span class="glyphicon glyphicon-home paddingRight10px" style="margin-left: -12px;"></span>Grondwijzer
+                </a>
+                <div class="nav navbar-nav" style="min-width: 32px"><div *ngIf="showLoadingAnimation" class="la-timer"><div></div></div></div>
+            </div>
+        </div>
+        <div class="navbar-collapse collapse container-fluid">
+            <ul class="nav navbar-nav">
+
+                <li *ngIf="!userIsLoggedIn && !gwIsLoggedIn" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inschrijven<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/inschrijven-als-gebruiker']" routerLinkActive="active" (click)="closeNavbar()">Inschrijven als gebruiker</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/inschrijven-als-top-cgr']" routerLinkActive="active" (click)="closeNavbar()">Inschrijven als TOP / CGR</a></li>
+                        <!-- For now DOP is not shown because it seems it's never been used in the old website anyway-->
+                        <!--<li role="separator" class="divider"></li>
+            <li><a [routerLink]="['/inschrijven-als-dop']" routerLinkActive="active" (click)="closeNavbar()">Inschrijven als DOP</a></li>-->
+                    </ul>
+                </li>
+
+                <li *ngIf="gwIsLoggedIn" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lijsten<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '0'}" routerLinkActive="active" (click)="closeNavbar()">Kleine Werken</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '1'}" routerLinkActive="active" (click)="closeNavbar()">Technisch Verslag</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '2'}" routerLinkActive="active" (click)="closeNavbar()">Grond Transport Melding</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '3'}" routerLinkActive="active" (click)="closeNavbar()">Grond Verzet Toelating</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '7'}" routerLinkActive="active" (click)="closeNavbar()">Bodem Beheer Rapport</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '8'}" routerLinkActive="active" (click)="closeNavbar()">Puin Aanvragen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '4'}" routerLinkActive="active" (click)="closeNavbar()">Online Ingevuld</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '5'}" routerLinkActive="active" (click)="closeNavbar()">Gegevens Aanpassen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" [queryParams]="{Pg: '6'}" routerLinkActive="active" (click)="closeNavbar()">Nieuwe Klanten</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="gwIsLoggedIn" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Beheer<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">Gegevens Aanpassen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">Klanten</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">TOP_CGR</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">DossierBeheerders</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="gwIsLoggedIn" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Acties<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">BBR Herinneringen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">Werfopvolging</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/gw/home']" routerLinkActive="active" (click)="closeNavbar()">Aandachtspunten</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="gwIsLoggedIn" class="dropdown">
+                    <a [routerLink]="['/gw/export']" routerLinkActive="active" (click)="closeNavbar()"><span>Export</span></a>
+                </li>
+                <li *ngIf="gwIsLoggedIn" class="dropdown dropLog">
+
+                    <!--<div class="row" style="padding-left: 40px; padding-top: 10px;">
+
+        <input  type="text"  class="form-control searchLog"/>
+        <button type="button"  class="btn navbar-btn">Inloggen als</button>
+
+        </div>-->
+                    <div class=" logRow">
+                        <input type="text" class="searchLog"/>
+                        <button type="button" class="btn navbar-btn logButton">Inloggen als</button>
+                    </div>
+                   
+
+                </li>
+ 
+
+                <li *ngIf="showKleineWerven" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kleine Werken<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/kleinewerven-aanvragen']" routerLinkActive="active" (click)="closeNavbar()">Melden</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/kleinewerven-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showTechnischVerslag" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technisch verslag<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/technisch-verslag-indienen']" routerLinkActive="active" (click)="closeNavbar()">Indienen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/technisch-verslag-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showTransportTopCgr" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transport TOP/CGR<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/transport-top-cgr-melden']" routerLinkActive="active" (click)="closeNavbar()">Melden</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/transport-top-cgr-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showTopGrondtransportmelding" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grondtransportmelding<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/grondverzettoelating-aanvragen']" routerLinkActive="active" (click)="closeNavbar()">Melden</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/top-grondtransport-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showGrondverzettoelating" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Grondverzettoelating<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/grondverzettoelating-aanvragen']" routerLinkActive="active" (click)="closeNavbar()">Aanvragen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/grondverzettoelating-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showBodembeheerrapport" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bodembeheerrapport<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/bodembeheerrapport-aanvragen']" routerLinkActive="active" (click)="closeNavbar()">Aanvragen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/bodembeheerrapport-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="showAfvoerPuin" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aanvraag LMRP<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/puin-lmrp-aanvragen']" routerLinkActive="active" (click)="closeNavbar()">Aanvragen</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a [routerLink]="['/puin-lmrp-status']" routerLinkActive="active" (click)="closeNavbar()">Status</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="userIsLoggedIn" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mijn gegevens<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/mijn-gegevens-aanpassen']" routerLinkActive="active" (click)="closeNavbar()">Aanpassen</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div *ngIf="userIsLoggedIn || gwIsLoggedIn" class="pull-right">
+                <ul class="nav navbar-nav">
+                    <li><button type="submit" class="btn navbar-btn" value="Log Out" (click)="logout()">Afmelden</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

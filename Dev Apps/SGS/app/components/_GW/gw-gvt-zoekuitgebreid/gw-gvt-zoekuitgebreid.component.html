@@ -1,0 +1,94 @@
+﻿<form [formGroup]="zkForm" class="container-fluid paddingTop30px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2"><label for="txtCode" class="pull-right">Code</label></div>
+            <div class="col-sm-4"><input type="text" id="txtCode" formControlName="Code" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="tvtTvId" class="pull-right">TV Nummer:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtTvId" formControlName="TvId" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="ddlKlant" class="pull-right">Klant</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlKlant" formControlName="KlantId" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let klant of KlantListItems" [value]="klant.klantID" [innerHTML]="klant.naam"></option>
+                </select>
+            </div>
+            <div class="col-sm-2"><label for="ddlDossierBeheerder" class="pull-right">DossierBeheerder</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlDossierBeheerder" formControlName="DossierBeheerderId" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let dossbeh of DossierBeheerderListItems" [value]="dossbeh.dossierBeheerderID" [innerHTML]="dossbeh.naam"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="ddlStatus" class="pull-right">Status</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlStatus" formControlName="StatusId" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let sts of StatusListItems" [value]="sts.tvStatusID" [innerHTML]="sts.status"></option>
+                </select>
+            </div>
+            <div class="col-sm-2"><label for="ddlBestemmingsaard" class="pull-right">Bestemmingsaard</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlBestemmingsaard" formControlName="BestemmingsaardId" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option *ngFor="let aard of BestemmingsaardListItems" [value]="aard.bestemmingsAardId" [innerHTML]="aard.bestemmingsAard"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtStraat" class="pull-right">Bestemming Straat</label></div>
+            <div class="col-sm-4"><input type="text" id="txtStraat" formControlName="Straat" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlGefactureerd" class="pull-right">Gefactureerd</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlGefactureerd" formControlName="Gefactureerd" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option value="1">Ja</option>
+                    <option value="0">Nee</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtPostcode" class="pull-right">Bestemming Postcode:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtPostcode" formControlName="Postcode" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="txtGemeente" class="pull-right">Bestemming Gemeente:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtGemeente" formControlName="Gemeente" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtLambertX" class="pull-right">Bestemming Lambert X (in m)</label></div>
+            <div class="col-sm-4"><input type="text" id="txtLambertX" formControlName="LambertX" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="ddlLambertRange" class="pull-right">Lambert Range:</label></div>
+            <div class="dropdown col-sm-4">
+                <select id="ddlLambertRange" formControlName="LambertRange" DottedBorderBelow class="width100percent">
+                    <option value="-1">Selecteer</option>
+                    <option value="1">1 km</option>
+                    <option value="3">3 km</option>
+                    <option value="5">5 km</option>
+                    <option value="10">10 km</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtLambertX" class="pull-right">Bestemming Lambert Y (in m)</label></div>
+            <div class="col-sm-4"><input type="text" id="txtLambertY" formControlName="LambertY" AllowOnlyNumbers DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-6">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="txtVStraat" class="pull-right">TV Straat:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtVStraat" formControlName="VertrekStraat" DottedBorderBelow class="form-control"></div>
+            <div class="col-sm-2"><label for="txtVGemeente" class="pull-right">TV Gemeente:</label></div>
+            <div class="col-sm-4"><input type="text" id="txtVGemeente" formControlName="VertrekGemeente" DottedBorderBelow class="form-control"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><label for="dteVan" class="pull-right">Datum Van:</label></div>
+            <div class="col-sm-4"><input type="text" id="dteVan" formControlName="datVan" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" DottedBorderBelow [bsConfig]="{ showWeekNumbers: false }"></div>
+            <div class="col-sm-2"><label for="dteTot" class="pull-right">Datum Tot:</label></div>
+            <div class="col-sm-4"><input type="text" id="dteTot" formControlName="datTot" class="form-control ng-trim-ignore" bsDatepicker placement="top left" autocomplete="off" DottedBorderBelow [bsConfig]="{ showWeekNumbers: false }"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8"><button type="button" (click)="raiseSearch()" class="btn btn-default">{{appLabels.Send}}</button></div>
+        </div>
+    </div>
+</form>

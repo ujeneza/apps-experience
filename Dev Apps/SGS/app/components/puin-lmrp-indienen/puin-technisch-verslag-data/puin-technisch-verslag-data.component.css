@@ -1,0 +1,8 @@
+﻿
+.dividerLine {
+    border-top: 3px double #017342;
+    padding-bottom: 30px;
+}
+.dividerLineWithoutPadding {
+    border-top: 3px double #017342;    
+}

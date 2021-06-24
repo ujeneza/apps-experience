@@ -1,0 +1,36 @@
+﻿<div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Selecteer een GTM om te koppelen </h4>
+        </div>
+        <div class="modal-body">
+           
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="NgxTable">
+                            <ngx-datatable #table
+                                           class="bootstrap"
+                                           [rows]="tvFoundRows"
+                                           [columns]="tvFoundColumns"
+                                           [columnMode]="'flex'"
+                                           [footerHeight]="40"
+                                           [limit]="15"
+                                           [cssClasses]="appLabels.iconsCss"
+                                           [rowClass]="getRowClass"
+                                           [rowHeight]="'auto'"
+                                           [messages]="{totalMessage: appLabels.Total.toLowerCase(), emptyMessage: appLabels.NoDataToDisplay}"
+                                           [sorts]="[{prop:'technischVerslagID', dir:'asc' }]"
+                                           (activate)="gtmSelect($event)">
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="closeTVzoek" class="btn btn-default" data-dismiss="modal">{{appLabels.Close}}</button>
+        </div>
+    </div>
+
+</div>

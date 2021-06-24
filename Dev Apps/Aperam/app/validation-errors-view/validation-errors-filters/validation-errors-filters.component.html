@@ -1,0 +1,96 @@
+<mat-card class="filtersTabView">
+
+  <!-- header -->
+  <mat-card-header class="matCardHeaderTabView">
+    <mat-card-title class="matCardTitleTabView">
+      <i class="material-icons">filter_list</i>
+      <div> &nbsp; &nbsp;Validation Errors</div>
+    </mat-card-title>
+  </mat-card-header>
+
+  <!-- Input area for filters -->
+  <mat-card-content class="navivationFilterContent">
+    <form [formGroup]="validationErrorsFiltersForm" class="filterFormsConfig">
+
+        <mat-form-field>
+            <input matInput type="text" formControlName="metalUnit" name="metalUnit" minlength="3" placeholder="Metal Unit Number">
+            <mat-error *ngIf="validationErrorsFiltersForm.controls['metalUnit'].hasError('minlength')">Please enter minimum 3 characters</mat-error>
+           
+          </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-select formControlName="siteId" placeholder="Site" disableOptionCentering="true" (selectionChange)="getProductionLineFromSite($event.value); ">
+          <mat-option>All</mat-option>
+          <mat-option *ngFor="let siteList of sitesList" [value]="siteList?.siteId">{{siteList?.site}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-select formControlName="productionLineId" placeholder="Production Line" disableOptionCentering="true"
+          (selectionChange)="getOperationFromProduction($event.value); ">
+          <mat-option>All</mat-option>
+
+          <mat-option *ngFor="let  productionLineList of productionLinesList" [value]="productionLineList?.productionLineId">{{productionLineList?.productionLine}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-select formControlName="operationId" placeholder="Operation" disableOptionCentering="true">
+          <mat-option>All</mat-option>
+          <mat-option *ngFor="let  operationList of operationsList" [value]="operationList?.operationId">{{operationList?.operation}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="validationStatusId" placeholder="Validation Status" disableOptionCentering="true">
+          <mat-option>All</mat-option>
+          <mat-option *ngFor="let  validationState of validationStates" [value]="validationState?.statusId">{{validationState?.status}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="assignee" placeholder="Person Assigned To" disableOptionCentering="true">
+          <mat-option>All</mat-option>
+          <mat-option *ngFor="let  personAssingee of personAssingees" [value]="personAssingee?.assigneeId">{{personAssingee?.assignee}}</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Rules" formControlName="rule" multiple disableOptionCentering="true" 
+          (selectionChange)="getSelectedRules($event.value);">
+          <mat-option *ngFor="let rule of rules" [value]="rule?.ruleId">{{rule?.rule}}</mat-option>
+        </mat-select>
+
+
+      </mat-form-field>
+
+      <mat-chip-list *ngFor="let selectedRule of selectedRules">
+        <mat-chip>{{selectedRule}}</mat-chip>
+
+      </mat-chip-list>
+
+
+
+
+    </form>
+  
+
+
+
+    <!-- Action buttons -->
+    <mat-action-row class="matActionRow">
+
+
+      <button mat-raised-button  [disabled]="(validationErrorsFiltersForm.invalid) || (validationErrorsDataLoad===true)" class="searchMatAction" (click)="postValidationErrorsFilters()">
+        <i class="material-icons">
+          search
+        </i>Search</button>
+
+      <span class="spacer"></span>
+      <button mat-raised-button  [disabled]="validationErrorsDataLoad===true" class="resetFilterInput" color="#dc3545" (click)="resetFiltersInput()">Reset</button>
+    </mat-action-row>
+  </mat-card-content>
+</mat-card>

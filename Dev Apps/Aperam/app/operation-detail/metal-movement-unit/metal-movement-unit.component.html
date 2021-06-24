@@ -1,0 +1,259 @@
+<div class="operationDetailContainer">
+    <div class="spacerData"></div>
+
+    <!-- Operation section -->
+    <div class="operationSection">
+        <app-operation-section></app-operation-section>
+    </div>
+    <!-- metal unit section -->
+    <div class="metalUnitSection">
+        <app-metal-unit></app-metal-unit>
+    </div>
+
+
+    <!-- input section -->
+    <div class="inputSection">
+        <div class="input">
+            <app-input-section></app-input-section>
+        </div>
+        <div>
+                <form class="scraplineForm">
+
+                        <div *ngIf="!isInputLoading && inputMetalUnits.length == 0"></div>
+            
+            
+                        <!-- Input and scrap section of operation details -->
+                        <div *ngIf="isInputLoading || inputMetalUnits.length > 0">
+            
+            
+                            <!-- scrap section of the operational detail view -->
+            
+                            <div *ngIf="isInputLoading">
+                                <div>
+                                    Loading
+                                </div>
+                                <div>
+                                    <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+                                </div>
+                            </div>
+                            <mat-expansion-panel *ngIf="!isInputLoading">
+                                <mat-expansion-panel-header class="inputHeader">
+                                    <mat-panel-title style="color: white">
+                                        Scrap:
+                                    </mat-panel-title>
+                                    <mat-panel-description style="color: white">
+                                        <!-- 0.03 Ton -->
+                                        {{scrapTotal}}Ton
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div>
+                                    <div>
+                                        <mat-form-field class="formField">
+                                            <input matInput autocomplete="off" placeholder="Total input" [value]="scrapInput"
+                                                readonly="true" />
+                                            <span matSuffix>Ton</span>
+                                        </mat-form-field>
+                                    </div>
+                                    <div>
+                                        <mat-form-field class="formField">
+                                            <input matInput autocomplete="off" placeholder="Produced output" [value]="scrapOutput"
+                                                readonly="true" />
+                                            <span matSuffix>Ton</span>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </div>
+            
+                    </form>
+        </div>
+     
+
+    </div>
+
+    <!-- output section -->
+    <div class="outputSection">
+        <app-output-section></app-output-section>
+    </div>
+
+
+
+
+</div>
+
+
+
+<!--             <div class="col-4" *ngIf="isOperationLoading">
+                <h5 class="title">Operation: </h5>
+                <div class="row" style="width:108px">
+                    <div class="col-8">
+                        Loading
+                    </div>
+                    <div class="col-3">
+                        <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" *ngIf="!isOperationLoading">
+                <div class="form-row">
+                    <div class="col-xl-8">
+                        <h5 class="title">Operation: {{metalMovement.operation}}<span *ngIf="isChanged"> *</span></h5>
+                    </div>
+                    <div class="col-xl-4">
+                        <button mat-icon-button (click)="delete()" class="action float-xl-right" matTooltip="Delete"
+                            matTooltipShowDelay="1000"><i class="fa fa-lg fa-trash"></i></button>
+                        <button mat-icon-button (click)="copy()" class="action float-xl-right" matTooltip="Copy"
+                            matTooltipShowDelay="1000"><i class="fa fa-lg fa-copy"></i></button>
+                        <button mat-icon-button (click)="save()" class="action float-xl-right" matTooltip="Save"
+                            matTooltipShowDelay="1000"><i class="fa fa-lg fa-save"></i></button>
+                    </div>
+                </div>
+                <div class="alert alert-warning" role="alert" *ngIf="metalMovement.hasValidationErrors">
+                    <div class="row" style="width:108px" *ngIf="isMetalMovementValidationErrorsLoading">
+                        <div class="col-8">
+                            Loading
+                        </div>
+                        <div class="col-3">
+                            <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Loading"></mat-spinner>
+                        </div>
+                    </div>
+                    <div *ngFor="let validationError of metalMovementValidationErrors">{{validationError.violationMessage}}</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="content-sized">
+                            <input matInput autocomplete="off" [value]="metalMovement.coilNo" readonly="true"
+                                placeholder="Coil nr.">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field class="content-sized">
+                            <input matInput autocomplete="off" [value]="metalMovement.packageNo" readonly="true"
+                                placeholder="Package nr.">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="content-sized">
+                            <input matInput autocomplete="off" [matDatepicker]="picker3" placeholder="End date"
+                                [(value)]="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field class="content-sized">
+                            <input matInput autocomplete="off" [(value)]="endtime" readonly="false" placeholder="Time">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <mat-card class="time-card">
+                            <h6>Duration:</h6>
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [value]="metalMovement.duration.rot" readonly="true"
+                                    placeholder="ROT">
+                            </mat-form-field>
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [value]="metalMovement.duration.uot" readonly="true"
+                                    placeholder="UOT">
+                            </mat-form-field>
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [(value)]="metalMovement.duration.ft" readonly="false"
+                                    placeholder="FT">
+                            </mat-form-field>
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [(value)]="metalMovement.duration.otForActivity"
+                                    readonly="false" placeholder="OT for activity">
+                            </mat-form-field>
+                        </mat-card>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-card class="speed-card">
+                            <h6>Speed:</h6>
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [value]="metalMovement.speed.setpoint" readonly="true"
+                                    placeholder="Setpoint">
+                                <span matSuffix>m/h</span>
+                            </mat-form-field><br />
+                            <mat-form-field class="content-sized">
+                                <input matInput autocomplete="off" [value]="metalMovement.speed.realised" readonly="true"
+                                    placeholder="Realised">
+                                <span matSuffix>m/h</span>
+                            </mat-form-field>
+                        </mat-card>
+                    </div>
+                </div>
+            </div> -->
+
+<!-- the below comment section need to be deleted -->
+
+<!--<div class="col-lg-5" *ngIf="isOutputLoading || dataSource.length > 0">
+                <h6 class="title">Output</h6>
+
+                <div class="row" style="width:108px" *ngIf="isOutputLoading">
+                    <div class="col-8">
+                        Loading
+                    </div>
+                    <div class="col-3">
+                        <mat-spinner diameter="20" strokeWidth="2.5" aria-label="Operation loading"></mat-spinner>
+                    </div>
+                </div> 
+
+           
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 card-spacing" *ngIf="!isOutputLoading">
+                     Position Column 
+                    <ng-container matColumnDef="metalUnit">
+                        <th mat-header-cell *matHeaderCellDef> Metal Unit </th>
+                        <td mat-cell (click)="clickOutputRow(element.metalUnitId)" class="output-row show-pointer"
+                            *matCellDef="let element"> {{element.metalUnit}} </td>
+                    </ng-container>
+
+                     Name Column 
+                    <ng-container matColumnDef="packageNo">
+                        <th mat-header-cell *matHeaderCellDef> Package nr </th>
+                        <td mat-cell (click)="clickOutputRow(element.metalUnitId)" class="output-row show-pointer"
+                            *matCellDef="let element"> {{element.packageNo}} </td>
+                    </ng-container>
+
+                     Weight Column 
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef> Weight </th>
+                        <td mat-cell (click)="clickOutputRow(element.metalUnitId)" class="output-row show-pointer"
+                            *matCellDef="let element"> {{element.weight}} {{element.NextMetalMovementId}} </td>
+                    </ng-container>
+
+                     Errors 
+                    <ng-container matColumnDef="hasValidationErrors">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell (click)="clickOutputRow(element.metalUnitId)" class="output-row show-pointer"
+                            *matCellDef="let element"> <i *ngIf="element.hasValidationErrors" class="fa fa-exclamation-triangle"
+                                style="color:orange" matTooltip="Validation errors identified"></i></td>
+                    </ng-container>
+
+                     Action Column 
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button *ngIf="element.nextMetalMovementId" [routerLink]="['/operationdetail/metalmovement', element.nextMetalMovementId]"
+                                class="action float-sm-right" matTooltip="Go to consuming metal movement"
+                                matTooltipShowDelay="1000"><i class="fa fa-lg fa-sign-in"></i></button>
+                            <button mat-icon-button class="action float-sm-right" (click)="snackBarSuccessActionInfo('Succcessfully deleted', 'info')"
+                                matTooltip="Delete" matTooltipShowDelay="1000"><i class="fa fa-lg fa-trash"></i></button>
+                            <button mat-icon-button class="action float-sm-right" (click)="snackBarSuccessActionInfo('Succcessfully relinked', 'info')"
+                                matTooltip="Relink" matTooltipShowDelay="1000"><i class="fa fa-lg fa-link"></i></button>
+                            <button mat-icon-button class="action float-sm-right" (click)="snackBarSuccessActionInfo('Succcessfully copied', 'info')"
+                                matTooltip="Copy" matTooltipShowDelay="1000"><i class="fa fa-lg fa-copy"></i></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row [ngClass]="{'active': metalMovement && metalMovement.metalUnit && row.metalUnitId == metalMovement.metalUnit.metalUnitId}"
+                        *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+             
+    
+            </div>-->

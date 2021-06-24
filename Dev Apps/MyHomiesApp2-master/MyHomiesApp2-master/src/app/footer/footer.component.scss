@@ -1,0 +1,33 @@
+
+.address{
+  font-size: 1em;
+  color: #505050;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  word-wrap:break-word;
+  height: 100%;
+  width: auto;
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+  background: rgb(227,229,240);
+background: linear-gradient(5deg, rgba(227,229,240,1) 5%, rgba(252,252,252,1) 30%);
+border-top:2em solid #ebebeb;
+}
+span{
+  white-space: normal;
+  padding: 0.3em;
+
+}
+.title{
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+
+
+
+
+
